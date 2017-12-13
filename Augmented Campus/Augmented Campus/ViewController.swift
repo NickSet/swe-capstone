@@ -18,6 +18,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sceneView.delegate = self
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
             self.locationManager.requestWhenInUseAuthorization()
@@ -28,23 +29,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDele
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
-        // Set the view's delegate
-        sceneView.delegate = self
-        
-        // Create a new scene
         let arrowNode = createArrowNode()
-        var loc = locationManager.location?.coordinate
-        var bearing = loc?.calculateBearing(to: CLLocationCoordinate2D(latitude: 36.971542, longitude: -82.558492))
+        let loc = locationManager.location?.coordinate
+        let bearing = loc?.calculateBearing(to: CLLocationCoordinate2D(latitude: 36.971542, longitude: -82.558492))
         
         arrowNode.scale = SCNVector3(0.09, 0.09, 0.09)
         arrowNode.position = SCNVector3(0.0, -1.2, -1.4)
-        //arrowNode.eulerAngles = SCNVector3(0, bearing!, 0.0)
         arrowNode.transform = SCNMatrix4Mult(arrowNode.transform, SCNMatrix4MakeRotation(Float(bearing!), 0.0, 1.0, 0.0))
-        sceneView.scene.rootNode.addChildNode(arrowNode)
-        print(bearing?.toDegrees())
-
         
-        print(locationManager.location?.coordinate)
+        sceneView.scene.rootNode.addChildNode(arrowNode)
+        
+        print(String(describing: bearing?.toDegrees()))
+        print(String(describing: locationManager.location?.coordinate))
     }
     
     override func viewWillAppear(_ animated: Bool) {
