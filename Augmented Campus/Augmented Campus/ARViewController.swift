@@ -1,9 +1,9 @@
 //
-//  ViewController.swift
+//  ARViewController.swift
 //  Augmented Campus
 //
-//  Created by Nicholas Setliff on 12/6/17.
-//  Copyright © 2017 Nicholas Setliff. All rights reserved.
+//  Created by Nicholas Setliff on 1/17/18.
+//  Copyright © 2018 Nicholas Setliff. All rights reserved.
 //
 
 import UIKit
@@ -11,13 +11,14 @@ import SceneKit
 import ARKit
 import CoreLocation
 
-class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDelegate {
-
+class ARViewController: UIViewController {
+    
     @IBOutlet var sceneView: ARSCNView!
     var locationManager = CLLocationManager()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         sceneView.delegate = self
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
@@ -38,9 +39,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDele
         arrowNode.transform = SCNMatrix4Mult(arrowNode.transform, SCNMatrix4MakeRotation(Float(bearing!), 0.0, 1.0, 0.0))
         
         sceneView.scene.rootNode.addChildNode(arrowNode)
-        
-        print(String(describing: bearing?.toDegrees()))
-        print(String(describing: locationManager.location?.coordinate))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +58,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDele
         // Pause the view's session
         sceneView.session.pause()
     }
- 
+    
     func createArrowNode() -> SCNNode {
         let vertcount = 48;
         let verts: [Float] = [ -1.4923, 1.1824, 2.5000, -6.4923, 0.000, 0.000, -1.4923, -1.1824, 2.5000, 4.6077, -0.5812, 1.6800, 4.6077, -0.5812, -1.6800, 4.6077, 0.5812, -1.6800, 4.6077, 0.5812, 1.6800, -1.4923, -1.1824, -2.5000, -1.4923, 1.1824, -2.5000, -1.4923, 0.4974, -0.9969, -1.4923, 0.4974, 0.9969, -1.4923, -0.4974, 0.9969, -1.4923, -0.4974, -0.9969 ];
@@ -103,23 +101,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDele
         material1.specular.contents = UIColor(white:0.00, alpha:1.0)
         material1.shininess = 0.75
         
-        //Assign the SCNGeometry to a SCNNode, for example:
         let node = SCNNode(geometry: geometry1)
         
         return node
     }
+
+}
+
+extension ARViewController: CLLocationManagerDelegate {
     
-    // MARK: - ARSCNViewDelegate
-    
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
-    
+}
+
+extension ARViewController: ARSCNViewDelegate {
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         
