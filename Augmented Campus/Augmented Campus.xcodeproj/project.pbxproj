@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF67201A025D0002FCD0 /* Edge.swift */; };
+		9038DF6B201A025D0002FCD0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF68201A025D0002FCD0 /* Node.swift */; };
+		9038DF6C201A025D0002FCD0 /* AbstractGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF69201A025D0002FCD0 /* AbstractGraph.swift */; };
 		90BD6BFA200FF2590055B763 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BD6BF9200FF2590055B763 /* ARViewController.swift */; };
 		90E783EC1FD8409200D2163A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E783EB1FD8409200D2163A /* AppDelegate.swift */; };
 		90E783EE1FD8409200D2163A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 90E783ED1FD8409200D2163A /* art.scnassets */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9038DF67201A025D0002FCD0 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
+		9038DF68201A025D0002FCD0 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		9038DF69201A025D0002FCD0 /* AbstractGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractGraph.swift; sourceTree = "<group>"; };
 		90BD6BF9200FF2590055B763 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		90E783E81FD8409200D2163A /* Augmented Campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Augmented Campus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E783EB1FD8409200D2163A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +47,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9038DF66201A025D0002FCD0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9038DF67201A025D0002FCD0 /* Edge.swift */,
+				9038DF68201A025D0002FCD0 /* Node.swift */,
+				9038DF69201A025D0002FCD0 /* AbstractGraph.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		90E783DF1FD8409200D2163A = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +76,7 @@
 		90E783EA1FD8409200D2163A /* Augmented Campus */ = {
 			isa = PBXGroup;
 			children = (
+				9038DF66201A025D0002FCD0 /* Model */,
 				90E783F41FD8409200D2163A /* Assets.xcassets */,
 				90E783ED1FD8409200D2163A /* art.scnassets */,
 				90BD6BF9200FF2590055B763 /* ARViewController.swift */,
@@ -146,9 +163,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9038DF6C201A025D0002FCD0 /* AbstractGraph.swift in Sources */,
 				90E784021FD8466900D2163A /* Double+Extension.swift in Sources */,
 				90E783EC1FD8409200D2163A /* AppDelegate.swift in Sources */,
 				90E784001FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift in Sources */,
+				9038DF6B201A025D0002FCD0 /* Node.swift in Sources */,
+				9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */,
 				90BD6BFA200FF2590055B763 /* ARViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
