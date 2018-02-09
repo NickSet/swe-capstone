@@ -63,7 +63,7 @@ open class Graph<T>: AbstractGraph<T> where T: Hashable {
     return node
   }
 
-  open override func addDirectedEdge(_ from: Node<T>, to: Node<T>, withWeight weight: Double?, stairs: Bool) {
+    open override func addDirectedEdge(_ from: Node<T>, to: Node<T>, withWeight weight: Double?, stairs: Bool) {
     let edge = Edge(from: from, to: to, weight: weight, stairs: stairs)
     let edgeList = adjacencyList[from.index]
     if edgeList.edges != nil {
@@ -106,7 +106,7 @@ open class Graph<T>: AbstractGraph<T> where T: Hashable {
 
       var row = [String]()
       for edge in edges {
-        var accessible = edge.stairs ? "A " : ""
+        let accessible = edge.stairs ? "A " : ""
         var value = "\(accessible)\(edge.to.data)"
         if edge.weight != nil {
           value = "(\(value): \(edge.weight!))"

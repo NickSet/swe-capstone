@@ -20,3 +20,22 @@ extension CLLocationCoordinate2D {
         return self.calculateBearing(to: coordinate).toDegrees()
     }
 }
+
+extension CLLocationCoordinate2D: Hashable, Equatable {
+    public var hashValue: Int {
+        return "\(latitude)\(longitude)".hashValue
+    }
+    
+    static public func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        guard lhs.latitude == rhs.latitude else {
+            return false
+        }
+        
+        guard lhs.longitude == rhs.longitude else {
+            return false
+        }
+        
+        return true
+    }
+    
+}
