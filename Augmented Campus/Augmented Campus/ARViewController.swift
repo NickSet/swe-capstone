@@ -15,7 +15,9 @@ class ARViewController: UIViewController {
     
     @IBOutlet var sceneView: ARSCNView!
     var locationManager = CLLocationManager()
-
+    var arrowNode = SCNNode()
+    var lightNode = SCNNode()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,44 +32,43 @@ class ARViewController: UIViewController {
         locationManager.distanceFilter = kCLLocationAccuracyBest
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
         
-        //let arrowNode = createArrowNode()
-        let arrowScene = SCNScene(named: "art.scnassets/arrow.dae")!
-        let arrowNode = arrowScene.rootNode.childNode(withName: "arrow", recursively: true)!
-        
-        let loc = locationManager.location?.coordinate
-        let bearing = loc?.calculateBearing(to: CLLocationCoordinate2D(latitude: 36.971542, longitude: -82.558492))
-        
-        arrowNode.position = SCNVector3(0.0, -1.0, 1.0)
-        
-        arrowNode.transform = SCNMatrix4Mult(arrowNode.transform, SCNMatrix4MakeRotation(Float(bearing!), 0.0, 1.0, 0.0))
-        arrowNode.eulerAngles = SCNVector3Make(Float.pi/2, arrowNode.eulerAngles.y - Float.pi/2, 0.0)
-        
-        sceneView.scene = arrowScene
+        let arrowScene = SCNScene(named: "art.scnassets/arrow.scn")!
+        arrowNode = arrowScene.rootNode.childNode(withName: "arrow", recursively: true)!
+        arrowNode.position = SCNVector3Make(0.0, -1.0, -2.8)
+        sceneView.pointOfView?.addChildNode(arrowNode)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        configuration.worldAlignment = .gravityAndHeading
-        
-        // Run the view's session
+        configuration.worldAlignment = .gravity
+
         sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // Pause the view's session
         sceneView.session.pause()
+    }
+    
+    func updateNode(withHeading heading: Double) {
+        let loc = locationManager.location?.coordinate
+        let bearing = loc!.calculateBearing(to: CLLocationCoordinate2D(latitude: 36.971542, longitude: -82.558492))
+        let direction = heading + bearing - Double.pi/2
+        
+        arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
     }
     
 }
 
 extension ARViewController: CLLocationManagerDelegate {
-    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        updateNode(withHeading: newHeading.magneticHeading.toRadians())
+    }
 }
 
 extension ARViewController: ARSCNViewDelegate {
