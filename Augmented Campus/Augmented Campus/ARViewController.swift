@@ -111,6 +111,8 @@ class ARViewController: UIViewController {
             self.title = "Fountain"
         }
         
+        updateNode(withHeading: locationManager.heading!.magneticHeading.toRadians())
+        
     }
     
 }
