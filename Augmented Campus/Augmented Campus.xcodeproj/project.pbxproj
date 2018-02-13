@@ -11,6 +11,10 @@
 		9038DF6B201A025D0002FCD0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF68201A025D0002FCD0 /* Node.swift */; };
 		9038DF6C201A025D0002FCD0 /* AbstractGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF69201A025D0002FCD0 /* AbstractGraph.swift */; };
 		90BD6BFA200FF2590055B763 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BD6BF9200FF2590055B763 /* ARViewController.swift */; };
+		90BF1FBB2033969B0082DB0B /* UISideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FB72033969B0082DB0B /* UISideMenuNavigationController.swift */; };
+		90BF1FBC2033969B0082DB0B /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FB82033969B0082DB0B /* SideMenuManager.swift */; };
+		90BF1FBD2033969B0082DB0B /* SideMenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FB92033969B0082DB0B /* SideMenuTransition.swift */; };
+		90BF1FBE2033969B0082DB0B /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FBA2033969B0082DB0B /* UITableViewVibrantCell.swift */; };
 		90E783EC1FD8409200D2163A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E783EB1FD8409200D2163A /* AppDelegate.swift */; };
 		90E783EE1FD8409200D2163A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 90E783ED1FD8409200D2163A /* art.scnassets */; };
 		90E783F31FD8409200D2163A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E783F11FD8409200D2163A /* Main.storyboard */; };
@@ -25,6 +29,10 @@
 		9038DF68201A025D0002FCD0 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		9038DF69201A025D0002FCD0 /* AbstractGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractGraph.swift; sourceTree = "<group>"; };
 		90BD6BF9200FF2590055B763 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		90BF1FB72033969B0082DB0B /* UISideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISideMenuNavigationController.swift; sourceTree = "<group>"; };
+		90BF1FB82033969B0082DB0B /* SideMenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
+		90BF1FB92033969B0082DB0B /* SideMenuTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTransition.swift; sourceTree = "<group>"; };
+		90BF1FBA2033969B0082DB0B /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewVibrantCell.swift; sourceTree = "<group>"; };
 		90E783E81FD8409200D2163A /* Augmented Campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Augmented Campus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E783EB1FD8409200D2163A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90E783ED1FD8409200D2163A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -57,6 +65,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		90BF1FA4203392550082DB0B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				90BF1FB62033969B0082DB0B /* SideMenu */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		90BF1FB62033969B0082DB0B /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				90BF1FB72033969B0082DB0B /* UISideMenuNavigationController.swift */,
+				90BF1FB82033969B0082DB0B /* SideMenuManager.swift */,
+				90BF1FB92033969B0082DB0B /* SideMenuTransition.swift */,
+				90BF1FBA2033969B0082DB0B /* UITableViewVibrantCell.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
 		90E783DF1FD8409200D2163A = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +103,7 @@
 		90E783EA1FD8409200D2163A /* Augmented Campus */ = {
 			isa = PBXGroup;
 			children = (
+				90BF1FA4203392550082DB0B /* View */,
 				9038DF66201A025D0002FCD0 /* Model */,
 				90E783F41FD8409200D2163A /* Assets.xcassets */,
 				90E783ED1FD8409200D2163A /* art.scnassets */,
@@ -166,9 +194,13 @@
 				9038DF6C201A025D0002FCD0 /* AbstractGraph.swift in Sources */,
 				90E784021FD8466900D2163A /* Double+Extension.swift in Sources */,
 				90E783EC1FD8409200D2163A /* AppDelegate.swift in Sources */,
+				90BF1FBB2033969B0082DB0B /* UISideMenuNavigationController.swift in Sources */,
+				90BF1FBD2033969B0082DB0B /* SideMenuTransition.swift in Sources */,
 				90E784001FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift in Sources */,
 				9038DF6B201A025D0002FCD0 /* Node.swift in Sources */,
 				9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */,
+				90BF1FBE2033969B0082DB0B /* UITableViewVibrantCell.swift in Sources */,
+				90BF1FBC2033969B0082DB0B /* SideMenuManager.swift in Sources */,
 				90BD6BFA200FF2590055B763 /* ARViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
