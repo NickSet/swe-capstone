@@ -18,6 +18,9 @@ class ARViewController: UIViewController {
     var arrowNode = SCNNode()
     var lightNode = SCNNode()
     
+    var coords = [CLLocationCoordinate2D]()
+    var currentCoord = CLLocationCoordinate2D()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +41,10 @@ class ARViewController: UIViewController {
         arrowNode = arrowScene.rootNode.childNode(withName: "arrow", recursively: true)!
         arrowNode.position = SCNVector3Make(0.0, -1.0, -2.8)
         sceneView.pointOfView?.addChildNode(arrowNode)
+        
+        arrowNode.isHidden = true
+        
+        addCoords()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,11 +63,54 @@ class ARViewController: UIViewController {
     }
     
     func updateNode(withHeading heading: Double) {
+        arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
+
+        if currentCoord != CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0) {
+            arrowNode.isHidden = false
+        }
+        
         let loc = locationManager.location?.coordinate
-        let bearing = loc!.calculateBearing(to: CLLocationCoordinate2D(latitude: 36.971542, longitude: -82.558492))
-        let direction = heading + bearing - Double.pi/2
+        let bearing = loc!.calculateBearing(to: currentCoord)
+        var direction = 0.0
+        
+        print("Heading: \(heading.toDegrees())")
+        print("Bearing: \(bearing.toDegrees())")
+        
+        if heading < Double.pi {
+            direction = heading + Double.pi + abs(bearing)
+        } else {
+            direction = heading - Double.pi + abs(bearing)
+        }
+        
+        print("Direction: \(direction.toDegrees())\n")
+
         
         arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
+    }
+    
+    func addCoords() {
+        let fountain = CLLocationCoordinate2D(latitude: 36.971647, longitude:  -82.558558)
+        let lake = CLLocationCoordinate2D(latitude: 36.971875, longitude: -82.561650)
+        let entrance = CLLocationCoordinate2D(latitude: 36.969963, longitude: -82.560619)
+        
+        coords.append(fountain)
+        coords.append(lake)
+        coords.append(entrance)
+    }
+    
+    
+    @IBAction func searchButtonTapped(_ sender: UIButton) {
+        if currentCoord == coords[0] {
+            currentCoord = coords[1]
+            self.title = "Lake"
+        } else if currentCoord == coords[1] {
+            currentCoord = coords[2]
+            self.title = "Entrance"
+        } else {
+            currentCoord = coords[0]
+            self.title = "Fountain"
+        }
+        
     }
     
 }

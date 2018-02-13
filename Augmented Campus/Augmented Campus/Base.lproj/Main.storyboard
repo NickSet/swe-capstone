@@ -37,13 +37,22 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKl-Gf-0Ao">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7m4-3a-tDl">
+                                <rect key="frame" x="16" y="601" width="50" height="50"/>
+                                <state key="normal" image="location-icon"/>
+                                <connections>
+                                    <action selector="searchButtonTapped:" destination="sBn-1M-NAo" eventType="touchUpInside" id="eLm-er-Z5j"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="sKl-Gf-0Ao" firstAttribute="trailing" secondItem="5ci-Lc-LaB" secondAttribute="trailing" id="03u-WY-W8A"/>
+                            <constraint firstItem="7m4-3a-tDl" firstAttribute="leading" secondItem="5ci-Lc-LaB" secondAttribute="leading" constant="16" id="3Il-R7-aRh"/>
                             <constraint firstItem="sKl-Gf-0Ao" firstAttribute="bottom" secondItem="5ci-Lc-LaB" secondAttribute="bottom" id="4dj-eF-PjB"/>
                             <constraint firstItem="sKl-Gf-0Ao" firstAttribute="top" secondItem="5ci-Lc-LaB" secondAttribute="top" id="LZb-nm-jD7"/>
                             <constraint firstItem="sKl-Gf-0Ao" firstAttribute="leading" secondItem="5ci-Lc-LaB" secondAttribute="leading" id="l2t-WT-UOL"/>
+                            <constraint firstItem="5ci-Lc-LaB" firstAttribute="bottom" secondItem="7m4-3a-tDl" secondAttribute="bottom" constant="16" id="pn0-Jb-Sa6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5ci-Lc-LaB"/>
                     </view>
@@ -54,7 +63,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eaf-cL-uw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1380" y="-87"/>
+            <point key="canvasLocation" x="1380" y="-87.706146926536732"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="location-icon" width="50" height="50"/>
+    </resources>
 </document>
