@@ -14,6 +14,8 @@ import CoreLocation
 class ARViewController: UIViewController {
     
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet var menuButton: UIButton!
+    
     var locationManager = CLLocationManager()
     var arrowNode = SCNNode()
     var lightNode = SCNNode()
@@ -42,9 +44,7 @@ class ARViewController: UIViewController {
         
         arrowNode.isHidden = true
         
-        //SideMenu setup
         setupSideMenu()
-        setSideMenuDefaults()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,23 +63,17 @@ class ARViewController: UIViewController {
     }
     
     func setupSideMenu() {
-        SideMenuManager.default.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuController") as? UISideMenuNavigationController
-        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.view)
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
-    }
-    
-    func setSideMenuDefaults() {
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.left)
         SideMenuManager.default.menuPresentMode = .menuSlideIn
-        SideMenuManager.default.menuBlurEffectStyle = .dark
-        SideMenuManager.default.menuAnimationFadeStrength = 0.5
+        SideMenuManager.default.menuBlurEffectStyle = .none
+        SideMenuManager.default.menuAnimationFadeStrength = 0.4
         SideMenuManager.default.menuWidth = view.frame.width * 0.6
         SideMenuManager.default.menuFadeStatusBar = false
     }
     
-    
     func updateNode(withHeading heading: Double) {
         arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
-        print("\n\(currentCoord)")
+        
         if currentCoord != CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0) {
             arrowNode.isHidden = false
         }
@@ -88,45 +82,25 @@ class ARViewController: UIViewController {
         let bearing = loc!.calculateBearing(to: currentCoord)
         var direction = 0.0
         
-        
-        
         if heading < Double.pi {
             direction = heading + Double.pi + abs(bearing)
         } else {
             direction = heading - Double.pi + abs(bearing)
         }
         
-        //Debug: Remove from release
-        print("Heading: \(heading.toDegrees())")
-        print("Bearing: \(bearing.toDegrees())")
-        print("Direction: \(direction.toDegrees())\n")
-
-        
         arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
     }
     
     @IBAction func searchButtonTapped(_ sender: UIButton) {
-        /*
-        if currentCoord == coords[0] {
-            currentCoord = coords[1]
-            self.title = "Lake"
-        } else if currentCoord == coords[1] {
-            currentCoord = coords[2]
-            self.title = "Entrance"
-        } else {
-            currentCoord = coords[0]
-            self.title = "Fountain"
-        }
-        */
-        updateNode(withHeading: locationManager.heading!.magneticHeading.toRadians())
-        
+        // TODO: Animate Button
     }
     
     @IBAction func unwindToARViewController(segue: UIStoryboardSegue) {
         if let sideMenuController = segue.source as? SideMenuTableViewController {
             currentCoord = sideMenuController.selectedCoordinate
+            self.title = sideMenuController.selectedDescription
             updateNode(withHeading: locationManager.heading!.magneticHeading.toRadians())
-            print("here")
+            
         }
     }
 

@@ -13,19 +13,23 @@ import UIKit
 class SideMenuTableViewController: UITableViewController {
     
     var coordinates = [CLLocationCoordinate2D]()
+    let descriptions = ["Fountain", "Lake", "Entrance"]
     var selectedCoordinate = CLLocationCoordinate2D()
+    var selectedDescription = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addCoords()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        addCoords()
         // refresh cell blur effect in case it changed
-        tableView.reloadData()
+        //tableView.reloadData()
+        tableView.contentInset = UIEdgeInsetsMake(48, 0, 0, 0)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
         guard SideMenuManager.default.menuBlurEffectStyle == nil else {
             return
@@ -42,8 +46,9 @@ class SideMenuTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "unwindToARViewController", sender: self)
         selectedCoordinate = coordinates[indexPath.row]
+        selectedDescription = descriptions[indexPath.row]
+        performSegue(withIdentifier: "unwindToARViewController", sender: self)
     }
     
     func addCoords() {
