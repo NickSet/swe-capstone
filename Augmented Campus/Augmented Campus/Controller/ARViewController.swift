@@ -18,14 +18,12 @@ class ARViewController: UIViewController {
     var arrowNode = SCNNode()
     var lightNode = SCNNode()
     
-    var coords = [CLLocationCoordinate2D]()
     var currentCoord = CLLocationCoordinate2D()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         sceneView.delegate = self
-        sceneView.debugOptions = ARSCNDebugOptions.showWorldOrigin
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
             self.locationManager.requestWhenInUseAuthorization()
@@ -44,7 +42,9 @@ class ARViewController: UIViewController {
         
         arrowNode.isHidden = true
         
-        addCoords()
+        //SideMenu setup
+        setupSideMenu()
+        setSideMenuDefaults()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,9 +62,24 @@ class ARViewController: UIViewController {
         sceneView.session.pause()
     }
     
+    func setupSideMenu() {
+        SideMenuManager.default.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuController") as? UISideMenuNavigationController
+        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.view)
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
+    }
+    
+    func setSideMenuDefaults() {
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        SideMenuManager.default.menuBlurEffectStyle = .dark
+        SideMenuManager.default.menuAnimationFadeStrength = 0.5
+        SideMenuManager.default.menuWidth = view.frame.width * 0.6
+        SideMenuManager.default.menuFadeStatusBar = false
+    }
+    
+    
     func updateNode(withHeading heading: Double) {
         arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
-
+        print("\n\(currentCoord)")
         if currentCoord != CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0) {
             arrowNode.isHidden = false
         }
@@ -73,8 +88,7 @@ class ARViewController: UIViewController {
         let bearing = loc!.calculateBearing(to: currentCoord)
         var direction = 0.0
         
-        print("Heading: \(heading.toDegrees())")
-        print("Bearing: \(bearing.toDegrees())")
+        
         
         if heading < Double.pi {
             direction = heading + Double.pi + abs(bearing)
@@ -82,24 +96,17 @@ class ARViewController: UIViewController {
             direction = heading - Double.pi + abs(bearing)
         }
         
+        //Debug: Remove from release
+        print("Heading: \(heading.toDegrees())")
+        print("Bearing: \(bearing.toDegrees())")
         print("Direction: \(direction.toDegrees())\n")
 
         
         arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
     }
     
-    func addCoords() {
-        let fountain = CLLocationCoordinate2D(latitude: 36.971647, longitude:  -82.558558)
-        let lake = CLLocationCoordinate2D(latitude: 36.971875, longitude: -82.561650)
-        let entrance = CLLocationCoordinate2D(latitude: 36.969963, longitude: -82.560619)
-        
-        coords.append(fountain)
-        coords.append(lake)
-        coords.append(entrance)
-    }
-    
-    
     @IBAction func searchButtonTapped(_ sender: UIButton) {
+        /*
         if currentCoord == coords[0] {
             currentCoord = coords[1]
             self.title = "Lake"
@@ -110,11 +117,19 @@ class ARViewController: UIViewController {
             currentCoord = coords[0]
             self.title = "Fountain"
         }
-        
+        */
         updateNode(withHeading: locationManager.heading!.magneticHeading.toRadians())
         
     }
     
+    @IBAction func unwindToARViewController(segue: UIStoryboardSegue) {
+        if let sideMenuController = segue.source as? SideMenuTableViewController {
+            currentCoord = sideMenuController.selectedCoordinate
+            updateNode(withHeading: locationManager.heading!.magneticHeading.toRadians())
+            print("here")
+        }
+    }
+
 }
 
 extension ARViewController: CLLocationManagerDelegate {
