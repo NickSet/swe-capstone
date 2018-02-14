@@ -20,20 +20,13 @@ class SideMenuTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addCoords()
+        tableView.contentInset = UIEdgeInsetsMake(48, 0, 0, 0)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        addCoords()
-        // refresh cell blur effect in case it changed
-        //tableView.reloadData()
-        tableView.contentInset = UIEdgeInsetsMake(48, 0, 0, 0)
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        
-        guard SideMenuManager.default.menuBlurEffectStyle == nil else {
-            return
-        }
         
     }
     

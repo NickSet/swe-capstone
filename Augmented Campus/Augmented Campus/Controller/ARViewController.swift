@@ -24,7 +24,7 @@ class ARViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         sceneView.delegate = self
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
@@ -50,6 +50,7 @@ class ARViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        print("ViewWillAppear()")
         let configuration = ARWorldTrackingConfiguration()
         configuration.worldAlignment = .gravity
 
@@ -63,7 +64,6 @@ class ARViewController: UIViewController {
     }
     
     func setupSideMenu() {
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.left)
         SideMenuManager.default.menuPresentMode = .menuSlideIn
         SideMenuManager.default.menuBlurEffectStyle = .none
         SideMenuManager.default.menuAnimationFadeStrength = 0.4
@@ -91,10 +91,6 @@ class ARViewController: UIViewController {
         arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
     }
     
-    @IBAction func searchButtonTapped(_ sender: UIButton) {
-        // TODO: Animate Button
-    }
-    
     @IBAction func unwindToARViewController(segue: UIStoryboardSegue) {
         if let sideMenuController = segue.source as? SideMenuTableViewController {
             currentCoord = sideMenuController.selectedCoordinate
@@ -102,6 +98,10 @@ class ARViewController: UIViewController {
             updateNode(withHeading: locationManager.heading!.magneticHeading.toRadians())
             
         }
+    }
+    
+    @IBAction func menuButtonTapped(sender: UIButton) {
+        performSegue(withIdentifier: "LeftMenuControllerSegue", sender: nil)
     }
 
 }

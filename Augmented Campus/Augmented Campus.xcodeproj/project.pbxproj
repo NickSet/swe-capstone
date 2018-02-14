@@ -114,8 +114,8 @@
 		90E783EA1FD8409200D2163A /* Augmented Campus */ = {
 			isa = PBXGroup;
 			children = (
-				90BF1FBF20339AE00082DB0B /* Controller */,
 				90BF1FA4203392550082DB0B /* ThirdParty */,
+				90BF1FBF20339AE00082DB0B /* Controller */,
 				9038DF66201A025D0002FCD0 /* Model */,
 				90E783F41FD8409200D2163A /* Assets.xcassets */,
 				90E783ED1FD8409200D2163A /* art.scnassets */,
@@ -293,6 +293,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -342,6 +343,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

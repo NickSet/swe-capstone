@@ -111,7 +111,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ov6-nP-E9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ikf-f2-tKI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2599" y="-92"/>
+            <point key="canvasLocation" x="2708" y="-92"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SAE-iN-h4M">
@@ -144,8 +144,7 @@
                                 <rect key="frame" x="16" y="601" width="50" height="50"/>
                                 <state key="normal" image="location-icon"/>
                                 <connections>
-                                    <action selector="searchButtonTapped:" destination="sBn-1M-NAo" eventType="touchUpInside" id="eLm-er-Z5j"/>
-                                    <segue destination="Roi-CB-xci" kind="presentation" id="5TW-mJ-fsV"/>
+                                    <action selector="menuButtonTappedWithSender:" destination="sBn-1M-NAo" eventType="touchUpInside" id="8yg-EJ-PuK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -162,8 +161,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Pfd-vX-6xd"/>
                     <connections>
-                        <outlet property="menuButton" destination="7m4-3a-tDl" id="Zq0-Mz-PEB"/>
+                        <outlet property="menuButton" destination="7m4-3a-tDl" id="QRg-u2-Nbb"/>
                         <outlet property="sceneView" destination="sKl-Gf-0Ao" id="71e-c1-h75"/>
+                        <segue destination="Roi-CB-xci" kind="presentation" identifier="LeftMenuControllerSegue" id="ygq-bZ-Ozq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eaf-cL-uw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
