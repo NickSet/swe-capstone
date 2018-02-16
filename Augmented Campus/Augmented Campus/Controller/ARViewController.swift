@@ -50,10 +50,11 @@ class ARViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.worldAlignment = .gravity
-
-        sceneView.session.run(configuration)
+        if self.presentedViewController == nil {
+            let configuration = ARWorldTrackingConfiguration()
+            configuration.worldAlignment = .gravity
+            sceneView.session.run(configuration)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -100,6 +101,9 @@ class ARViewController: UIViewController {
     }
     
     @IBAction func menuButtonTapped(sender: UIButton) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.menuButton.alpha = 0.0
+        }, completion: nil)
         performSegue(withIdentifier: "LeftMenuControllerSegue", sender: nil)
     }
 
@@ -125,5 +129,13 @@ extension ARViewController: ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+}
+
+extension ARViewController: UISideMenuNavigationControllerDelegate {
+    func sideMenuWillDisappear(menu: UISideMenuNavigationController, animated: Bool) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.menuButton.alpha = 1.0
+            })
     }
 }
