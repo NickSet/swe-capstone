@@ -32,8 +32,8 @@ class ARViewController: UIViewController {
         }
         
         locationManager.delegate = self
-        locationManager.distanceFilter = kCLLocationAccuracyBest
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLLocationAccuracyBestForNavigation
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.startUpdatingLocation()
         locationManager.startUpdatingHeading()
         
@@ -50,7 +50,6 @@ class ARViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("ViewWillAppear()")
         let configuration = ARWorldTrackingConfiguration()
         configuration.worldAlignment = .gravity
 

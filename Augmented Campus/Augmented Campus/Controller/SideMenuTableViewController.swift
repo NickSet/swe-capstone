@@ -45,7 +45,7 @@ class SideMenuTableViewController: UITableViewController {
     }
     
     func addCoords() {
-        let fountain = CLLocationCoordinate2D(latitude: 36.971647, longitude:  -82.558558)
+        let fountain = CLLocationCoordinate2D(latitude: 36.971647, longitude:  -82.558557) 
         let lake = CLLocationCoordinate2D(latitude: 36.971875, longitude: -82.561650)
         let entrance = CLLocationCoordinate2D(latitude: 36.969963, longitude: -82.560619)
         
