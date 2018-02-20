@@ -49,18 +49,20 @@ class ARViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if self.presentedViewController == nil {
-            let configuration = ARWorldTrackingConfiguration()
-            configuration.worldAlignment = .gravity
-            sceneView.session.run(configuration)
-        }
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.worldAlignment = .gravity
+        sceneView.session.run(configuration)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        sceneView.session.pause()
+        if self.presentedViewController == nil {
+            sceneView.session.pause()
+        }
     }
     
     func setupSideMenu() {
@@ -133,9 +135,15 @@ extension ARViewController: ARSCNViewDelegate {
 }
 
 extension ARViewController: UISideMenuNavigationControllerDelegate {
-    func sideMenuWillDisappear(menu: UISideMenuNavigationController, animated: Bool) {
+    func sideMenuWillAppear(menu: UISideMenuNavigationController, animated: Bool) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.menuButton.alpha = 0.0
+        })
+    }
+    
+    func sideMenuDidDisappear(menu: UISideMenuNavigationController, animated: Bool) {
         UIView.animate(withDuration: 0.3, animations: {
             self.menuButton.alpha = 1.0
-            })
+        })
     }
 }
