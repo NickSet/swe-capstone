@@ -29,11 +29,11 @@ open class AbstractGraph<T>: CustomStringConvertible where T: Hashable {
     fatalError("abstract function called")
   }
 
-  open func addDirectedEdge(_ from: Node<T>, to: Node<T>, withWeight weight: Double?, stairs: Bool) {
+  open func addDirectedEdge(_ from: Node<T>, to: Node<T>, withWeight weight: Double?, stairs: Bool = false) {
     fatalError("abstract function called")
   }
 
-  open func addUndirectedEdge(_ vertices: (Node<T>, Node<T>), withWeight weight: Double?, stairs: Bool) {
+  open func addUndirectedEdge(_ vertices: (Node<T>, Node<T>), withWeight weight: Double?, stairs: Bool = false) {
     fatalError("abstract function called")
   }
 
