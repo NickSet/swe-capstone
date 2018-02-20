@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		900CD12F202E16C3004CC0A5 /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900CD12E202E16C3004CC0A5 /* GraphTests.swift */; };
 		9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF67201A025D0002FCD0 /* Edge.swift */; };
 		9038DF6B201A025D0002FCD0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF68201A025D0002FCD0 /* Node.swift */; };
 		9038DF6C201A025D0002FCD0 /* AbstractGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF69201A025D0002FCD0 /* AbstractGraph.swift */; };
+		90851890202E04A60008F3C1 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9085188F202E04A60008F3C1 /* Graph.swift */; };
 		90BD6BFA200FF2590055B763 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BD6BF9200FF2590055B763 /* ARViewController.swift */; };
 		90BF1FBB2033969B0082DB0B /* UISideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FB72033969B0082DB0B /* UISideMenuNavigationController.swift */; };
 		90BF1FBC2033969B0082DB0B /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FB82033969B0082DB0B /* SideMenuManager.swift */; };
@@ -17,18 +19,32 @@
 		90BF1FBE2033969B0082DB0B /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FBA2033969B0082DB0B /* UITableViewVibrantCell.swift */; };
 		90BF1FC120339F440082DB0B /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FC020339F440082DB0B /* SideMenuTableViewController.swift */; };
 		90E783EC1FD8409200D2163A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E783EB1FD8409200D2163A /* AppDelegate.swift */; };
-		90E783EE1FD8409200D2163A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 90E783ED1FD8409200D2163A /* art.scnassets */; };
 		90E783F31FD8409200D2163A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E783F11FD8409200D2163A /* Main.storyboard */; };
 		90E783F51FD8409200D2163A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90E783F41FD8409200D2163A /* Assets.xcassets */; };
 		90E783F81FD8409200D2163A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E783F61FD8409200D2163A /* LaunchScreen.storyboard */; };
 		90E784001FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E783FF1FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift */; };
 		90E784021FD8466900D2163A /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E784011FD8466900D2163A /* Double+Extension.swift */; };
+		90EF7331203CA322006F219E /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 90EF7330203CA322006F219E /* art.scnassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		908518AA202E0B0C0008F3C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90E783E01FD8409200D2163A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90E783E71FD8409200D2163A;
+			remoteInfo = "Augmented Campus";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		900CD12E202E16C3004CC0A5 /* GraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
 		9038DF67201A025D0002FCD0 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		9038DF68201A025D0002FCD0 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		9038DF69201A025D0002FCD0 /* AbstractGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractGraph.swift; sourceTree = "<group>"; };
+		9085188F202E04A60008F3C1 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		90851899202E05550008F3C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		908518A5202E0B0B0008F3C1 /* Augmented CampusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Augmented CampusTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90BD6BF9200FF2590055B763 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		90BF1FB72033969B0082DB0B /* UISideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISideMenuNavigationController.swift; sourceTree = "<group>"; };
 		90BF1FB82033969B0082DB0B /* SideMenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
@@ -37,16 +53,23 @@
 		90BF1FC020339F440082DB0B /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		90E783E81FD8409200D2163A /* Augmented Campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Augmented Campus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E783EB1FD8409200D2163A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		90E783ED1FD8409200D2163A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		90E783F21FD8409200D2163A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		90E783F41FD8409200D2163A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90E783F71FD8409200D2163A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90E783F91FD8409200D2163A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90E783FF1FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extension.swift"; sourceTree = "<group>"; };
 		90E784011FD8466900D2163A /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		90EF7330203CA322006F219E /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = "Augmented Campus/art.scnassets"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		908518A2202E0B0B0008F3C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90E783E51FD8409200D2163A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -60,11 +83,21 @@
 		9038DF66201A025D0002FCD0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9085188F202E04A60008F3C1 /* Graph.swift */,
 				9038DF67201A025D0002FCD0 /* Edge.swift */,
 				9038DF68201A025D0002FCD0 /* Node.swift */,
 				9038DF69201A025D0002FCD0 /* AbstractGraph.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		90851896202E05550008F3C1 /* Augmented CampusTests */ = {
+			isa = PBXGroup;
+			children = (
+				900CD12E202E16C3004CC0A5 /* GraphTests.swift */,
+				90851899202E05550008F3C1 /* Info.plist */,
+			);
+			path = "Augmented CampusTests";
 			sourceTree = "<group>";
 		};
 		90BF1FA4203392550082DB0B /* ThirdParty */ = {
@@ -99,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				90E783EA1FD8409200D2163A /* Augmented Campus */,
+				90851896202E05550008F3C1 /* Augmented CampusTests */,
 				90E783E91FD8409200D2163A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				90E783E81FD8409200D2163A /* Augmented Campus.app */,
+				908518A5202E0B0B0008F3C1 /* Augmented CampusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,8 +152,8 @@
 				90BF1FA4203392550082DB0B /* ThirdParty */,
 				90BF1FBF20339AE00082DB0B /* Controller */,
 				9038DF66201A025D0002FCD0 /* Model */,
+				90EF7330203CA322006F219E /* art.scnassets */,
 				90E783F41FD8409200D2163A /* Assets.xcassets */,
-				90E783ED1FD8409200D2163A /* art.scnassets */,
 				90E783EB1FD8409200D2163A /* AppDelegate.swift */,
 				90E783F11FD8409200D2163A /* Main.storyboard */,
 				90E783F61FD8409200D2163A /* LaunchScreen.storyboard */,
@@ -132,6 +167,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		908518A4202E0B0B0008F3C1 /* Augmented CampusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 908518AC202E0B0C0008F3C1 /* Build configuration list for PBXNativeTarget "Augmented CampusTests" */;
+			buildPhases = (
+				908518A1202E0B0B0008F3C1 /* Sources */,
+				908518A2202E0B0B0008F3C1 /* Frameworks */,
+				908518A3202E0B0B0008F3C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				908518AB202E0B0C0008F3C1 /* PBXTargetDependency */,
+			);
+			name = "Augmented CampusTests";
+			productName = "Augmented CampusTests";
+			productReference = 908518A5202E0B0B0008F3C1 /* Augmented CampusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		90E783E71FD8409200D2163A /* Augmented Campus */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90E783FC1FD8409200D2163A /* Build configuration list for PBXNativeTarget "Augmented Campus" */;
@@ -159,6 +212,12 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Nicholas Setliff";
 				TargetAttributes = {
+					908518A4202E0B0B0008F3C1 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 90E783E71FD8409200D2163A;
+					};
 					90E783E71FD8409200D2163A = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -179,17 +238,25 @@
 			projectRoot = "";
 			targets = (
 				90E783E71FD8409200D2163A /* Augmented Campus */,
+				908518A4202E0B0B0008F3C1 /* Augmented CampusTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		908518A3202E0B0B0008F3C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90E783E61FD8409200D2163A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90E783EE1FD8409200D2163A /* art.scnassets in Resources */,
 				90E783F81FD8409200D2163A /* LaunchScreen.storyboard in Resources */,
+				90EF7331203CA322006F219E /* art.scnassets in Resources */,
 				90E783F51FD8409200D2163A /* Assets.xcassets in Resources */,
 				90E783F31FD8409200D2163A /* Main.storyboard in Resources */,
 			);
@@ -198,10 +265,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		908518A1202E0B0B0008F3C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				900CD12F202E16C3004CC0A5 /* GraphTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90E783E41FD8409200D2163A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90851890202E04A60008F3C1 /* Graph.swift in Sources */,
 				9038DF6C201A025D0002FCD0 /* AbstractGraph.swift in Sources */,
 				90E784021FD8466900D2163A /* Double+Extension.swift in Sources */,
 				90BF1FC120339F440082DB0B /* SideMenuTableViewController.swift in Sources */,
@@ -218,6 +294,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		908518AB202E0B0C0008F3C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 90E783E71FD8409200D2163A /* Augmented Campus */;
+			targetProxy = 908518AA202E0B0C0008F3C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		90E783F11FD8409200D2163A /* Main.storyboard */ = {
@@ -239,6 +323,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		908518AD202E0B0C0008F3C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6ZW49U432P;
+				INFOPLIST_FILE = "Augmented CampusTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.setleaf.Augmented-Campus.Augmented-CampusTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Augmented Campus.app/Augmented Campus";
+			};
+			name = Debug;
+		};
+		908518AE202E0B0C0008F3C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6ZW49U432P;
+				INFOPLIST_FILE = "Augmented CampusTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.setleaf.Augmented-Campus.Augmented-CampusTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Augmented Campus.app/Augmented Campus";
+			};
+			name = Release;
+		};
 		90E783FA1FD8409200D2163A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -381,6 +500,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		908518AC202E0B0C0008F3C1 /* Build configuration list for PBXNativeTarget "Augmented CampusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				908518AD202E0B0C0008F3C1 /* Debug */,
+				908518AE202E0B0C0008F3C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		90E783E31FD8409200D2163A /* Build configuration list for PBXProject "Augmented Campus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
