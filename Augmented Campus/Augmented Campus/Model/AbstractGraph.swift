@@ -6,8 +6,8 @@ open class AbstractGraph<T>: CustomStringConvertible where T: Hashable {
     for edge in graph.edges {
       let from = createNode(edge.from.data)
       let to = createNode(edge.to.data)
-
-      addDirectedEdge(from, to: to, withWeight: edge.weight)
+      let stairs = edge.stairs
+      addDirectedEdge(from, to: to, withWeight: edge.weight, stairs: stairs)
     }
   }
 
@@ -15,7 +15,7 @@ open class AbstractGraph<T>: CustomStringConvertible where T: Hashable {
     fatalError("abstract property accessed")
   }
 
-  open var vertices: [Node<T>] {
+  open var nodes: [Node<T>] {
     fatalError("abstract property accessed")
   }
 
@@ -29,11 +29,11 @@ open class AbstractGraph<T>: CustomStringConvertible where T: Hashable {
     fatalError("abstract function called")
   }
 
-  open func addDirectedEdge(_ from: Node<T>, to: Node<T>, withWeight weight: Double?) {
+  open func addDirectedEdge(_ from: Node<T>, to: Node<T>, withWeight weight: Double?, stairs: Bool = false) {
     fatalError("abstract function called")
   }
 
-  open func addUndirectedEdge(_ vertices: (Node<T>, Node<T>), withWeight weight: Double?) {
+  open func addUndirectedEdge(_ vertices: (Node<T>, Node<T>), withWeight weight: Double?, stairs: Bool = false) {
     fatalError("abstract function called")
   }
 
