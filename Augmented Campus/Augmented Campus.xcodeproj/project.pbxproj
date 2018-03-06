@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C454696204F3E4600717A06 /* SideMenuSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C454695204F3E4600717A06 /* SideMenuSettingsTableViewController.swift */; };
 		900CD12F202E16C3004CC0A5 /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900CD12E202E16C3004CC0A5 /* GraphTests.swift */; };
 		9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF67201A025D0002FCD0 /* Edge.swift */; };
 		9038DF6B201A025D0002FCD0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF68201A025D0002FCD0 /* Node.swift */; };
@@ -17,7 +18,7 @@
 		90BF1FBC2033969B0082DB0B /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FB82033969B0082DB0B /* SideMenuManager.swift */; };
 		90BF1FBD2033969B0082DB0B /* SideMenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FB92033969B0082DB0B /* SideMenuTransition.swift */; };
 		90BF1FBE2033969B0082DB0B /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FBA2033969B0082DB0B /* UITableViewVibrantCell.swift */; };
-		90BF1FC120339F440082DB0B /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FC020339F440082DB0B /* SideMenuTableViewController.swift */; };
+		90BF1FC120339F440082DB0B /* SideMenuNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1FC020339F440082DB0B /* SideMenuNavigationTableViewController.swift */; };
 		90E783EC1FD8409200D2163A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E783EB1FD8409200D2163A /* AppDelegate.swift */; };
 		90E783F31FD8409200D2163A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E783F11FD8409200D2163A /* Main.storyboard */; };
 		90E783F51FD8409200D2163A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90E783F41FD8409200D2163A /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C454695204F3E4600717A06 /* SideMenuSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSettingsTableViewController.swift; sourceTree = "<group>"; };
 		900CD12E202E16C3004CC0A5 /* GraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
 		9038DF67201A025D0002FCD0 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		9038DF68201A025D0002FCD0 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -50,7 +52,7 @@
 		90BF1FB82033969B0082DB0B /* SideMenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
 		90BF1FB92033969B0082DB0B /* SideMenuTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTransition.swift; sourceTree = "<group>"; };
 		90BF1FBA2033969B0082DB0B /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewVibrantCell.swift; sourceTree = "<group>"; };
-		90BF1FC020339F440082DB0B /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		90BF1FC020339F440082DB0B /* SideMenuNavigationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuNavigationTableViewController.swift; sourceTree = "<group>"; };
 		90E783E81FD8409200D2163A /* Augmented Campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Augmented Campus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E783EB1FD8409200D2163A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90E783F21FD8409200D2163A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,7 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				90BD6BF9200FF2590055B763 /* ARViewController.swift */,
-				90BF1FC020339F440082DB0B /* SideMenuTableViewController.swift */,
+				90BF1FC020339F440082DB0B /* SideMenuNavigationTableViewController.swift */,
+				2C454695204F3E4600717A06 /* SideMenuSettingsTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -280,7 +283,7 @@
 				90851890202E04A60008F3C1 /* Graph.swift in Sources */,
 				9038DF6C201A025D0002FCD0 /* AbstractGraph.swift in Sources */,
 				90E784021FD8466900D2163A /* Double+Extension.swift in Sources */,
-				90BF1FC120339F440082DB0B /* SideMenuTableViewController.swift in Sources */,
+				90BF1FC120339F440082DB0B /* SideMenuNavigationTableViewController.swift in Sources */,
 				90E783EC1FD8409200D2163A /* AppDelegate.swift in Sources */,
 				90BF1FBB2033969B0082DB0B /* UISideMenuNavigationController.swift in Sources */,
 				90BF1FBD2033969B0082DB0B /* SideMenuTransition.swift in Sources */,
@@ -288,6 +291,7 @@
 				9038DF6B201A025D0002FCD0 /* Node.swift in Sources */,
 				9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */,
 				90BF1FBE2033969B0082DB0B /* UITableViewVibrantCell.swift in Sources */,
+				2C454696204F3E4600717A06 /* SideMenuSettingsTableViewController.swift in Sources */,
 				90BF1FBC2033969B0082DB0B /* SideMenuManager.swift in Sources */,
 				90BD6BFA200FF2590055B763 /* ARViewController.swift in Sources */,
 			);
