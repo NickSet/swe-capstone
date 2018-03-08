@@ -19,8 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SideMenuManager.default.menuLeftNavigationController = storyboard.instantiateViewController(withIdentifier:
                 "SideMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.default.menuRightNavigationController = storyboard.instantiateViewController(withIdentifier: "RightMenuNavigationalController") as? UISideMenuNavigationController
+
+        SideMenuManager.default.menuRightNavigationController?.sideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.default.menuRightNavigationController?.sideMenuManager.menuWidth = (arView?.bounds.width)!
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: arView!, forMenu: UIRectEdge.left)
-        
+        SideMenuManager.default.menuAddPanGestureToPresent(toView: arView!)
+
         return true
     }
 

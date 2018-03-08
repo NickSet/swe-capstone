@@ -15,6 +15,7 @@ class ARViewController: UIViewController {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var menuButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     
     var locationManager = CLLocationManager()
     var arrowNode = SCNNode()
@@ -94,7 +95,7 @@ class ARViewController: UIViewController {
     }
     
     @IBAction func unwindToARViewController(segue: UIStoryboardSegue) {
-        if let sideMenuController = segue.source as? SideMenuTableViewController {
+        if let sideMenuController = segue.source as? SideMenuNavigationTableViewController {
             currentCoord = sideMenuController.selectedCoordinate
             self.title = sideMenuController.selectedDescription
             updateNode(withHeading: locationManager.heading!.magneticHeading.toRadians())
@@ -107,6 +108,13 @@ class ARViewController: UIViewController {
             self.menuButton.alpha = 0.0
         }, completion: nil)
         performSegue(withIdentifier: "LeftMenuControllerSegue", sender: nil)
+    }
+    
+    @IBAction func settingsButtonTapped(sender: UIButton) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.settingsButton.alpha = 0.0
+        }, completion: nil)
+        performSegue(withIdentifier: "RightMenuControllerSegue", sender: nil)
     }
 
 }
