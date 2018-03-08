@@ -104,9 +104,14 @@ class ARViewController: UIViewController {
     }
     
     @IBAction func menuButtonTapped(sender: UIButton) {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.menuButton.alpha = 0.0
-        }, completion: nil)
+        UIButton.animate(withDuration: 0.2, animations: {
+            self.menuButton.transform = CGAffineTransform(scaleX: 0.93, y: 0.93)
+        }, completion: { finish in
+            UIButton.animate(withDuration: 0.2, animations: {
+                self.menuButton.transform = CGAffineTransform.identity
+            })
+        })
+        
         performSegue(withIdentifier: "LeftMenuControllerSegue", sender: nil)
     }
     
@@ -144,9 +149,9 @@ extension ARViewController: ARSCNViewDelegate {
 
 extension ARViewController: UISideMenuNavigationControllerDelegate {
     func sideMenuWillAppear(menu: UISideMenuNavigationController, animated: Bool) {
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.2, options: [], animations: {
             self.menuButton.alpha = 0.0
-        })
+        }, completion: nil)
     }
     
     func sideMenuDidDisappear(menu: UISideMenuNavigationController, animated: Bool) {
