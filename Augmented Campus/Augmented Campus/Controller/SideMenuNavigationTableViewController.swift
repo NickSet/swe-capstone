@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 import UIKit
 
-class SideMenuTableViewController: UITableViewController {
+class SideMenuNavigationTableViewController: UITableViewController {
     
     var coordinates = [CLLocationCoordinate2D]()
     let descriptions = ["Fountain", "Lake", "Entrance"]
