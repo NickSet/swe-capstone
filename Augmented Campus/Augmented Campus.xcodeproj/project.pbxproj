@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C80D5FE2051D9C6004AA9D7 /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80D5FD2051D9C6004AA9D7 /* AStar.swift */; };
 		900CD12F202E16C3004CC0A5 /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900CD12E202E16C3004CC0A5 /* GraphTests.swift */; };
 		9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF67201A025D0002FCD0 /* Edge.swift */; };
 		9038DF6B201A025D0002FCD0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF68201A025D0002FCD0 /* Node.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C80D5FD2051D9C6004AA9D7 /* AStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStar.swift; sourceTree = "<group>"; };
 		900CD12E202E16C3004CC0A5 /* GraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
 		9038DF67201A025D0002FCD0 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		9038DF68201A025D0002FCD0 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				9038DF67201A025D0002FCD0 /* Edge.swift */,
 				9038DF68201A025D0002FCD0 /* Node.swift */,
 				9038DF69201A025D0002FCD0 /* AbstractGraph.swift */,
+				7C80D5FD2051D9C6004AA9D7 /* AStar.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				90E783EC1FD8409200D2163A /* AppDelegate.swift in Sources */,
 				90BF1FBB2033969B0082DB0B /* UISideMenuNavigationController.swift in Sources */,
 				90BF1FBD2033969B0082DB0B /* SideMenuTransition.swift in Sources */,
+				7C80D5FE2051D9C6004AA9D7 /* AStar.swift in Sources */,
 				90E784001FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift in Sources */,
 				9038DF6B201A025D0002FCD0 /* Node.swift in Sources */,
 				9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */,
