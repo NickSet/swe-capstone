@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C80D5FE2051D9C6004AA9D7 /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80D5FD2051D9C6004AA9D7 /* AStar.swift */; };
+		0D7BEFBC5C103EF38B441E3A /* Pods_Augmented_CampusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD866CF6BFC1801E5A9FA90 /* Pods_Augmented_CampusTests.framework */; };
 		2C454696204F3E4600717A06 /* SideMenuSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C454695204F3E4600717A06 /* SideMenuSettingsTableViewController.swift */; };
+		7C80D5FE2051D9C6004AA9D7 /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80D5FD2051D9C6004AA9D7 /* AStar.swift */; };
 		900CD12F202E16C3004CC0A5 /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900CD12E202E16C3004CC0A5 /* GraphTests.swift */; };
 		9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF67201A025D0002FCD0 /* Edge.swift */; };
 		9038DF6B201A025D0002FCD0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF68201A025D0002FCD0 /* Node.swift */; };
@@ -27,6 +28,7 @@
 		90E784001FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E783FF1FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift */; };
 		90E784021FD8466900D2163A /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E784011FD8466900D2163A /* Double+Extension.swift */; };
 		90EF7331203CA322006F219E /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 90EF7330203CA322006F219E /* art.scnassets */; };
+		B8DB7B42FEEC478894BF86D5 /* Pods_Augmented_Campus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE44CB209B56AB3250713EA /* Pods_Augmented_Campus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7C80D5FD2051D9C6004AA9D7 /* AStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStar.swift; sourceTree = "<group>"; };
+		056A29AE7234C6A8BEBF7978 /* Pods-Augmented CampusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Augmented CampusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Augmented CampusTests/Pods-Augmented CampusTests.release.xcconfig"; sourceTree = "<group>"; };
+		0DE44CB209B56AB3250713EA /* Pods_Augmented_Campus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Augmented_Campus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C454695204F3E4600717A06 /* SideMenuSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSettingsTableViewController.swift; sourceTree = "<group>"; };
+		3E721F0F0433BA481E326A93 /* Pods-Augmented Campus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Augmented Campus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Augmented Campus/Pods-Augmented Campus.debug.xcconfig"; sourceTree = "<group>"; };
+		765AAB90F895E0D7CBA3C91E /* Pods-Augmented Campus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Augmented Campus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Augmented Campus/Pods-Augmented Campus.release.xcconfig"; sourceTree = "<group>"; };
+		7C80D5FD2051D9C6004AA9D7 /* AStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStar.swift; sourceTree = "<group>"; };
+		7DD866CF6BFC1801E5A9FA90 /* Pods_Augmented_CampusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Augmented_CampusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900CD12E202E16C3004CC0A5 /* GraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
 		9038DF67201A025D0002FCD0 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		9038DF68201A025D0002FCD0 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -64,6 +71,7 @@
 		90E783FF1FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extension.swift"; sourceTree = "<group>"; };
 		90E784011FD8466900D2163A /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		90EF7330203CA322006F219E /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = "Augmented Campus/art.scnassets"; sourceTree = SOURCE_ROOT; };
+		BE6A9CE8FA7B9E496121C091 /* Pods-Augmented CampusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Augmented CampusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Augmented CampusTests/Pods-Augmented CampusTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7BEFBC5C103EF38B441E3A /* Pods_Augmented_CampusTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,12 +87,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8DB7B42FEEC478894BF86D5 /* Pods_Augmented_Campus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		182DB035CF78BD05F0AA13F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E721F0F0433BA481E326A93 /* Pods-Augmented Campus.debug.xcconfig */,
+				765AAB90F895E0D7CBA3C91E /* Pods-Augmented Campus.release.xcconfig */,
+				BE6A9CE8FA7B9E496121C091 /* Pods-Augmented CampusTests.debug.xcconfig */,
+				056A29AE7234C6A8BEBF7978 /* Pods-Augmented CampusTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4101CA8EBD4A028DAFEFCBDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DE44CB209B56AB3250713EA /* Pods_Augmented_Campus.framework */,
+				7DD866CF6BFC1801E5A9FA90 /* Pods_Augmented_CampusTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9038DF66201A025D0002FCD0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +170,8 @@
 				90E783EA1FD8409200D2163A /* Augmented Campus */,
 				90851896202E05550008F3C1 /* Augmented CampusTests */,
 				90E783E91FD8409200D2163A /* Products */,
+				182DB035CF78BD05F0AA13F6 /* Pods */,
+				4101CA8EBD4A028DAFEFCBDA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,9 +209,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 908518AC202E0B0C0008F3C1 /* Build configuration list for PBXNativeTarget "Augmented CampusTests" */;
 			buildPhases = (
+				742AA7B8004A3D37E877584A /* [CP] Check Pods Manifest.lock */,
 				908518A1202E0B0B0008F3C1 /* Sources */,
 				908518A2202E0B0B0008F3C1 /* Frameworks */,
 				908518A3202E0B0B0008F3C1 /* Resources */,
+				3C6F1364F692238AC1F50AB9 /* [CP] Embed Pods Frameworks */,
+				E5E9E725888C79713D1B1914 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,9 +230,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90E783FC1FD8409200D2163A /* Build configuration list for PBXNativeTarget "Augmented Campus" */;
 			buildPhases = (
+				8AFBF161A1AE9F700E9FFF01 /* [CP] Check Pods Manifest.lock */,
 				90E783E41FD8409200D2163A /* Sources */,
 				90E783E51FD8409200D2163A /* Frameworks */,
 				90E783E61FD8409200D2163A /* Resources */,
+				73D4FCA991742AAD93F5C3B8 /* [CP] Embed Pods Frameworks */,
+				5F5CDA99FA8276D459C8A47F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -270,6 +308,114 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3C6F1364F692238AC1F50AB9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Augmented CampusTests/Pods-Augmented CampusTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F5CDA99FA8276D459C8A47F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Augmented Campus/Pods-Augmented Campus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73D4FCA991742AAD93F5C3B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Augmented Campus/Pods-Augmented Campus-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Augmented Campus/Pods-Augmented Campus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		742AA7B8004A3D37E877584A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Augmented CampusTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8AFBF161A1AE9F700E9FFF01 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Augmented Campus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5E9E725888C79713D1B1914 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Augmented CampusTests/Pods-Augmented CampusTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		908518A1202E0B0B0008F3C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -333,6 +479,7 @@
 /* Begin XCBuildConfiguration section */
 		908518AD202E0B0C0008F3C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE6A9CE8FA7B9E496121C091 /* Pods-Augmented CampusTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -351,6 +498,7 @@
 		};
 		908518AE202E0B0C0008F3C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 056A29AE7234C6A8BEBF7978 /* Pods-Augmented CampusTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -477,6 +625,7 @@
 		};
 		90E783FD1FD8409200D2163A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E721F0F0433BA481E326A93 /* Pods-Augmented Campus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -492,6 +641,7 @@
 		};
 		90E783FE1FD8409200D2163A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 765AAB90F895E0D7CBA3C91E /* Pods-Augmented Campus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
