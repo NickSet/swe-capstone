@@ -39,7 +39,7 @@ function initMap(nodes) {
 	};
 	
 	function markerClick(){
-		console.log("Well, now what?");
+		//Opening a infobox for more functions
 	}
 
     map.addListener('click', function(e) {
@@ -48,7 +48,6 @@ function initMap(nodes) {
           data.Description = "Testing Node";
           data.Index = nodeCount;
           data.Hash = data.Description.hashCode();
-		  console.log("I tried");
           addToFirebase(data);
     });
 }
