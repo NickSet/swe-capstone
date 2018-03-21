@@ -1,26 +1,32 @@
 
-var data = {
-    Description: null,
-    Hash: null,
-    Index: null,
-    Latitude: null,
-    Longitude: null
-}; 
+var node = {
+    _id: "",
+    description: "",
+    latitude: 0,
+    longitude: 0
+};
 
 var nodeCount;
 var map;
-var database = firebase.database().ref();
-var ref = firebase.database().ref("Graph/Node/");
-var refEdge = firebase.database().ref("Graph/Edge");
+var nodeRef = firebase.database().ref("Graph/Nodes/");
+var edgeRef = firebase.database().ref("Graph/Edges/");
 var nodes;
 var edges;
 
-ref.on("value", function(snapshot) {	
+nodeRef.on("value", function(snapshot) {	
     nodes = snapshot.val();
     initMap(nodes);
 }, function (error) {
     console.log("Error: " + error.code);
 });
+
+edgeRef.on("value", function(snapshot) {	
+    edges = snapshot.val();
+    //initMap(nodes);
+}, function (error) {
+    console.log("Error: " + error.code);
+});
+
 
 /*
 ref.on("value",function(snapshot) {
@@ -32,20 +38,21 @@ ref.on("value",function(snapshot) {
 //To be implemented with initPaths
 */
 
-function addEdge(index) {
-	var edge = {
-		toIndex: index,
-		fromIndex: null,
-		weight: null,
-		stairs: null
+function addEdge(fromNode) {
+    var edge = {
+        _id: "node1node2",
+        from: "fromNodeTest",
+        to: "node2",
+        stairs: false,
+        weight: 100 
     };
-    
-    var refDB = database.child('Graph/Edge/').push(edge, function(err) {
-        if (err) {  // Data was not written to firebase.
-              console.warn(err);
+
+    edgeRef.push(edge, function(err) {
+        if (err) {
+            console.warn(err);
         }
     });
-};
+}
 
 /*
 function initPaths(edge) {
@@ -60,7 +67,9 @@ function initMap(nodes) {
         center: loc, 
         zoom: 19
     });
-	nodeCount = 0;
+
+    nodeCount = 0;
+
     for (const [key, value] of Object.entries(nodes)) {
         nodeCount += 1;
         var contentString = generateInfoWindow(value);
@@ -68,12 +77,12 @@ function initMap(nodes) {
 		var infoWindow = new google.maps.InfoWindow({
 			content: contentString
 		});
-        var latFloat = parseFloat(value.Latitude);
-        var lonFloat = parseFloat(value.Longitude);
+        var latFloat = parseFloat(value.latitude);
+        var lonFloat = parseFloat(value.longitude);
         var _marker = new google.maps.Marker({
 			position: {lat: latFloat, lng: lonFloat},
 			map: map,
-			title: value.Description
+			title: value.description
 	    })
 		
 		google.maps.event.addListener(_marker, 'click',  (function(infoWindow) {
@@ -85,38 +94,37 @@ function initMap(nodes) {
 	};
 	
     map.addListener('click', function(e) {
-          data.Latitude = parseFloat(e.latLng.lat());
-          data.Longitude = parseFloat(e.latLng.lng());
-          data.Description = "Testing Node";
-          data.Index = nodeCount;
-          data.Hash = data.Description.hashCode();
-          addToFirebase(data);
+          node._id = "node" + ++nodeCount;
+          node.latitude = parseFloat(e.latLng.lat());
+          node.longitude = parseFloat(e.latLng.lng());
+          node.description = "Testing Node";
+          addToFirebase(node);
     });
 }
 
-function addToFirebase(data) {
-    var refDB = database.child('Graph/Node/').push(data, function(err) {
-        if (err) {  // Data was not written to firebase.
-              console.warn(err);
+function addToFirebase(node) {
+    nodeRef.push(data, function(err) {
+        if (err) {
+            console.warn(err);
         }
     });
 }
 
-function generateInfoWindow(data) {
+function generateInfoWindow(node) {
     const markup = `
     <div>
         <ul class="no-bullet">
             <li>
-                <h3 id="node-name">${data.Description}</h3>
+                <h3 id="node-name">${node.description}</h3>
             </li>
             <li>
-                ${Number(data.Latitude).toFixed(6)},  ${Number(data.Longitude.toFixed(6))}
+                ${Number(node.latitude).toFixed(6)},  ${Number(node.longitude).toFixed(6)}
             </li>
         </ul>
         <br>
         <h4>Edges</h4>
         <br><br><br>
-        <button type="button" onclick="addEdge(${data.Index})">Add Edge</button>
+        <button type="button" onclick="addEdge(${node._id})">Add Edge</button>
     </div>
     `;
     return markup;
