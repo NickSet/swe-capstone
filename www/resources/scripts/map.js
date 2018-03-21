@@ -28,20 +28,47 @@ function initMap(nodes) {
     });
    for (const [key, value] of Object.entries(nodes)) {
         nodeCount += 1;
+		var contentString = '<div>'+
+      '<ul class="noBullet"> <li> <h3 id="NodeName">'+
+	  value.Description+
+	  '</h3> </li> <li>'+
+      //'<br>'+
+	  Number(value.Latitude).toFixed(6) +
+	  ','+
+	  Number(value.Longitude).toFixed(6)+
+	  '</li> </div> <br> <h4> Edges <br>'
+	  //<ul> <li>+
+	  //This is where edges go when implemented with a for loop
+	  //'</li> </ul>
+	  '<br> <br>'+
+      '<button type="button">Click Me!</button>';
+		
+		var infoWindow = new google.maps.InfoWindow({
+			content: contentString
+		});
         var latFloat = parseFloat(value.Latitude);
         var lonFloat = parseFloat(value.Longitude);
         var _marker = new google.maps.Marker({
 			position: {lat: latFloat, lng: lonFloat},
-			map: map
+			map: map,
+			title: value.Description
 	    })
-		google.maps.event.addListener(_marker, 'click', markerClick);
+		
+		google.maps.event.addListener(_marker, 'click',  (function(infoWindow) {
+			return function() {
+				infoWindow.open(map,this);
+			}
+		})
+		(infoWindow));
         //marker.push(_marker);
 	};
 	
+	/*
 	function markerClick(){
-		//Opening a infobox for more functions
-	}
-
+		infoWindow.open(map, marker);
+		//Opening a Infobox for more functions
+	};
+	*/
     map.addListener('click', function(e) {
           data.Latitude = parseFloat(e.latLng.lat());
           data.Longitude = parseFloat(e.latLng.lng());
