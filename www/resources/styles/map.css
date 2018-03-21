@@ -9,3 +9,14 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+.noBullet {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 1em;
+}
+
+.even_spacing {
+	color: purple;
+    background-color: #d8da3d
+}

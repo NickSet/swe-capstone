@@ -7,18 +7,53 @@ var data = {
     Longitude: null
 }; 
 
-var nodeCount = 0;
+var nodeCount;
 var map;
 var database = firebase.database().ref();
 var ref = firebase.database().ref("Graph/Node/");
-var nodes
+var refEdge = firebase.database().ref("Graph/Edge");
+var nodes;
+var edges;
 
-ref.on("value", function(snapshot) {
+ref.on("value", function(snapshot) {	
     nodes = snapshot.val();
-    initMap(nodes)
+    initMap(nodes);
 }, function (error) {
     console.log("Error: " + error.code);
 });
+
+/*
+ref.on("value",function(snapshot) {
+	edges = snapshot.val();
+	initPaths(edges);
+}, function (error) {
+    console.log("Error: " + error.code);
+});
+//To be implemented with initPaths
+*/
+
+function addEdge(index) {
+/*
+	var edge = {
+		toIndex: index,
+		fromIndex: null,
+		weight: null,
+		stairs: null
+	};
+	console.log(index);
+	return firebase.database().ref('/edge/').orderByChild('uid').equalTo(userUID).once('value').then(function(snapshot) {
+	var username = snapshot.val().username;
+});
+//Currently has no way of knowing who called it
+*/
+};
+
+/*
+function initPaths(edge) {
+	//function to write edges
+	
+}
+*/
 
 function initMap(nodes) {
     var loc = {lat: 36.971643, lng: -82.558822}
@@ -26,23 +61,24 @@ function initMap(nodes) {
         center: loc, 
         zoom: 19
     });
-   for (const [key, value] of Object.entries(nodes)) {
-        nodeCount += 1;
-		var contentString = '<div>'+
-      '<ul class="noBullet"> <li> <h3 id="NodeName">'+
+	nodeCount = 0;
+    for (const [key, value] of Object.entries(nodes)) {
+      nodeCount += 1;
+	  var contentString = '<div >'+
+      '<ul class="noBullet" style="list-style: none;" > <li> <h3 id="NodeName">'+
 	  value.Description+
 	  '</h3> </li> <li>'+
       //'<br>'+
 	  Number(value.Latitude).toFixed(6) +
 	  ','+
 	  Number(value.Longitude).toFixed(6)+
-	  '</li> </div> <br> <h4> Edges <br>'
+	  '</li> </div> <br> <h4> Edges <br>'+
 	  //<ul> <li>+
 	  //This is where edges go when implemented with a for loop
 	  //'</li> </ul>
 	  '<br> <br>'+
-      '<button type="button">Click Me!</button>';
-		
+      '<button type="button" onclick="addEdge(value.Index);">Add Edge</button>';
+	  //addEdge(value.Index) does not work, need to figure out another way to pass edge value to function
 		var infoWindow = new google.maps.InfoWindow({
 			content: contentString
 		});
@@ -53,6 +89,7 @@ function initMap(nodes) {
 			map: map,
 			title: value.Description
 	    })
+		console.log(nodeCount);
 		
 		google.maps.event.addListener(_marker, 'click',  (function(infoWindow) {
 			return function() {
@@ -60,15 +97,8 @@ function initMap(nodes) {
 			}
 		})
 		(infoWindow));
-        //marker.push(_marker);
 	};
 	
-	/*
-	function markerClick(){
-		infoWindow.open(map, marker);
-		//Opening a Infobox for more functions
-	};
-	*/
     map.addListener('click', function(e) {
           data.Latitude = parseFloat(e.latLng.lat());
           data.Longitude = parseFloat(e.latLng.lng());
