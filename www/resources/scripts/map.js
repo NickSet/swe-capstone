@@ -63,22 +63,10 @@ function initMap(nodes) {
     });
 	nodeCount = 0;
     for (const [key, value] of Object.entries(nodes)) {
-      nodeCount += 1;
-	  var contentString = '<div >'+
-      '<ul class="noBullet" style="list-style: none;" > <li> <h3 id="NodeName">'+
-	  value.Description+
-	  '</h3> </li> <li>'+
-      //'<br>'+
-	  Number(value.Latitude).toFixed(6) +
-	  ','+
-	  Number(value.Longitude).toFixed(6)+
-	  '</li> </div> <br> <h4> Edges <br>'+
-	  //<ul> <li>+
-	  //This is where edges go when implemented with a for loop
-	  //'</li> </ul>
-	  '<br> <br>'+
-      '<button type="button" onclick="addEdge(value.Index);">Add Edge</button>';
-	  //addEdge(value.Index) does not work, need to figure out another way to pass edge value to function
+        nodeCount += 1;
+        var contentString = generateInfoWindow(value);
+
+        //addEdge(value.Index) does not work, need to figure out another way to pass edge value to function
 		var infoWindow = new google.maps.InfoWindow({
 			content: contentString
 		});
@@ -89,7 +77,6 @@ function initMap(nodes) {
 			map: map,
 			title: value.Description
 	    })
-		console.log(nodeCount);
 		
 		google.maps.event.addListener(_marker, 'click',  (function(infoWindow) {
 			return function() {
@@ -117,6 +104,26 @@ function addToFirebase(data) {
     });
 }
 
+function generateInfoWindow(data) {
+    const markup = `
+    <div>
+        <ul class="no-bullet">
+            <li>
+                <h3 id="node-name">${data.Description}</h3>
+            </li>
+            <li>
+                ${Number(data.Latitude).toFixed(6)},  ${Number(data.Longitude.toFixed(6))}
+            </li>
+        </ul>
+        <br>
+        <h4>Edges</h4>
+        <br><br><br>
+        <button type="button" onclick="addEdge(${data.Index})">Add Edge</button>
+    </div>
+    `;
+    return markup;
+}
+
 String.prototype.hashCode = function() {
     var hash = 0;
     if (this.length == 0) {
@@ -134,6 +141,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is authorized: Do nothing
     } else {
-        window.location.href = 'login.html'; 
+        window.location.href = 'index.html'; 
     }
 });

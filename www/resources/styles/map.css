@@ -10,7 +10,7 @@ html, body {
     padding: 0;
 }
 
-.noBullet {
+.no-bullet {
   list-style-type: none;
   padding: 0;
   margin-left: 1em;
