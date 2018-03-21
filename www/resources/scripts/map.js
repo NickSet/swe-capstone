@@ -33,19 +33,18 @@ ref.on("value",function(snapshot) {
 */
 
 function addEdge(index) {
-/*
 	var edge = {
 		toIndex: index,
 		fromIndex: null,
 		weight: null,
 		stairs: null
-	};
-	console.log(index);
-	return firebase.database().ref('/edge/').orderByChild('uid').equalTo(userUID).once('value').then(function(snapshot) {
-	var username = snapshot.val().username;
-});
-//Currently has no way of knowing who called it
-*/
+    };
+    
+    var refDB = database.child('Graph/Edge/').push(edge, function(err) {
+        if (err) {  // Data was not written to firebase.
+              console.warn(err);
+        }
+    });
 };
 
 /*
@@ -66,7 +65,6 @@ function initMap(nodes) {
         nodeCount += 1;
         var contentString = generateInfoWindow(value);
 
-        //addEdge(value.Index) does not work, need to figure out another way to pass edge value to function
 		var infoWindow = new google.maps.InfoWindow({
 			content: contentString
 		});
