@@ -27,13 +27,20 @@ function initMap(nodes) {
         zoom: 19
     });
    for (const [key, value] of Object.entries(nodes)) {
-       nodeCount += 1;
-       var latFloat = parseFloat(value.Latitude);
-       var lonFloat = parseFloat(value.Longitude);
-       var marker = new google.maps.Marker({
-           position: {lat: latFloat, lng: lonFloat},
-           map: map
-    })};
+        nodeCount += 1;
+        var latFloat = parseFloat(value.Latitude);
+        var lonFloat = parseFloat(value.Longitude);
+        var _marker = new google.maps.Marker({
+			position: {lat: latFloat, lng: lonFloat},
+			map: map
+	    })
+		google.maps.event.addListener(_marker, 'click', markerClick);
+        //marker.push(_marker);
+	};
+	
+	function markerClick(){
+		console.log("Well, now what?");
+	}
 
     map.addListener('click', function(e) {
           data.Latitude = parseFloat(e.latLng.lat());
@@ -41,6 +48,7 @@ function initMap(nodes) {
           data.Description = "Testing Node";
           data.Index = nodeCount;
           data.Hash = data.Description.hashCode();
+		  console.log("I tried");
           addToFirebase(data);
     });
 }
