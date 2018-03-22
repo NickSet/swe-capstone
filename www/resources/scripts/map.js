@@ -1,4 +1,3 @@
-
 var node = {
     _id: "",
     description: "",
@@ -41,13 +40,13 @@ ref.on("value",function(snapshot) {
 function addEdge(fromNode) {
     var edge = {
         _id: "node1node2",
-        from: "fromNodeTest",
+        from: fromNode,
         to: "node2",
         stairs: false,
         weight: 100 
     };
 
-    edgeRef.push(edge, function(err) {
+    edgeRef.child(edge._id).set(edge, function(err) {
         if (err) {
             console.warn(err);
         }
@@ -103,7 +102,7 @@ function initMap(nodes) {
 }
 
 function addToFirebase(node) {
-    nodeRef.push(data, function(err) {
+    nodeRef.child(node._id).set(node, function(err) {
         if (err) {
             console.warn(err);
         }
@@ -111,6 +110,7 @@ function addToFirebase(node) {
 }
 
 function generateInfoWindow(node) {
+
     const markup = `
     <div>
         <ul class="no-bullet">
@@ -124,23 +124,10 @@ function generateInfoWindow(node) {
         <br>
         <h4>Edges</h4>
         <br><br><br>
-        <button type="button" onclick="addEdge(${node._id})">Add Edge</button>
+        <button type="button" onclick="addEdge('${node._id}')">Add Edge</button>
     </div>
     `;
     return markup;
-}
-
-String.prototype.hashCode = function() {
-    var hash = 0;
-    if (this.length == 0) {
-        return hash;
-    }
-    for (var i = 0; i < this.length; i++) {
-        char = this.charCodeAt(i);
-        hash = ((hash<<5)-hash)+char;
-        hash = hash & hash; // Convert to 32bit integer
-    }
-    return hash;
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
