@@ -78,7 +78,13 @@ function initMap(nodes) {
 		});
         var latFloat = parseFloat(value.latitude);
         var lonFloat = parseFloat(value.longitude);
+
+        var nodeImage = new google.maps.MarkerImage('/resources/images/node.png',
+                new google.maps.Size(30, 30),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(15, 15));
         var _marker = new google.maps.Marker({
+            icon: nodeImage,
 			position: {lat: latFloat, lng: lonFloat},
 			map: map,
 			title: value.description
