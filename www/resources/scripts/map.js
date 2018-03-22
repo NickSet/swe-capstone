@@ -1,10 +1,3 @@
-var node = {
-    _id: "",
-    description: "",
-    latitude: 0,
-    longitude: 0
-};
-
 var nodeCount;
 var map;
 var nodeRef = firebase.database().ref("Graph/Nodes/");
@@ -21,21 +14,10 @@ nodeRef.on("value", function(snapshot) {
 
 edgeRef.on("value", function(snapshot) {	
     edges = snapshot.val();
-    //initMap(nodes);
+    //initPaths(edges);
 }, function (error) {
     console.log("Error: " + error.code);
 });
-
-
-/*
-ref.on("value",function(snapshot) {
-	edges = snapshot.val();
-	initPaths(edges);
-}, function (error) {
-    console.log("Error: " + error.code);
-});
-//To be implemented with initPaths
-*/
 
 function addEdge(fromNode) {
     var edge = {
@@ -62,16 +44,22 @@ function initPaths(edge) {
 
 function initMap(nodes) {
     var loc = {lat: 36.971643, lng: -82.558822}
+    var nodeImage = new google.maps.MarkerImage('/resources/images/node.png',
+        new google.maps.Size(30, 30),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(15, 15));
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: loc, 
-        zoom: 19
+        zoom: 19,
+        disableDoubleClickZoom: true
     });
 
     nodeCount = 0;
 
     for (const [key, value] of Object.entries(nodes)) {
         nodeCount += 1;
-        var contentString = generateInfoWindow(value);
+        var contentString = generateDetailWindow(value);
 
 		var infoWindow = new google.maps.InfoWindow({
 			content: contentString
@@ -79,35 +67,42 @@ function initMap(nodes) {
         var latFloat = parseFloat(value.latitude);
         var lonFloat = parseFloat(value.longitude);
 
-        var nodeImage = new google.maps.MarkerImage('/resources/images/node.png',
-                new google.maps.Size(30, 30),
-                new google.maps.Point(0, 0),
-                new google.maps.Point(15, 15));
         var _marker = new google.maps.Marker({
             icon: nodeImage,
 			position: {lat: latFloat, lng: lonFloat},
 			map: map,
 			title: value.description
-	    })
-		
+        });
+
 		google.maps.event.addListener(_marker, 'click',  (function(infoWindow) {
 			return function() {
 				infoWindow.open(map,this);
 			}
 		})
-		(infoWindow));
-	};
-	
-    map.addListener('click', function(e) {
-          node._id = "node" + ++nodeCount;
-          node.latitude = parseFloat(e.latLng.lat());
-          node.longitude = parseFloat(e.latLng.lng());
-          node.description = "Testing Node";
-          addToFirebase(node);
+        (infoWindow));
+    }
+
+    map.addListener('dblclick', function(e) {
+        let loc = {lat: e.latLng.lat(), lng: e.latLng.lng()};
+        var windowContent = generateNodeCreationWindow(loc, nodeCount);
+        var createNodeWindow = new google.maps.InfoWindow({
+            content: windowContent,
+            position: e.latLng
+        })
+        createNodeWindow.open(map);
     });
 }
 
-function addToFirebase(node) {
+function addNode(lat, lng, count) {
+    let desc = document.getElementById("node-description").value;
+    let id = "node" + ++count;
+    var node = {
+        _id: id,
+        description: (desc != "") ? desc : id,
+        latitude: lat,
+        longitude: lng 
+    };
+
     nodeRef.child(node._id).set(node, function(err) {
         if (err) {
             console.warn(err);
@@ -115,8 +110,23 @@ function addToFirebase(node) {
     });
 }
 
-function generateInfoWindow(node) {
+function generateNodeCreationWindow(coords, count) {
+    let lat = coords.lat;
+    let lng = coords.lng;
+    const markup = `
+        <div>
+            <form>
+                Description:<br>
+                <input id="node-description" type="text" name="description"><br>
+                <br>
+                <button type="button" onclick="addNode(${lat}, ${lng}, ${count})">Add Node</button>
+            </form>
+        </div>
+    `;
+    return markup;
+}
 
+function generateDetailWindow(node) {
     const markup = `
     <div>
         <ul class="no-bullet">
