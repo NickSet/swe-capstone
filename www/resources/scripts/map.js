@@ -1,12 +1,15 @@
-var nodeCount;
 var map;
 var nodeRef = firebase.database().ref("Graph/Nodes/");
 var edgeRef = firebase.database().ref("Graph/Edges/");
+
+var nodeCount = 0;
 var nodes;
 var edges;
+var addingEdge = false;
 
 nodeRef.on("value", function(snapshot) {	
     nodes = snapshot.val();
+    nodeCount = Object.keys(nodes).length;
     initMap(nodes);
 }, function (error) {
     console.log("Error: " + error.code);
@@ -19,21 +22,7 @@ edgeRef.on("value", function(snapshot) {
     console.log("Error: " + error.code);
 });
 
-function addEdge(fromNode) {
-    var edge = {
-        _id: "node1node2",
-        from: fromNode,
-        to: "node2",
-        stairs: false,
-        weight: 100 
-    };
 
-    edgeRef.child(edge._id).set(edge, function(err) {
-        if (err) {
-            console.warn(err);
-        }
-    });
-}
 
 /*
 function initPaths(edge) {
@@ -55,10 +44,7 @@ function initMap(nodes) {
         disableDoubleClickZoom: true
     });
 
-    nodeCount = 0;
-
     for (const [key, value] of Object.entries(nodes)) {
-        nodeCount += 1;
         var contentString = generateDetailWindow(value);
 
 		var infoWindow = new google.maps.InfoWindow({
@@ -75,16 +61,20 @@ function initMap(nodes) {
         });
 
 		google.maps.event.addListener(_marker, 'click',  (function(infoWindow) {
-			return function() {
-				infoWindow.open(map,this);
-			}
+            if (addingEdge == true) {
+                console.log("Adding edge");
+            } else {
+			    return function() {
+				    infoWindow.open(map, this);
+			    }
+            }
 		})
         (infoWindow));
     }
 
     map.addListener('dblclick', function(e) {
         let loc = {lat: e.latLng.lat(), lng: e.latLng.lng()};
-        var windowContent = generateNodeCreationWindow(loc, nodeCount);
+        var windowContent = generateNodeCreationWindow(loc);
         var createNodeWindow = new google.maps.InfoWindow({
             content: windowContent,
             position: e.latLng
@@ -93,10 +83,27 @@ function initMap(nodes) {
     });
 }
 
-function addNode(lat, lng, count) {
+function addEdge(fromNode) {
+    addingEdge = true;
+    var edge = {
+        _id: "node1node2",
+        from: fromNode,
+        to: "node2",
+        stairs: false,
+        weight: 100 
+    };
+
+    edgeRef.child(edge._id).set(edge, function(err) {
+        if (err) {
+            console.warn(err);
+        }
+    });
+}
+
+function addNode(lat, lng) {
     let desc = document.getElementById("node-description").value;
-    let id = "node" + ++count;
-    var node = {
+    let id = "node" + (nodeCount + 1);
+    let node = {
         _id: id,
         description: (desc != "") ? desc : id,
         latitude: lat,
@@ -110,7 +117,7 @@ function addNode(lat, lng, count) {
     });
 }
 
-function generateNodeCreationWindow(coords, count) {
+function generateNodeCreationWindow(coords) {
     let lat = coords.lat;
     let lng = coords.lng;
     const markup = `
@@ -119,7 +126,7 @@ function generateNodeCreationWindow(coords, count) {
                 Description:<br>
                 <input id="node-description" type="text" name="description"><br>
                 <br>
-                <button type="button" onclick="addNode(${lat}, ${lng}, ${count})">Add Node</button>
+                <button type="button" onclick="addNode(${lat}, ${lng}, ${nodeCount})">Add Node</button>
             </form>
         </div>
     `;
