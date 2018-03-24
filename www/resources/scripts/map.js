@@ -7,6 +7,11 @@ var nodes;
 var edges;
 var addingEdge = false;
 
+var markers = [];
+var infoWindows = [];
+
+var nodesForEdge = [];
+
 nodeRef.on("value", function(snapshot) {	
     nodes = snapshot.val();
     nodeCount = Object.keys(nodes).length;
@@ -44,8 +49,9 @@ function initMap(nodes) {
         disableDoubleClickZoom: true
     });
 
+    var i = 0;
     for (const [key, value] of Object.entries(nodes)) {
-        var contentString = generateDetailWindow(value);
+        var contentString = generateDetailWindow(value, i);
 
 		var infoWindow = new google.maps.InfoWindow({
 			content: contentString
@@ -59,17 +65,19 @@ function initMap(nodes) {
 			map: map,
 			title: value.description
         });
+        markers[i] = _marker;
+        markers[i].index = i;
+        infoWindows[i] = infoWindow;
 
-		google.maps.event.addListener(_marker, 'click',  (function(infoWindow) {
+		google.maps.event.addListener(markers[i], 'click',  function() {
             if (addingEdge == true) {
                 console.log("Adding edge");
+                addSecondEdge(value);
             } else {
-			    return function() {
-				    infoWindow.open(map, this);
-			    }
-            }
-		})
-        (infoWindow));
+				    infoWindows[this.index].open(map, markers[this.index]);
+		    }
+        });
+        i++;
     }
 
     map.addListener('dblclick', function(e) {
@@ -78,13 +86,36 @@ function initMap(nodes) {
         var createNodeWindow = new google.maps.InfoWindow({
             content: windowContent,
             position: e.latLng
-        })
+        });
         createNodeWindow.open(map);
     });
 }
 
-function addEdge(fromNode) {
+function addSecondEdge(fromNode) {
+    //Change infowWIndow of this node to have a checkbox for if there are stairs
+    var edge = {
+
+    };
+    console.log(fromNode);
+}
+
+function addFirstEdge(fromNode, index) {
+    //Close the old InfoWindow
+    infoWindows[index].close();
+    //Copy the old value to use later
+    var oldWindow = infoWindows[index]
+    //Set the infoWindow for edge adding
+    var windowContent = 'Click on the a node to add the edge';
+    infoWindows[index] = new google.maps.InfoWindow({
+        content: windowContent,
+        position: markers[index].position
+    });
+    infoWindows[index].open(map, markers[index])
+
     addingEdge = true;
+    nodesForEdge[0] = fromNode;
+    infoWindows[index] = oldWindow;
+    /*
     var edge = {
         _id: "node1node2",
         from: fromNode,
@@ -98,6 +129,7 @@ function addEdge(fromNode) {
             console.warn(err);
         }
     });
+    */
 }
 
 function addNode(lat, lng) {
@@ -126,14 +158,14 @@ function generateNodeCreationWindow(coords) {
                 Description:<br>
                 <input id="node-description" type="text" name="description"><br>
                 <br>
-                <button type="button" onclick="addNode(${lat}, ${lng}, ${nodeCount})">Add Node</button>
+                <button type="button" onclick="addNode(${lat}, ${lng})">Add Node</button>
             </form>
         </div>
     `;
     return markup;
 }
 
-function generateDetailWindow(node) {
+function generateDetailWindow(node, index) {
     const markup = `
     <div>
         <ul class="no-bullet">
@@ -147,7 +179,7 @@ function generateDetailWindow(node) {
         <br>
         <h4>Edges</h4>
         <br><br><br>
-        <button type="button" onclick="addEdge('${node._id}')">Add Edge</button>
+        <button type="button" onclick="addFirstEdge('${node._id}', ${index})">Add Edge</button>
     </div>
     `;
     return markup;
