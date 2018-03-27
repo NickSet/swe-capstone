@@ -8,18 +8,23 @@ func fetchData(){
 	ref = Database.database().reference()
     
     ref.child("Graph").child("Nodes").observeSingleEvent(of: .value, with: { (snapshot) in
-        // Get user value
-        let value = snapshot.value as? NSDictionary
-        let value2 = Data(
-        convertJSON(json: value2 as! Data)
-        // ...
+
+        guard let dictionary = snapshot.value as? [String: [String: Any]] else {
+            return
+        }
+        convertToNavigationLocations(from: dictionary)
     }) { (error) in
         print(error.localizedDescription)
     }
 }
 
-//values for conversion?
-func convertJSON(json: Data){
-    let navObject = try? JSONDecoder().decode(NavigationLocation.self, from: json)
-    
+func convertToNavigationLocations(from dict: [String: [String: Any]]) {
+    for properties in dict.values {
+        let id = properties["_id"] as! String
+        let lat = properties["latitude"] as! Double
+        let lng = properties["longitude"] as! Double
+        let dsc = properties["description"] as! String
+        let navLoc = NavigationLocation(id: id, latitude: lat, longitude: lng, name: dsc, fScore: Double.infinity)
+    }
 }
+

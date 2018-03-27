@@ -1,5 +1,6 @@
 
-public struct NavigationLocation: Codable {
+public struct NavigationLocation {
+    var id: String
 	var latitude: Double
 	var longitude: Double
 	var name: String
@@ -9,13 +10,14 @@ public struct NavigationLocation: Codable {
 extension NavigationLocation: CustomStringConvertible {
 	public var description: String {
 		// Returns the variable name of NavigationLocation if NavigationLocation itself is used without calling functions or variables.
-		return "\(name)"
+        let string = (name == id) ? id : ("\(id): \(name)")
+		return string
 	}
 }
 
 extension NavigationLocation: Hashable {
 	public var hashValue: Int {
-		let string = "\(latitude)\(longitude)\(name)"
+		let string = "\(latitude)\(longitude)\(id)"
 		return string.hashValue
 	}
 		
