@@ -77,6 +77,7 @@ class AStar {
             
             closedSet.append(current)
         }
+        return [Node<CLLocationCoordinate2D>]()
     }
     
     func lowestFScore(openSet: [Node<CLLocationCoordinate2D>]) -> Node<CLLocationCoordinate2D> {
@@ -89,8 +90,9 @@ class AStar {
         return lowestNode
     }
     
-    func getEstimatedValue(current: Node<CLLocationCoordinate2D, goal: Node<CLLocationCoordinate2D>) -> Double {
+    func getEstimatedValue(current: Node<CLLocationCoordinate2D>, goal: Node<CLLocationCoordinate2D>) -> Double {
         //This is the pythagorean theorem using the GPS location to find the distance. This is the "heuristics" part
+        return Double()
     }
 
     

@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		0D7BEFBC5C103EF38B441E3A /* Pods_Augmented_CampusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD866CF6BFC1801E5A9FA90 /* Pods_Augmented_CampusTests.framework */; };
 		2C454696204F3E4600717A06 /* SideMenuSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C454695204F3E4600717A06 /* SideMenuSettingsTableViewController.swift */; };
+		7C326049206AB168008773A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C326048206AB168008773A8 /* GoogleService-Info.plist */; };
+		7C32604A206AB168008773A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C326048206AB168008773A8 /* GoogleService-Info.plist */; };
+		7C326052206AB3A7008773A8 /* FirbaseFetchandJSONConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C326051206AB3A7008773A8 /* FirbaseFetchandJSONConvert.swift */; };
+		7C326053206AB3A7008773A8 /* FirbaseFetchandJSONConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C326051206AB3A7008773A8 /* FirbaseFetchandJSONConvert.swift */; };
+		7C326055206AB3C2008773A8 /* NavigationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C326054206AB3C2008773A8 /* NavigationLocation.swift */; };
+		7C326056206AB3C2008773A8 /* NavigationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C326054206AB3C2008773A8 /* NavigationLocation.swift */; };
 		7C80D5FE2051D9C6004AA9D7 /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80D5FD2051D9C6004AA9D7 /* AStar.swift */; };
 		900CD12F202E16C3004CC0A5 /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900CD12E202E16C3004CC0A5 /* GraphTests.swift */; };
 		9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9038DF67201A025D0002FCD0 /* Edge.swift */; };
@@ -47,6 +53,9 @@
 		2C454695204F3E4600717A06 /* SideMenuSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSettingsTableViewController.swift; sourceTree = "<group>"; };
 		3E721F0F0433BA481E326A93 /* Pods-Augmented Campus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Augmented Campus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Augmented Campus/Pods-Augmented Campus.debug.xcconfig"; sourceTree = "<group>"; };
 		765AAB90F895E0D7CBA3C91E /* Pods-Augmented Campus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Augmented Campus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Augmented Campus/Pods-Augmented Campus.release.xcconfig"; sourceTree = "<group>"; };
+		7C326048206AB168008773A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7C326051206AB3A7008773A8 /* FirbaseFetchandJSONConvert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirbaseFetchandJSONConvert.swift; sourceTree = "<group>"; };
+		7C326054206AB3C2008773A8 /* NavigationLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationLocation.swift; sourceTree = "<group>"; };
 		7C80D5FD2051D9C6004AA9D7 /* AStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStar.swift; sourceTree = "<group>"; };
 		7DD866CF6BFC1801E5A9FA90 /* Pods_Augmented_CampusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Augmented_CampusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900CD12E202E16C3004CC0A5 /* GraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
@@ -117,6 +126,8 @@
 		9038DF66201A025D0002FCD0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7C326054206AB3C2008773A8 /* NavigationLocation.swift */,
+				7C326051206AB3A7008773A8 /* FirbaseFetchandJSONConvert.swift */,
 				9085188F202E04A60008F3C1 /* Graph.swift */,
 				9038DF67201A025D0002FCD0 /* Edge.swift */,
 				9038DF68201A025D0002FCD0 /* Node.swift */,
@@ -198,6 +209,7 @@
 				90E783F91FD8409200D2163A /* Info.plist */,
 				90E783FF1FD8463B00D2163A /* CLLocationCoordinate2D+Extension.swift */,
 				90E784011FD8466900D2163A /* Double+Extension.swift */,
+				7C326048206AB168008773A8 /* GoogleService-Info.plist */,
 			);
 			path = "Augmented Campus";
 			sourceTree = "<group>";
@@ -292,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C32604A206AB168008773A8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +314,7 @@
 			files = (
 				90E783F81FD8409200D2163A /* LaunchScreen.storyboard in Resources */,
 				90EF7331203CA322006F219E /* art.scnassets in Resources */,
+				7C326049206AB168008773A8 /* GoogleService-Info.plist in Resources */,
 				90E783F51FD8409200D2163A /* Assets.xcassets in Resources */,
 				90E783F31FD8409200D2163A /* Main.storyboard in Resources */,
 			);
@@ -421,6 +435,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C326056206AB3C2008773A8 /* NavigationLocation.swift in Sources */,
+				7C326053206AB3A7008773A8 /* FirbaseFetchandJSONConvert.swift in Sources */,
 				900CD12F202E16C3004CC0A5 /* GraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90851890202E04A60008F3C1 /* Graph.swift in Sources */,
+				7C326052206AB3A7008773A8 /* FirbaseFetchandJSONConvert.swift in Sources */,
 				9038DF6C201A025D0002FCD0 /* AbstractGraph.swift in Sources */,
 				90E784021FD8466900D2163A /* Double+Extension.swift in Sources */,
 				90BF1FC120339F440082DB0B /* SideMenuNavigationTableViewController.swift in Sources */,
@@ -442,6 +459,7 @@
 				9038DF6A201A025D0002FCD0 /* Edge.swift in Sources */,
 				90BF1FBE2033969B0082DB0B /* UITableViewVibrantCell.swift in Sources */,
 				2C454696204F3E4600717A06 /* SideMenuSettingsTableViewController.swift in Sources */,
+				7C326055206AB3C2008773A8 /* NavigationLocation.swift in Sources */,
 				90BF1FBC2033969B0082DB0B /* SideMenuManager.swift in Sources */,
 				90BD6BFA200FF2590055B763 /* ARViewController.swift in Sources */,
 			);

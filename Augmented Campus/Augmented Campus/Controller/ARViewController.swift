@@ -25,6 +25,7 @@ class ARViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
         
         sceneView.delegate = self
         
