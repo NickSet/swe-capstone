@@ -26,7 +26,7 @@ nodeRef.on("value", function(snapshot) {
 edgeRef.on("value", function(snapshot) {
 	//Initial edge query for all edges
     edges = snapshot.val();
-    //initPaths(edges);
+    initPaths(edges);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -36,24 +36,21 @@ function padToThree(number) {
   return number;
 }
 
-/*
+
 function initPaths(edge) {
 	//function to write edges
-	for (const [key, value] of Object.entries(edges)) {
+	for (const [key, value] of Object.entries(edge)) {
 		
-        var latFloat = parseFloat(value.latitude);
-        var lonFloat = parseFloat(value.longitude);
-			var fNode
+        var fromNode = value.from;
+        var toNode = value.to;
+		var fNode
 		var tNode
-		if(fromNode == toNode){
-			console.log("You can't have a node lead to itself");
-		}
 		
 		//Both query paths written out to only grab from that node's path
 		var fNodeRef = firebase.database().ref("Graph/Nodes/"+fromNode+'/');
 		var tNodeRef = firebase.database().ref("Graph/Nodes/"+toNode+'/');
 		
-		//
+		//Setting up the queries for the from and to nodes
 		fNodeRef.orderByKey().on("value", function(snapshot) {
 		//Initial node query for all nodes matching fromNode
 		fNode = snapshot.val();
@@ -63,19 +60,24 @@ function initPaths(edge) {
 		//Initial node query for all nodes matching toNode
 		tNode = snapshot.val();
 		})
-
-		google.maps.event.addListener(markers[i], 'click',  function() {
-            if (addingEdge == true) {
-                addSecondEdge(value, this.index);
-            } else {
-				    infoWindows[this.index].open(map, markers[this.index]);
-		    }
-        });
-        i++;
+		//Defining Google's polyline to assign it to the map
+		var line = new google.maps.Polyline({
+			path: [
+				new google.maps.LatLng(fNode.latitude, fNode.longitude),
+				new google.maps.LatLng(tNode.latitude, tNode.longitude)],
+			//Edit the properties of the line with these
+			strokeColor: "#FF0000",
+			strokeOpacity: 1.0,
+			strokeWeight: 4,
+			geodesic: true,
+			map: map
+		});
+		//Adding the line to the map
+		
     }
 	
 }
-*/
+
 
 function initMap(nodes) {
     var loc = {lat: 36.971643, lng: -82.558822}
@@ -121,7 +123,7 @@ function initMap(nodes) {
         });
         i++;
     }
-
+	
     map.addListener('dblclick', function(e) {
         let loc = {lat: e.latLng.lat(), lng: e.latLng.lng()};
         var windowContent = generateNodeCreationWindow(loc);
@@ -131,6 +133,7 @@ function initMap(nodes) {
         });
         createNodeWindow.open(map);
     });
+	
 }
 
 function saveEdge(fromNode, toNode) {
@@ -206,7 +209,6 @@ function addSecondEdge(fromNode, index) {
         stairs: false,
         weight: 100
     };
-    console.log(nodesForEdge[0]);
     addingEdge = false;
     edgeAddingWindow.close();
 }
