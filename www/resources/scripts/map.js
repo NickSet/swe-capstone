@@ -5,6 +5,7 @@ var edgeRef = firebase.database().ref("Graph/Edges/");
 var nodeCount = 0;
 var nodes;
 var edges;
+var paths = false;
 var addingEdge = false;
 
 var markers = [];
@@ -27,6 +28,7 @@ edgeRef.on("value", function(snapshot) {
 	//Initial edge query for all edges
     edges = snapshot.val();
     initPaths(edges);
+	paths = true;
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -55,11 +57,11 @@ function initPaths(edge) {
 		//Initial node query for all nodes matching fromNode
 		fNode = snapshot.val();
 		})
-		
 		tNodeRef.orderByKey().on("value", function(snapshot) {
 		//Initial node query for all nodes matching toNode
 		tNode = snapshot.val();
 		})
+		
 		//Defining Google's polyline to assign it to the map
 		var line = new google.maps.Polyline({
 			path: [
@@ -133,7 +135,9 @@ function initMap(nodes) {
         });
         createNodeWindow.open(map);
     });
-	
+	if(paths){
+		initPaths(edges);
+	};
 }
 
 function saveEdge(fromNode, toNode) {
@@ -171,14 +175,12 @@ function saveEdge(fromNode, toNode) {
         stairs: stairs,
         weight: eWeight
     };
-
-    /*Add edge to firebase
+    //Add edge to firebase
     edgeRef.child(edge._id).set(edge, function(err) {
         if (err) {
             console.warn(err);
         }
     });
-    */
 }
 
 function addSecondEdge(fromNode, index) {
@@ -202,13 +204,6 @@ function addSecondEdge(fromNode, index) {
     });
     infoWindows[index].open(map, markers[index])
 	//Setting all the values of the edges
-    var edge = {
-        _id: fromNode._id + nodesForEdge[0], //Not necessary. Stored in database parent name
-        from: fromNode._id,
-        to: nodesForEdge[0],
-        stairs: false,
-        weight: 100
-    };
     addingEdge = false;
     edgeAddingWindow.close();
 }
