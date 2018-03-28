@@ -13,44 +13,86 @@ var infoWindows = [];
 var nodesForEdge = [];
 var edgeAddingWindow;
 
-nodeRef.on("value", function(snapshot) {	
+nodeRef.on("value", function(snapshot) {
+	//Initial node query for all nodes
     nodes = snapshot.val();
+	//Counts the number of objects stored in nodes
     nodeCount = Object.keys(nodes).length;
     initMap(nodes);
 }, function (error) {
     console.log("Error: " + error.code);
 });
 
-edgeRef.on("value", function(snapshot) {	
+edgeRef.on("value", function(snapshot) {
+	//Initial edge query for all edges
     edges = snapshot.val();
     //initPaths(edges);
 }, function (error) {
     console.log("Error: " + error.code);
 });
 
-
+function padToThree(number) {
+  if (number<=999) { number = ("00"+number).slice(-3); }
+  return number;
+}
 
 /*
 function initPaths(edge) {
 	//function to write edges
+	for (const [key, value] of Object.entries(edges)) {
+		
+        var latFloat = parseFloat(value.latitude);
+        var lonFloat = parseFloat(value.longitude);
+			var fNode
+		var tNode
+		if(fromNode == toNode){
+			console.log("You can't have a node lead to itself");
+		}
+		
+		//Both query paths written out to only grab from that node's path
+		var fNodeRef = firebase.database().ref("Graph/Nodes/"+fromNode+'/');
+		var tNodeRef = firebase.database().ref("Graph/Nodes/"+toNode+'/');
+		
+		//
+		fNodeRef.orderByKey().on("value", function(snapshot) {
+		//Initial node query for all nodes matching fromNode
+		fNode = snapshot.val();
+		})
+		
+		tNodeRef.orderByKey().on("value", function(snapshot) {
+		//Initial node query for all nodes matching toNode
+		tNode = snapshot.val();
+		})
+
+		google.maps.event.addListener(markers[i], 'click',  function() {
+            if (addingEdge == true) {
+                addSecondEdge(value, this.index);
+            } else {
+				    infoWindows[this.index].open(map, markers[this.index]);
+		    }
+        });
+        i++;
+    }
 	
 }
 */
 
 function initMap(nodes) {
     var loc = {lat: 36.971643, lng: -82.558822}
+	//Override the google marker with custom marker google and set its size
     var nodeImage = new google.maps.MarkerImage('/resources/images/node.png',
         new google.maps.Size(30, 30),
         new google.maps.Point(0, 0),
         new google.maps.Point(15, 15));
-
+	//Disable double click zoom because double click is used to create nodes
     map = new google.maps.Map(document.getElementById('map'), {
         center: loc, 
         zoom: 19,
         disableDoubleClickZoom: true
     });
-
+	//i is the standard iterator for storing values in the markers[] and infoWindow[]
     var i = 0;
+	//Looping through the nodes and attaching a marker at the lat and lng of each node
     for (const [key, value] of Object.entries(nodes)) {
         var contentString = generateDetailWindow(value, i);
 
@@ -91,16 +133,40 @@ function initMap(nodes) {
     });
 }
 
-function saveEdge(fromNode) {
+function saveEdge(fromNode, toNode) {
+	//If radio button for stairs is checked, then set the value to true;
     let stairs = (document.getElementById("yes-stairs").value == 'true');
-
+	
+	var fNode
+	var tNode
+	if(fromNode == toNode){
+		console.log("You can't have a node lead to itself");
+	}
+	
+	//Both query paths written out to only grab from that node's path
+	var fNodeRef = firebase.database().ref("Graph/Nodes/"+fromNode+'/');
+	var tNodeRef = firebase.database().ref("Graph/Nodes/"+toNode+'/');
+	
+	//Both queries written to only search down the specific node's tree
+	fNodeRef.orderByKey().on("value", function(snapshot) {
+	//Initial node query for all nodes matching fromNode
+    fNode = snapshot.val();
+	})
+	tNodeRef.orderByKey().on("value", function(snapshot) {
+	//Initial node query for all nodes matching toNode
+    tNode = snapshot.val();
+	})
+	
+	//Finally calculating the value using compute distance between
+	var eWeight = Math.sqrt( (fNode.latitude - tNode.latitude)^2 + (fNode.longitude - tNode.longitude) );
+	
     //get distance between nodes
     var edge = {
-        _id: fromNode + nodesForEdge[0],
+        _id: fromNode + toNode,
         from: fromNode,
-        to: nodesForEdge[0],
+        to: toNode,
         stairs: stairs,
-        weight: 100
+        weight: eWeight
     };
 
     /*Add edge to firebase
@@ -113,7 +179,7 @@ function saveEdge(fromNode) {
 }
 
 function addSecondEdge(fromNode, index) {
-    //Change infowWIndow of this node to have a checkbox for if there are stairs
+    //Change infowWIndow of this node to have a check-box for if there are stairs
     var windowContent = `
         <div>
             <form>
@@ -121,25 +187,26 @@ function addSecondEdge(fromNode, index) {
                 <input id="yes-stairs" type="radio" name="stairs" value="true">Yes
                 <input id="no-stairs" type="radio" name="stairs" value="false">No
                 <br>
-                <button type="button" onclick="saveEdge('${fromNode._id}')">Add Edge</button>
+                <button type="button" onclick="saveEdge('${fromNode._id}','${nodesForEdge[0]}')">Add Edge</button>
+				<input type="hidden" name="toNode" value=${nodesForEdge[0]}>
             </form>
         </div>
     `;
-
+	//Opening a new inforWindow at the clicked marker
     infoWindows[index] = new google.maps.InfoWindow({
         content: windowContent,
         position: markers[index].position
     });
     infoWindows[index].open(map, markers[index])
-
+	//Setting all the values of the edges
     var edge = {
-        _id: fromNode._id + nodesForEdge[0],
+        _id: fromNode._id + nodesForEdge[0], //Not necessary. Stored in database parent name
         from: fromNode._id,
         to: nodesForEdge[0],
         stairs: false,
         weight: 100
     };
-    
+    console.log(nodesForEdge[0]);
     addingEdge = false;
     edgeAddingWindow.close();
 }
@@ -172,15 +239,18 @@ function addFirstEdge(fromNode, index) {
 }
 
 function addNode(lat, lng) {
+	//Description of nodes grabbed by the infoWindow
     let desc = document.getElementById("node-description").value;
-    let id = "node" + (nodeCount + 1);
+	//Grabbing the node count value, the node will be the n+1 node.
+    let id = "node" + padToThree(nodeCount + 1);
+	//The node values to be sent to the server are set, if description was not set then set description to _id
     let node = {
         _id: id,
         description: (desc != "") ? desc : id,
         latitude: lat,
         longitude: lng 
     };
-
+	//Attempt to push the node to the server, if it fails throw a console warning
     nodeRef.child(node._id).set(node, function(err) {
         if (err) {
             console.warn(err);
@@ -189,8 +259,10 @@ function addNode(lat, lng) {
 }
 
 function generateNodeCreationWindow(coords) {
+	//Storing the values for the lat and lng for the coordinates double clicked
     let lat = coords.lat;
     let lng = coords.lng;
+	//The contents of the infoWindow in a markup
     const markup = `
         <div>
             <form>
@@ -205,6 +277,7 @@ function generateNodeCreationWindow(coords) {
 }
 
 function generateDetailWindow(node, index) {
+	//Markup for the standard click-on-marker infoWindow
     const markup = `
     <div>
         <ul class="no-bullet">
