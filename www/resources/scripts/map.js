@@ -203,6 +203,7 @@ function addSecondEdge(fromNode, index) {
         position: markers[index].position
     });
     infoWindows[index].open(map, markers[index])
+	
 	//Setting all the values of the edges
     addingEdge = false;
     edgeAddingWindow.close();
@@ -255,6 +256,45 @@ function addNode(lat, lng) {
     });
 }
 
+function deleteNodeBox(node, index){
+	infoWindows[index].close();
+	
+	var oldWindow = infoWindows[index]
+    //Set the infoWindow for edge adding
+    const windowContent  = `
+        <div>
+            <form>
+                Delete: ${markers[index].title}
+                <br>
+                <button type="button" onclick="deleteNode('${node}')">Delete</button>
+            </form>
+        </div>
+    `;
+    infoWindows[index] = new google.maps.InfoWindow({
+        content: windowContent,
+        position: markers[index].position
+    });
+	
+    infoWindows[index].open(map, markers[index])
+    edgeAddingWindow = infoWindows[index];
+	
+    infoWindows[index] = oldWindow;
+}
+
+function deleteNode(nodeId){
+	var emptyNode = {
+			_id: null,
+			description: null,
+			latitude: null,
+			longitude: null
+	}
+	nodeRef.child(nodeId).set(emptyNode, function(err) {
+        if (err) {
+            console.warn(err);
+        }
+    });
+}
+
 function generateNodeCreationWindow(coords) {
 	//Storing the values for the lat and lng for the coordinates double clicked
     let lat = coords.lat;
@@ -289,6 +329,7 @@ function generateDetailWindow(node, index) {
         <h4>Edges</h4>
         <br><br><br>
         <button type="button" onclick="addFirstEdge('${node._id}', ${index})">Add Edge</button>
+		<button type="button" onclick="deleteNodeBox('${node._id}', ${index})">Delete Node</button>
     </div>
     `;
     return markup;
