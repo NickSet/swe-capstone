@@ -45,6 +45,7 @@ function initPaths(edge) {
 		
         var fromNode = value.from;
         var toNode = value.to;
+        var stairs = value.stairs;
 		var fNode
 		var tNode
 		
@@ -61,14 +62,17 @@ function initPaths(edge) {
 		//Initial node query for all nodes matching toNode
 		tNode = snapshot.val();
 		})
-		
+        
+        //Set color of edge depending on stairs boolean
+        let color = stairs ? "#FF0000" : "#9B51E0";
+
 		//Defining Google's polyline to assign it to the map
 		var line = new google.maps.Polyline({
 			path: [
 				new google.maps.LatLng(fNode.latitude, fNode.longitude),
 				new google.maps.LatLng(tNode.latitude, tNode.longitude)],
 			//Edit the properties of the line with these
-			strokeColor: "#FF0000",
+			strokeColor: color,
 			strokeOpacity: 1.0,
 			strokeWeight: 4,
 			geodesic: true,
@@ -100,7 +104,7 @@ function initMap(nodes) {
     for (const [key, value] of Object.entries(nodes)) {
         var contentString = generateDetailWindow(value, i);
 
-		var infoWindow = new google.maps.InfoWindow({
+		var detailInfoWindow = new google.maps.InfoWindow({
 			content: contentString
 		});
         var latFloat = parseFloat(value.latitude);
@@ -114,13 +118,13 @@ function initMap(nodes) {
         });
         markers[i] = _marker;
         markers[i].index = i;
-        infoWindows[i] = infoWindow;
+        infoWindows[i] = detailInfoWindow;
 
 		google.maps.event.addListener(markers[i], 'click',  function() {
             if (addingEdge == true) {
                 addSecondEdge(value, this.index);
             } else {
-				    infoWindows[this.index].open(map, markers[this.index]);
+			    infoWindows[this.index].open(map, markers[this.index]);
 		    }
         });
         i++;
@@ -142,8 +146,13 @@ function initMap(nodes) {
 
 function saveEdge(fromNode, toNode) {
 	//If radio button for stairs is checked, then set the value to true;
-    let stairs = (document.getElementById("yes-stairs").value == 'true');
-	
+    let hasStairs = (document.getElementById("yes-stairs").checked);
+
+    //Close info window after getting stairs button, currently not working.
+    for (var i = 0; i < infoWindows.length; i++) {
+        infoWindows[i].close();
+    }
+
 	var fNode
 	var tNode
 	if(fromNode == toNode){
@@ -164,17 +173,19 @@ function saveEdge(fromNode, toNode) {
     tNode = snapshot.val();
 	})
 	
-	//Finally calculating the value using compute distance between
-	var eWeight = Math.sqrt( (fNode.latitude - tNode.latitude)^2 + (fNode.longitude - tNode.longitude) );
-	
-    //get distance between nodes
+    //Finally calculating the value using compute distance between
+    var deltaLat = fNode.latitude - tNode.latitude;
+    var deltaLng = fNode.longitude - tNode.longitude;
+    var eWeight = Math.sqrt( Math.pow(deltaLat, 2) + Math.pow(deltaLng, 2));
+
     var edge = {
-        _id: fromNode + toNode,
+        _id: fromNode + '_' + toNode,
         from: fromNode,
         to: toNode,
-        stairs: stairs,
+        stairs: hasStairs,
         weight: eWeight
     };
+
     //Add edge to firebase
     edgeRef.child(edge._id).set(edge, function(err) {
         if (err) {
@@ -184,56 +195,49 @@ function saveEdge(fromNode, toNode) {
 }
 
 function addSecondEdge(fromNode, index) {
+    var oldWindow= infoWindows[index];
+    infoWindows[index].close();
+
     //Change infowWIndow of this node to have a check-box for if there are stairs
     var windowContent = `
         <div>
             <form>
                 Stairs:<br>
                 <input id="yes-stairs" type="radio" name="stairs" value="true">Yes
-                <input id="no-stairs" type="radio" name="stairs" value="false">No
+                <input id="no-stairs" type="radio" name="stairs" value="false" checked>No
                 <br>
-                <button type="button" onclick="saveEdge('${fromNode._id}','${nodesForEdge[0]}')">Add Edge</button>
+                <button type="button" onclick="saveEdge('${fromNode._id}','${nodesForEdge[0]}', ${index})">Add Edge</button>
 				<input type="hidden" name="toNode" value=${nodesForEdge[0]}>
             </form>
         </div>
     `;
-	//Opening a new inforWindow at the clicked marker
+    //Opening a new infoWindow at the clicked marker
+    
     infoWindows[index] = new google.maps.InfoWindow({
         content: windowContent,
-        position: markers[index].position
     });
+
     infoWindows[index].open(map, markers[index])
-	
+    infoWindows[index] = oldWindow;
 	//Setting all the values of the edges
     addingEdge = false;
-    edgeAddingWindow.close();
 }
 
 function addFirstEdge(fromNode, index) {
     //Close the old InfoWindow
     infoWindows[index].close();
     //Copy the old value to use later
-    var oldWindow = infoWindows[index]
+    var oldWindow = infoWindows[index];
     //Set the infoWindow for edge adding
     var windowContent = 'Click on a node to add the edge';
-    infoWindows[index] = new google.maps.InfoWindow({
+    markers[index].infoWindow = new google.maps.InfoWindow({
         content: windowContent,
-        position: markers[index].position
     });
-    infoWindows[index].open(map, markers[index])
-    edgeAddingWindow = infoWindows[index];
+    markers[index].infoWindow.open(map, markers[index]);
 
     addingEdge = true;
     nodesForEdge[0] = fromNode;
-    infoWindows[index] = oldWindow;
-
-    /*
-    edgeRef.child(edge._id).set(edge, function(err) {
-        if (err) {
-            console.warn(err);
-        }
-    });
-    */
+    markers[index].infoWindow.content = oldWindow;
 }
 
 function addNode(lat, lng) {
@@ -257,9 +261,9 @@ function addNode(lat, lng) {
 }
 
 function deleteNodeBox(node, index){
-	infoWindows[index].close();
+	markers[index].infoWindow.close();
 	
-	var oldWindow = infoWindows[index]
+	var oldWindow = markers[index].infoWindow;
     //Set the infoWindow for edge adding
     const windowContent  = `
         <div>
@@ -270,13 +274,12 @@ function deleteNodeBox(node, index){
             </form>
         </div>
     `;
-    infoWindows[index] = new google.maps.InfoWindow({
+    markers[index].infowWindow = new google.maps.InfoWindow({
         content: windowContent,
         position: markers[index].position
     });
 	
-    infoWindows[index].open(map, markers[index])
-    edgeAddingWindow = infoWindows[index];
+    markers[index].infoWindow.open(map, markers[index])
 	
     infoWindows[index] = oldWindow;
 }
