@@ -1,6 +1,7 @@
 var map;
 var nodeRef = firebase.database().ref("Graph/Nodes/");
 var edgeRef = firebase.database().ref("Graph/Edges/");
+var baseRef = firebase.database().ref("Graph");
 
 var nodeCount = 0;
 var nodes;
@@ -261,9 +262,9 @@ function addNode(lat, lng) {
 }
 
 function deleteNodeBox(node, index){
-	markers[index].infoWindow.close();
+	infoWindows[index].close();
 	
-	var oldWindow = markers[index].infoWindow;
+	var oldWindow = infoWindows[index];
     //Set the infoWindow for edge adding
     const windowContent  = `
         <div>
@@ -274,23 +275,44 @@ function deleteNodeBox(node, index){
             </form>
         </div>
     `;
-    markers[index].infowWindow = new google.maps.InfoWindow({
+    markers[index].infoWindow = new google.maps.InfoWindow({
         content: windowContent,
         position: markers[index].position
     });
+	markers[index].infoWindow.open(map, markers[index]);
 	
-    markers[index].infoWindow.open(map, markers[index])
-	
-    infoWindows[index] = oldWindow;
+    markers[index].infoWindow.content = oldWindow;
 }
 
 function deleteNode(nodeId){
+	//Variable for deleting nodes
 	var emptyNode = {
 			_id: null,
 			description: null,
 			latitude: null,
 			longitude: null
 	}
+	//Variable to deleting edges
+	var emptyEdge = {
+        _id: null,
+        from: null,
+        to: null,
+        stairs: null,
+        weight: null
+	}
+	//Looping through all the edges, since we still have access to the values
+	//of all the edges
+	for (const [key, value] of Object.entries(edges)) {
+		//If a edge value has the node _id in the to or from, remove the edge
+		//from the to be deleted node
+		if(value.from == nodeId || value.to == nodeId){
+				edgeRef.child(value._id).set(emptyEdge, function(err) {
+				if (err) {
+					console.warn(err);
+				}
+			});
+		}	
+    }
 	nodeRef.child(nodeId).set(emptyNode, function(err) {
         if (err) {
             console.warn(err);
