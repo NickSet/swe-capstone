@@ -9,10 +9,21 @@
   <body>
     <div id="map"></div>
 
-	  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-    <script src="resources/scripts/config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+
+    <script>
+    var config = {
+      apiKey: "AIzaSyA4BisMpstdZKOYvVISZw6nyNXVcjsLocQ",
+      authDomain: "augmented-campus-19014.firebaseapp.com",
+      databaseURL: "https://augmented-campus-19014.firebaseio.com",
+      projectId: "augmented-campus-19014",
+      messagingSenderId: "844294294479"
+    };
+    firebase.initializeApp(config);
+    </script>
+
     <script src="resources/scripts/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDx1zhWInwlA36jh2aUr2KmRJpT3k1SdCc&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDx1zhWInwlA36jh2aUr2KmRJpT3k1SdCc"
     async defer></script>
   </body>
 </html>

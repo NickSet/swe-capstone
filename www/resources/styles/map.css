@@ -9,3 +9,9 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+.no-bullet {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 1em;
+}
