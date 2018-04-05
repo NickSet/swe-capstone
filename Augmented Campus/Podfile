@@ -6,7 +6,6 @@ target 'Augmented Campus' do
   use_frameworks!
 
   # Pods for Augmented Campus
-  pod 'SwiftyJSON'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
 
