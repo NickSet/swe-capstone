@@ -1,7 +1,7 @@
 public struct Edge<T>: Equatable where T: Hashable {
 
     public let from: Node<T>
-    public let to: Node<T>
+    public var to: Node<T>
     public let weight: Double?
     public let stairs: Bool
 
