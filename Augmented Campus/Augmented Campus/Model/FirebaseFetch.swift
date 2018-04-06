@@ -24,7 +24,7 @@ func convertToNavigationLocations(from dict: [String: [String: Any]]) {
         let lat = properties["latitude"] as! Double
         let lng = properties["longitude"] as! Double
         let dsc = properties["description"] as! String
-        let navLoc = NavigationLocation(id: id, latitude: lat, longitude: lng, name: dsc, fScore: Double.infinity)
+        let navLoc = NavigationLocation(id: id, latitude: lat, longitude: lng, name: dsc, fScore: Double.infinity, gScore: 0)
     }
 }
 

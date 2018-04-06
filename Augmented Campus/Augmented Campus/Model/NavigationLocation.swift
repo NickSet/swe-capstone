@@ -1,23 +1,28 @@
 
-public struct NavigationLocation {
+public struct NavigationLocation: Codable {
     var id: String
 	var latitude: Double
 	var longitude: Double
 	var name: String
-	var fScore: Double?
+	var fScore: Double
+    var gScore: Double
+    
+    mutating func updateScores(fScore: Double, gScore: Double) {
+        self.fScore = fScore
+        self.gScore = gScore
+    }
 }
 
 extension NavigationLocation: CustomStringConvertible {
 	public var description: String {
 		// Returns the variable name of NavigationLocation if NavigationLocation itself is used without calling functions or variables.
-        let string = (name == id) ? id : ("\(id): \(name)")
-		return string
+		return "\(name)"
 	}
 }
 
 extension NavigationLocation: Hashable {
 	public var hashValue: Int {
-		let string = "\(latitude)\(longitude)\(id)"
+		let string = "\(latitude)\(longitude)\(name)"
 		return string.hashValue
 	}
 		
