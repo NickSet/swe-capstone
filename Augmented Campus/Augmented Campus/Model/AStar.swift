@@ -25,11 +25,8 @@ class AStar {
         
         openSet.append(startLocation) //Initializes the open set with the start location value for initial traversal.
         
-        
         var cameFrom = [Node<NavigationLocation>]()
         cameFrom.append(current) //starts from the start location. initializes start.
-        
-
         
         var tentativeGScore = Double() //temporary storage of value before it gets put into the array.
         
@@ -47,11 +44,11 @@ class AStar {
                 }
             }
             
-            for var neighbor in graph.edgesFrom(current) { //Starts the traversal from one edge to another
+            for neighbor in graph.edgesFrom(current) { //Starts the traversal from one edge to another
                 //"neighbor" is a localized name for edge
-                if let _ = current.data.gScore{
-                    current.data.gScore = 99999.1
-                }
+                current.data.gScore = 99999.1
+                var neighborNode = neighbor.to.data
+                
                 if closedSet.contains(current) { //if the value is located in the closed set, skip the current value. That's all this does.
                     continue
                 }
@@ -60,27 +57,21 @@ class AStar {
                     openSet.append(current)
                 }
                 
-                tentativeGScore = current.data.gScore! + neighbor.weight! //temporary gScore
-                if tentativeGScore >= neighbor.to.data.gScore! { //If the current distance is greater than the combination of the neighbor's distance, stop.
+                tentativeGScore = current.data.gScore + neighbor.weight! //temporary gScore
+                if tentativeGScore >= neighborNode.gScore { //If the current distance is greater than the combination of the neighbor's distance, stop.
                     continue
                 }
                 
                 cameFrom.append(current)
                 
-                
                 //Changing the distance of the destination of the neighbor to become the distance from start to said neighbor.
-                neighbor.to.data.gScore = tentativeGScore
-                
-                
-                
-                //Add fscore
-                neighbor.to.data.fScore = neighbor.to.data.gScore! + getEstimatedValue(current: neighbor.to, goal: endLocation)
+                let newFScore = tentativeGScore + getEstimatedValue(current: neighbor.to, goal: endLocation)
+                neighborNode.updateScores(fScore: newFScore, gScore: tentativeGScore)
                 
                 if !openSet.contains(neighbor.to){
                     openSet.append(neighbor.to)
                 }
             }
-            
             
             closedSet.append(current)
         }
@@ -97,11 +88,8 @@ class AStar {
         
         openSet.append(startLocation) //Initializes the open set with the start location value for initial traversal.
         
-        
         var cameFrom = [Node<NavigationLocation>]()
         cameFrom.append(current) //starts from the start location. initializes start.
-        
-        
         
         var tentativeGScore = Double() //temporary storage of value before it gets put into the array.
         
@@ -119,8 +107,9 @@ class AStar {
                 }
             }
             
-            for var neighbor in graph.edgesFrom(current) { //Starts the traversal from one edge to another
+            for neighbor in graph.edgesFrom(current) { //Starts the traversal from one edge to another
                 //"neighbor" is a localized name for edge
+                var neighborNode = neighbor.to.data
 
                 if closedSet.contains(current) { //if the value is located in the closed set, skip the current value. That's all this does.
                     continue
@@ -130,28 +119,23 @@ class AStar {
                     openSet.append(current)
                 }
                 
-                tentativeGScore = current.data.gScore! + neighbor.weight! //temporary gScore
-                if tentativeGScore >= neighbor.to.data.gScore! { //If the current distance is greater than the combination of the neighbor's distance, stop.
+                tentativeGScore = current.data.gScore + neighbor.weight! //temporary gScore
+                if tentativeGScore >= neighborNode.gScore { //If the current distance is greater than the combination of the neighbor's distance, stop.
                     continue
                 }
                 
                 cameFrom.append(current)
                 
-
                 //Changing the distance of the destination of the neighbor to become the distance from start to said neighbor.
-                neighbor.to.data.gScore = tentativeGScore
-                
-                
-                
-                //Add fscore
-                neighbor.to.data.fScore = neighbor.to.data.gScore! + getEstimatedValue(current: neighbor.to, goal: endLocation)
+                let newFScore = tentativeGScore + getEstimatedValue(current: neighbor.to, goal: endLocation)
+                //neighbor.to.data.gScore = tentativeGScore
+                neighborNode.updateScores(fScore: newFScore, gScore: tentativeGScore)
                 
                 //neighbor.to.index = gScore[neighbor.description] + getEstimatedValue(neighbor, endLocation)
                 if !openSet.contains(neighbor.to){
                     openSet.append(neighbor.to)
                 }
             }
-            
             
             closedSet.append(current)
         }
@@ -178,6 +162,4 @@ class AStar {
         return num3.squareRoot()
 
     }
-
-    
 }

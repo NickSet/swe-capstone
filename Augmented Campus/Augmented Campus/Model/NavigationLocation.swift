@@ -4,8 +4,13 @@ public struct NavigationLocation: Codable {
 	var latitude: Double
 	var longitude: Double
 	var name: String
-	var fScore: Double?
-    var gScore: Double?
+	var fScore: Double
+    var gScore: Double
+    
+    mutating func updateScores(fScore: Double, gScore: Double) {
+        self.fScore = fScore
+        self.gScore = gScore
+    }
 }
 
 extension NavigationLocation: CustomStringConvertible {
