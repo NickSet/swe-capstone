@@ -1,46 +1,66 @@
+//
+//  NavigationLocation.swift
+//  Augmented Campus
+//
+//  Created by Nicholas Setliff on 4/6/17.
+//  Copyright © 2017 Nicholas Setliff. All rights reserved.
+//
 
-public struct NavigationLocation: Codable {
-    var id: String
-	var latitude: Double
-	var longitude: Double
-	var name: String
-	var fScore: Double
-    var gScore: Double
+import Foundation
+
+final class NavigationLocation {
+    var connectedNodes = Set<NavigationLocation>()
     
-    mutating func updateScores(fScore: Double, gScore: Double) {
-        self.fScore = fScore
-        self.gScore = gScore
+    let latitude: Double
+    let longitude: Double
+    let name: String
+    let id: Int
+    
+    init(lat: Double, lng: Double, name: String, id: Int) {
+        self.latitude = lat
+        self.longitude = lng
+        self.name = name
+        self.id = id
     }
+    
+    func makeConnection(to node: NavigationLocation) {
+        connectedNodes.insert(node)
+    }
+    
 }
 
 extension NavigationLocation: CustomStringConvertible {
-	public var description: String {
-		// Returns the variable name of NavigationLocation if NavigationLocation itself is used without calling functions or variables.
-		return "\(name)"
-	}
+    public var description: String {
+        return "\(id): \(name)"
+    }
 }
 
-extension NavigationLocation: Hashable {
-	public var hashValue: Int {
-		let string = "\(latitude)\(longitude)\(name)"
-		return string.hashValue
-	}
-		
+extension NavigationLocation: Hashable, Equatable {
+    public var hashValue: Int {
+        return "\(name)\(id)".hashValue
+    }
+    
+    public static func == (lhs: NavigationLocation, rhs: NavigationLocation) -> Bool {
+        guard lhs.latitude == rhs.latitude else {
+            return false
+        }
+        guard lhs.longitude == rhs.longitude else {
+            return false
+        }
+        
+        return true
+    }
 }
 
-public func == (lhs: NavigationLocation, rhs: NavigationLocation) -> Bool {
-		
-		guard lhs.latitude == rhs.latitude else {
-			return false
-		}
-		
-		guard lhs.longitude == rhs.longitude else {
-			return false
-		}
-		
-		guard lhs.name == rhs.name else {
-			return false
-		}
-			
-		return true
-	}
+extension NavigationLocation: GraphNode {
+    func cost(to node: NavigationLocation) -> Double {
+        let deltaLat = pow(latitude - node.latitude, 2)
+        let deltaLng = pow(longitude - node.longitude, 2)
+        
+        return (deltaLat + deltaLng).squareRoot()
+    }
+    
+    func estimatedCost(to node: NavigationLocation) -> Double {
+        return cost(to: node)
+    }
+}

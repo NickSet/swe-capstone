@@ -20,11 +20,16 @@ func fetchData(){
 
 func convertToNavigationLocations(from dict: [String: [String: Any]]) {
     for properties in dict.values {
-        let id = properties["_id"] as! String
+        let idString = properties["_id"] as! String
+        let idIndex = idString.index(idString.startIndex, offsetBy: 4)
+        let id = Int(idString[idIndex...])!
+        
         let lat = properties["latitude"] as! Double
         let lng = properties["longitude"] as! Double
         let dsc = properties["description"] as! String
-        let navLoc = NavigationLocation(id: id, latitude: lat, longitude: lng, name: dsc, fScore: Double.infinity, gScore: 0)
+        let navLoc = NavigationLocation(lat: lat, lng: lng, name: dsc, id: id)
+        
+        print(navLoc)
     }
 }
 
