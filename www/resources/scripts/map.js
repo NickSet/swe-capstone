@@ -7,7 +7,7 @@ var indexRef = firebase.database().ref("Graph/index");
 var nodeCount = 0;
 var nodes;
 var edges;
-var index;
+var curIndex;
 var paths = false;
 var addingEdge = false;
 
@@ -18,8 +18,8 @@ var nodesForEdge = [];
 var edgeAddingWindow;
 
 
-baseRef.on("value", function(snapshot) {
-    index = snapshot.val();
+indexRef.on("value", function(snapshot) {
+    curIndex = snapshot.val();
 });
 
 nodeRef.on("value", function(snapshot) {
@@ -260,17 +260,17 @@ function addNode(lat, lng) {
         latitude: lat,
         longitude: lng 
     };
+	curIndex = parseInt(curIndex) + 1;
+	indexRef.set(curIndex, function(err) {
+		if (err) {
+			console.warn(err);
+		}
+	});
 	//Attempt to push the node to the server, if it fails throw a console warning
     nodeRef.child(node._id).set(node, function(err) {
         if (err) {
             console.warn(err);
         }
-		else indexRef.set((index+1), function(err) {
-			console.log("I made it here");
-			if (err) {
-				console.warn(err);
-			}
-		});
     });
 }
 
