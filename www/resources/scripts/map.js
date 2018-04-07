@@ -2,6 +2,7 @@ var map;
 var nodeRef = firebase.database().ref("Graph/Nodes/");
 var edgeRef = firebase.database().ref("Graph/Edges/");
 var baseRef = firebase.database().ref("Graph");
+var indexRef = firebase.database().ref("Graph/index");
 
 var nodeCount = 0;
 var nodes;
@@ -15,11 +16,15 @@ var infoWindows = [];
 var nodesForEdge = [];
 var edgeAddingWindow;
 
+
+indexRef.on("value", function(snapshot) {
+    nodeCount = snapshot.val();
+});
+
 nodeRef.on("value", function(snapshot) {
 	//Initial node query for all nodes
     nodes = snapshot.val();
 	//Counts the number of objects stored in nodes
-    nodeCount = Object.keys(nodes).length;
     initMap(nodes);
 }, function (error) {
     console.log("Error: " + error.code);
@@ -50,9 +55,15 @@ function initPaths(edge) {
 		var fNode
 		var tNode
 		
+		var fNodeName = "node"+padToThree(fromNode);
+		var tNodeName = "node"+padToThree(toNode);
+	
+		var fNodePath = "Graph/Nodes/"+fNodeName+'/';
+		var tNodePath = "Graph/Nodes/"+tNodeName+'/';
+		
 		//Both query paths written out to only grab from that node's path
-		var fNodeRef = firebase.database().ref("Graph/Nodes/"+fromNode+'/');
-		var tNodeRef = firebase.database().ref("Graph/Nodes/"+toNode+'/');
+		var fNodeRef = firebase.database().ref(fNodePath);
+		var tNodeRef = firebase.database().ref(tNodePath);
 		
 		//Setting up the queries for the from and to nodes
 		fNodeRef.orderByKey().on("value", function(snapshot) {
@@ -97,6 +108,7 @@ function initMap(nodes) {
     map = new google.maps.Map(document.getElementById('map'), {
         center: loc, 
         zoom: 19,
+		mapTypeId: 'satellite',
         disableDoubleClickZoom: true
     });
 	//i is the standard iterator for storing values in the markers[] and infoWindow[]
@@ -145,50 +157,89 @@ function initMap(nodes) {
 	};
 }
 
-function saveEdge(fromNode, toNode) {
+//Troubleshooting the open infoWindow
+function isInfoWindowOpen(infoWindow){
+    var map = infoWindow.getMap();
+    return (map !== null && typeof map !== "undefined");
+}
+
+function saveEdge(fromNode, toNode, index) {
 	//If radio button for stairs is checked, then set the value to true;
     let hasStairs = (document.getElementById("yes-stairs").checked);
 
     //Close info window after getting stairs button, currently not working.
-    for (var i = 0; i < infoWindows.length; i++) {
-        infoWindows[i].close();
+	//Troubleshooting for closing infoWindow
+    for (var j = 0; j < infoWindows.length; j++) {
+        if (isInfoWindowOpen(infoWindows[j])){
+		// do something if it is open
+			infoWindows[j].close();
+		} else {
+		// do something if it is closed
+			//console.log("InfoWindow "+j+" is not open");
+		}
     }
+	
+	//The helper box telling them to click another node is closed
+	markers[index].infoWindow.close();
 
 	var fNode
 	var tNode
 	if(fromNode == toNode){
 		console.log("You can't have a node lead to itself");
 	}
+	var fNodeName = "node"+padToThree(fromNode);
+	var tNodeName = "node"+padToThree(toNode);
+	
+	var fNodePath = "Graph/Nodes/"+fNodeName+'/';
+	var tNodePath = "Graph/Nodes/"+tNodeName+'/';
+	
 	
 	//Both query paths written out to only grab from that node's path
-	var fNodeRef = firebase.database().ref("Graph/Nodes/"+fromNode+'/');
-	var tNodeRef = firebase.database().ref("Graph/Nodes/"+toNode+'/');
+	var fNodeRef = firebase.database().ref(fNodePath);
+	var tNodeRef = firebase.database().ref(tNodePath);
 	
 	//Both queries written to only search down the specific node's tree
 	fNodeRef.orderByKey().on("value", function(snapshot) {
 	//Initial node query for all nodes matching fromNode
-    fNode = snapshot.val();
+		fNode = snapshot.val();
 	})
 	tNodeRef.orderByKey().on("value", function(snapshot) {
 	//Initial node query for all nodes matching toNode
-    tNode = snapshot.val();
+		tNode = snapshot.val();
 	})
 	
     //Finally calculating the value using compute distance between
     var deltaLat = fNode.latitude - tNode.latitude;
     var deltaLng = fNode.longitude - tNode.longitude;
     var eWeight = Math.sqrt( Math.pow(deltaLat, 2) + Math.pow(deltaLng, 2));
-
-    var edge = {
-        _id: fromNode + '_' + toNode,
+	
+	//Sets the original Edge1
+    var edge1 = {
+        _id: fNodeName + '_' + tNodeName,
         from: fromNode,
         to: toNode,
         stairs: hasStairs,
         weight: eWeight
     };
+	
+	//Sets the Reverse of Edge1
+    var edge2 = {
+        _id: tNodeName + '_' + fNodeName,
+        from: toNode,
+        to: fromNode,
+        stairs: hasStairs,
+        weight: eWeight
+    };
+	
+    //Add first edge to firebase
+    edgeRef.child(edge1._id).set(edge1, function(err) {
+        if (err) {
+            console.warn(err);
+        }
+    });
 
-    //Add edge to firebase
-    edgeRef.child(edge._id).set(edge, function(err) {
+    //Add second edge to firebase
+    edgeRef.child(edge2._id).set(edge2, function(err) {
         if (err) {
             console.warn(err);
         }
@@ -198,7 +249,6 @@ function saveEdge(fromNode, toNode) {
 function addSecondEdge(fromNode, index) {
     var oldWindow= infoWindows[index];
     infoWindows[index].close();
-
     //Change infowWIndow of this node to have a check-box for if there are stairs
     var windowContent = `
         <div>
@@ -207,7 +257,7 @@ function addSecondEdge(fromNode, index) {
                 <input id="yes-stairs" type="radio" name="stairs" value="true">Yes
                 <input id="no-stairs" type="radio" name="stairs" value="false" checked>No
                 <br>
-                <button type="button" onclick="saveEdge('${fromNode._id}','${nodesForEdge[0]}', ${index})">Add Edge</button>
+                <button type="button" onclick="saveEdge('${fromNode._id}','${nodesForEdge[0]}', '${nodesForEdge[1]}')">Add Edge</button>
 				<input type="hidden" name="toNode" value=${nodesForEdge[0]}>
             </form>
         </div>
@@ -235,26 +285,32 @@ function addFirstEdge(fromNode, index) {
         content: windowContent,
     });
     markers[index].infoWindow.open(map, markers[index]);
-
     addingEdge = true;
     nodesForEdge[0] = fromNode;
+	nodesForEdge[1] = index;
     markers[index].infoWindow.content = oldWindow;
 }
 
-function addNode(lat, lng) {
+function saveNode(lat, lng) {
 	//Description of nodes grabbed by the infoWindow
     let desc = document.getElementById("node-description").value;
 	//Grabbing the node count value, the node will be the n+1 node.
-    let id = "node" + padToThree(nodeCount + 1);
-	//The node values to be sent to the server are set, if description was not set then set description to _id
+	nodeCount = parseInt(nodeCount) + 1;
+    let id = nodeCount;
+	//The node values to be sent to the server are set, if description was not set then set description to the node Name
     let node = {
         _id: id,
-        description: (desc != "") ? desc : id,
+        description: (desc != "") ? desc : "node"+padToThree(id),
         latitude: lat,
         longitude: lng 
     };
+	indexRef.set(nodeCount, function(err) {
+		if (err) {
+			console.warn(err);
+		}
+	});
 	//Attempt to push the node to the server, if it fails throw a console warning
-    nodeRef.child(node._id).set(node, function(err) {
+    nodeRef.child("node"+ padToThree(node._id)).set(node, function(err) {
         if (err) {
             console.warn(err);
         }
@@ -313,7 +369,7 @@ function deleteNode(nodeId){
 			});
 		}	
     }
-	nodeRef.child(nodeId).set(emptyNode, function(err) {
+	nodeRef.child("node"+padToThree(nodeId)).set(emptyNode, function(err) {
         if (err) {
             console.warn(err);
         }
@@ -331,7 +387,7 @@ function generateNodeCreationWindow(coords) {
                 Description:<br>
                 <input id="node-description" type="text" name="description"><br>
                 <br>
-                <button type="button" onclick="addNode(${lat}, ${lng})">Add Node</button>
+                <button type="button" onclick="saveNode(${lat}, ${lng})">Add Node</button>
             </form>
         </div>
     `;
@@ -358,6 +414,22 @@ function generateDetailWindow(node, index) {
     </div>
     `;
     return markup;
+}
+
+function generateDetailEdges(node, index) {
+	var nodeConnections;
+	/*
+	for (const [key, value] of Object.entries(edges)) {
+		if(value.from == node)
+		{
+		}
+		
+	}
+	*/
+	edgeRef.orderByChild("from").equalTo("node"+padToThree(node._id)).on("child_added", function(snapshot) {
+		console.log(snapshot.key);
+	});
+	
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
