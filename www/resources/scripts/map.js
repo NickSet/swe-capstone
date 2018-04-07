@@ -108,6 +108,7 @@ function initMap(nodes) {
     map = new google.maps.Map(document.getElementById('map'), {
         center: loc, 
         zoom: 19,
+		mapTypeId: 'satellite',
         disableDoubleClickZoom: true
     });
 	//i is the standard iterator for storing values in the markers[] and infoWindow[]
@@ -156,14 +157,30 @@ function initMap(nodes) {
 	};
 }
 
-function saveEdge(fromNode, toNode) {
+//Troubleshooting the open infoWindow
+function isInfoWindowOpen(infoWindow){
+    var map = infoWindow.getMap();
+    return (map !== null && typeof map !== "undefined");
+}
+
+function saveEdge(fromNode, toNode, index) {
 	//If radio button for stairs is checked, then set the value to true;
     let hasStairs = (document.getElementById("yes-stairs").checked);
 
     //Close info window after getting stairs button, currently not working.
-    for (var i = 0; i < infoWindows.length; i++) {
-        infoWindows[i].close();
+	//Troubleshooting for closing infoWindow
+    for (var j = 0; j < infoWindows.length; j++) {
+        if (isInfoWindowOpen(infoWindows[j])){
+		// do something if it is open
+			infoWindows[j].close();
+		} else {
+		// do something if it is closed
+			//console.log("InfoWindow "+j+" is not open");
+		}
     }
+	
+	//The helper box telling them to click another node is closed
+	markers[index].infoWindow.close();
 
 	var fNode
 	var tNode
@@ -184,11 +201,11 @@ function saveEdge(fromNode, toNode) {
 	//Both queries written to only search down the specific node's tree
 	fNodeRef.orderByKey().on("value", function(snapshot) {
 	//Initial node query for all nodes matching fromNode
-    fNode = snapshot.val();
+		fNode = snapshot.val();
 	})
 	tNodeRef.orderByKey().on("value", function(snapshot) {
 	//Initial node query for all nodes matching toNode
-    tNode = snapshot.val();
+		tNode = snapshot.val();
 	})
 	
     //Finally calculating the value using compute distance between
@@ -232,7 +249,6 @@ function saveEdge(fromNode, toNode) {
 function addSecondEdge(fromNode, index) {
     var oldWindow= infoWindows[index];
     infoWindows[index].close();
-
     //Change infowWIndow of this node to have a check-box for if there are stairs
     var windowContent = `
         <div>
@@ -241,7 +257,7 @@ function addSecondEdge(fromNode, index) {
                 <input id="yes-stairs" type="radio" name="stairs" value="true">Yes
                 <input id="no-stairs" type="radio" name="stairs" value="false" checked>No
                 <br>
-                <button type="button" onclick="saveEdge('${fromNode._id}','${nodesForEdge[0]}', ${index})">Add Edge</button>
+                <button type="button" onclick="saveEdge('${fromNode._id}','${nodesForEdge[0]}', '${nodesForEdge[1]}')">Add Edge</button>
 				<input type="hidden" name="toNode" value=${nodesForEdge[0]}>
             </form>
         </div>
@@ -269,22 +285,22 @@ function addFirstEdge(fromNode, index) {
         content: windowContent,
     });
     markers[index].infoWindow.open(map, markers[index]);
-
     addingEdge = true;
     nodesForEdge[0] = fromNode;
+	nodesForEdge[1] = index;
     markers[index].infoWindow.content = oldWindow;
 }
 
-function addNode(lat, lng) {
+function saveNode(lat, lng) {
 	//Description of nodes grabbed by the infoWindow
     let desc = document.getElementById("node-description").value;
 	//Grabbing the node count value, the node will be the n+1 node.
 	nodeCount = parseInt(nodeCount) + 1;
     let id = nodeCount;
-	//The node values to be sent to the server are set, if description was not set then set description to _id
+	//The node values to be sent to the server are set, if description was not set then set description to the node Name
     let node = {
         _id: id,
-        description: (desc != "") ? desc : id,
+        description: (desc != "") ? desc : "node"+padToThree(id),
         latitude: lat,
         longitude: lng 
     };
@@ -353,7 +369,7 @@ function deleteNode(nodeId){
 			});
 		}	
     }
-	nodeRef.child(nodeId).set(emptyNode, function(err) {
+	nodeRef.child("node"+padToThree(nodeId)).set(emptyNode, function(err) {
         if (err) {
             console.warn(err);
         }
@@ -371,7 +387,7 @@ function generateNodeCreationWindow(coords) {
                 Description:<br>
                 <input id="node-description" type="text" name="description"><br>
                 <br>
-                <button type="button" onclick="addNode(${lat}, ${lng})">Add Node</button>
+                <button type="button" onclick="saveNode(${lat}, ${lng})">Add Node</button>
             </form>
         </div>
     `;
