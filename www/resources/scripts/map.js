@@ -257,7 +257,7 @@ function addSecondEdge(fromNode, index) {
                 <input id="yes-stairs" type="radio" name="stairs" value="true">Yes
                 <input id="no-stairs" type="radio" name="stairs" value="false" checked>No
                 <br>
-                <button type="button" onclick="saveEdge('${fromNode._id}','${nodesForEdge[0]}', '${nodesForEdge[1]}')">Add Edge</button>
+                <button type="button" onclick="saveEdge(${fromNode._id},${nodesForEdge[0]}, '${nodesForEdge[1]}')">Add Edge</button>
 				<input type="hidden" name="toNode" value=${nodesForEdge[0]}>
             </form>
         </div>
