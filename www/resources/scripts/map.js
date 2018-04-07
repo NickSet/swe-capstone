@@ -268,7 +268,7 @@ function addNode(lat, lng) {
     let desc = document.getElementById("node-description").value;
 	//Grabbing the node count value, the node will be the n+1 node.
 	nodeCount = parseInt(nodeCount) + 1;
-    let id = "node" + padToFour(nodeCount);
+    let id = nodeCount;
 	//The node values to be sent to the server are set, if description was not set then set description to _id
     let node = {
         _id: id,
@@ -282,7 +282,7 @@ function addNode(lat, lng) {
 		}
 	});
 	//Attempt to push the node to the server, if it fails throw a console warning
-    nodeRef.child(node._id).set(node, function(err) {
+    nodeRef.child("node"+ padToFour(node._id)).set(node, function(err) {
         if (err) {
             console.warn(err);
         }
