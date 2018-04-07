@@ -100,10 +100,10 @@ function initPaths(edge) {
 function initMap(nodes) {
     var loc = {lat: 36.971643, lng: -82.558822}
 	//Override the google marker with custom marker google and set its size
-    var nodeImage = new google.maps.MarkerImage('/resources/images/node.png',
-        new google.maps.Size(30, 30),
+    var nodeImage = new google.maps.MarkerImage('/resources/images/node_z19.png',
+        new google.maps.Size(20, 20),
         new google.maps.Point(0, 0),
-        new google.maps.Point(15, 15));
+        new google.maps.Point(10, 10));
 	//Disable double click zoom because double click is used to create nodes
     map = new google.maps.Map(document.getElementById('map'), {
         center: loc, 
@@ -154,31 +154,56 @@ function initMap(nodes) {
     });
 	if(paths){
 		initPaths(edges);
-	};
+    };
+    
+    map.addListener('zoom_changed', function() {
+        let zoom = map.zoom;
+        var nodeImage;
+        switch (zoom) {
+            case 17:
+                nodeImage = new google.maps.MarkerImage('/resources/images/node_z17.png',
+                    new google.maps.Size(12, 12),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(6, 6));
+                break;
+            case 18:
+                nodeImage = new google.maps.MarkerImage('/resources/images/node_z18.png',
+                    new google.maps.Size(16, 16),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(8, 8));
+                break;
+            case 19:
+                nodeImage = new google.maps.MarkerImage('/resources/images/node_z19.png',
+                    new google.maps.Size(20, 20),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(10, 10));
+                break;
+            case 20:
+                nodeImage = new google.maps.MarkerImage('/resources/images/node_z20.png',
+                    new google.maps.Size(22, 22),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(11, 11));
+                break;
+            default:
+                nodeImage = new google.maps.MarkerImage('/resources/images/node_z17.png',
+                    new google.maps.Size(12, 12),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(6, 6));
+                break;
+ 
+        }
+
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setIcon(nodeImage);
+        }
+    });
 }
 
-//Troubleshooting the open infoWindow
-function isInfoWindowOpen(infoWindow){
-    var map = infoWindow.getMap();
-    return (map !== null && typeof map !== "undefined");
-}
 
-function saveEdge(fromNode, toNode, index) {
+function saveEdge(fromNode, toNode, index, iwIndex) {
 	//If radio button for stairs is checked, then set the value to true;
     let hasStairs = (document.getElementById("yes-stairs").checked);
 
-    //Close info window after getting stairs button, currently not working.
-	//Troubleshooting for closing infoWindow
-    for (var j = 0; j < infoWindows.length; j++) {
-        if (isInfoWindowOpen(infoWindows[j])){
-		// do something if it is open
-			infoWindows[j].close();
-		} else {
-		// do something if it is closed
-			//console.log("InfoWindow "+j+" is not open");
-		}
-    }
-	
 	//The helper box telling them to click another node is closed
 	markers[index].infoWindow.close();
 
@@ -257,18 +282,18 @@ function addSecondEdge(fromNode, index) {
                 <input id="yes-stairs" type="radio" name="stairs" value="true">Yes
                 <input id="no-stairs" type="radio" name="stairs" value="false" checked>No
                 <br>
-                <button type="button" onclick="saveEdge(${fromNode._id},${nodesForEdge[0]}, '${nodesForEdge[1]}')">Add Edge</button>
+                <button type="button" onclick="saveEdge(${fromNode._id}, ${nodesForEdge[0]}, ${nodesForEdge[1]}, ${index})">Add Edge</button>
 				<input type="hidden" name="toNode" value=${nodesForEdge[0]}>
             </form>
         </div>
     `;
+
     //Opening a new infoWindow at the clicked marker
-    
     infoWindows[index] = new google.maps.InfoWindow({
         content: windowContent,
     });
-
-    infoWindows[index].open(map, markers[index])
+    
+    infoWindows[index].open(map, markers[index]);
     infoWindows[index] = oldWindow;
 	//Setting all the values of the edges
     addingEdge = false;
