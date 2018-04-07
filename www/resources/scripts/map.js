@@ -2,10 +2,12 @@ var map;
 var nodeRef = firebase.database().ref("Graph/Nodes/");
 var edgeRef = firebase.database().ref("Graph/Edges/");
 var baseRef = firebase.database().ref("Graph");
+var indexRef = firebase.database().ref("Graph/index");
 
 var nodeCount = 0;
 var nodes;
 var edges;
+var index;
 var paths = false;
 var addingEdge = false;
 
@@ -14,6 +16,11 @@ var infoWindows = [];
 
 var nodesForEdge = [];
 var edgeAddingWindow;
+
+
+baseRef.on("value", function(snapshot) {
+    index = snapshot.val();
+});
 
 nodeRef.on("value", function(snapshot) {
 	//Initial node query for all nodes
@@ -258,6 +265,12 @@ function addNode(lat, lng) {
         if (err) {
             console.warn(err);
         }
+		else indexRef.set((index+1), function(err) {
+			console.log("I made it here");
+			if (err) {
+				console.warn(err);
+			}
+		});
     });
 }
 
