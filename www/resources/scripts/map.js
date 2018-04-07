@@ -7,7 +7,6 @@ var indexRef = firebase.database().ref("Graph/index");
 var nodeCount = 0;
 var nodes;
 var edges;
-var curIndex;
 var paths = false;
 var addingEdge = false;
 
@@ -19,14 +18,13 @@ var edgeAddingWindow;
 
 
 indexRef.on("value", function(snapshot) {
-    curIndex = snapshot.val();
+    nodeCount = snapshot.val();
 });
 
 nodeRef.on("value", function(snapshot) {
 	//Initial node query for all nodes
     nodes = snapshot.val();
 	//Counts the number of objects stored in nodes
-    nodeCount = Object.keys(nodes).length;
     initMap(nodes);
 }, function (error) {
     console.log("Error: " + error.code);
@@ -252,7 +250,8 @@ function addNode(lat, lng) {
 	//Description of nodes grabbed by the infoWindow
     let desc = document.getElementById("node-description").value;
 	//Grabbing the node count value, the node will be the n+1 node.
-    let id = "node" + padToThree(nodeCount + 1);
+	nodeCount = parseInt(nodeCount) + 1;
+    let id = "node" + padToThree(nodeCount);
 	//The node values to be sent to the server are set, if description was not set then set description to _id
     let node = {
         _id: id,
@@ -260,8 +259,7 @@ function addNode(lat, lng) {
         latitude: lat,
         longitude: lng 
     };
-	curIndex = parseInt(curIndex) + 1;
-	indexRef.set(curIndex, function(err) {
+	indexRef.set(nodeCount, function(err) {
 		if (err) {
 			console.warn(err);
 		}
