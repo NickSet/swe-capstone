@@ -39,8 +39,8 @@ edgeRef.on("value", function(snapshot) {
     console.log("Error: " + error.code);
 });
 
-function padToThree(number) {
-  if (number<=999) { number = ("00"+number).slice(-3); }
+function padToFour(number) {
+  if (number<=9999) { number = ("000"+number).slice(-4); }
   return number;
 }
 
@@ -183,17 +183,34 @@ function saveEdge(fromNode, toNode) {
     var deltaLat = fNode.latitude - tNode.latitude;
     var deltaLng = fNode.longitude - tNode.longitude;
     var eWeight = Math.sqrt( Math.pow(deltaLat, 2) + Math.pow(deltaLng, 2));
-
-    var edge = {
+	
+	//Sets the original Edge1
+    var edge1 = {
         _id: fromNode + '_' + toNode,
         from: fromNode,
         to: toNode,
         stairs: hasStairs,
         weight: eWeight
     };
+	
+	//Sets the Reverse of Edge1
+    var edge2 = {
+        _id: toNode + '_' + fromNode,
+        from: toNode,
+        to: fromNode,
+        stairs: hasStairs,
+        weight: eWeight
+    };
+	
+    //Add first edge to firebase
+    edgeRef.child(edge1._id).set(edge1, function(err) {
+        if (err) {
+            console.warn(err);
+        }
+    });
 
-    //Add edge to firebase
-    edgeRef.child(edge._id).set(edge, function(err) {
+    //Add second edge to firebase
+    edgeRef.child(edge2._id).set(edge2, function(err) {
         if (err) {
             console.warn(err);
         }
@@ -251,7 +268,7 @@ function addNode(lat, lng) {
     let desc = document.getElementById("node-description").value;
 	//Grabbing the node count value, the node will be the n+1 node.
 	nodeCount = parseInt(nodeCount) + 1;
-    let id = "node" + padToThree(nodeCount);
+    let id = "node" + padToFour(nodeCount);
 	//The node values to be sent to the server are set, if description was not set then set description to _id
     let node = {
         _id: id,
