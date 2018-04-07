@@ -39,8 +39,8 @@ edgeRef.on("value", function(snapshot) {
     console.log("Error: " + error.code);
 });
 
-function padToFour(number) {
-  if (number<=9999) { number = ("000"+number).slice(-4); }
+function padToThree(number) {
+  if (number<=999) { number = ("00"+number).slice(-3); }
   return number;
 }
 
@@ -55,9 +55,15 @@ function initPaths(edge) {
 		var fNode
 		var tNode
 		
+		var fNodeName = "node"+padToThree(fromNode);
+		var tNodeName = "node"+padToThree(toNode);
+	
+		var fNodePath = "Graph/Nodes/"+fNodeName+'/';
+		var tNodePath = "Graph/Nodes/"+tNodeName+'/';
+		
 		//Both query paths written out to only grab from that node's path
-		var fNodeRef = firebase.database().ref("Graph/Nodes/"+fromNode+'/');
-		var tNodeRef = firebase.database().ref("Graph/Nodes/"+toNode+'/');
+		var fNodeRef = firebase.database().ref(fNodePath);
+		var tNodeRef = firebase.database().ref(tNodePath);
 		
 		//Setting up the queries for the from and to nodes
 		fNodeRef.orderByKey().on("value", function(snapshot) {
@@ -164,10 +170,16 @@ function saveEdge(fromNode, toNode) {
 	if(fromNode == toNode){
 		console.log("You can't have a node lead to itself");
 	}
+	var fNodeName = "node"+padToThree(fromNode);
+	var tNodeName = "node"+padToThree(toNode);
+	
+	var fNodePath = "Graph/Nodes/"+fNodeName+'/';
+	var tNodePath = "Graph/Nodes/"+tNodeName+'/';
+	
 	
 	//Both query paths written out to only grab from that node's path
-	var fNodeRef = firebase.database().ref("Graph/Nodes/"+fromNode+'/');
-	var tNodeRef = firebase.database().ref("Graph/Nodes/"+toNode+'/');
+	var fNodeRef = firebase.database().ref(fNodePath);
+	var tNodeRef = firebase.database().ref(tNodePath);
 	
 	//Both queries written to only search down the specific node's tree
 	fNodeRef.orderByKey().on("value", function(snapshot) {
@@ -186,7 +198,7 @@ function saveEdge(fromNode, toNode) {
 	
 	//Sets the original Edge1
     var edge1 = {
-        _id: fromNode + '_' + toNode,
+        _id: fNodeName + '_' + tNodeName,
         from: fromNode,
         to: toNode,
         stairs: hasStairs,
@@ -195,7 +207,7 @@ function saveEdge(fromNode, toNode) {
 	
 	//Sets the Reverse of Edge1
     var edge2 = {
-        _id: toNode + '_' + fromNode,
+        _id: tNodeName + '_' + fNodeName,
         from: toNode,
         to: fromNode,
         stairs: hasStairs,
@@ -282,7 +294,7 @@ function addNode(lat, lng) {
 		}
 	});
 	//Attempt to push the node to the server, if it fails throw a console warning
-    nodeRef.child("node"+ padToFour(node._id)).set(node, function(err) {
+    nodeRef.child("node"+ padToThree(node._id)).set(node, function(err) {
         if (err) {
             console.warn(err);
         }
@@ -386,6 +398,22 @@ function generateDetailWindow(node, index) {
     </div>
     `;
     return markup;
+}
+
+function generateDetailEdges(node, index) {
+	var nodeConnections;
+	/*
+	for (const [key, value] of Object.entries(edges)) {
+		if(value.from == node)
+		{
+		}
+		
+	}
+	*/
+	edgeRef.orderByChild("from").equalTo("node"+padToThree(node._id)).on("child_added", function(snapshot) {
+		console.log(snapshot.key);
+	});
+	
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
