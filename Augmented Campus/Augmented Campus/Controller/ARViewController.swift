@@ -15,7 +15,6 @@ class ARViewController: UIViewController {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var menuButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
     
     var locationManager = CLLocationManager()
     var arrowNode = SCNNode()
@@ -71,7 +70,7 @@ class ARViewController: UIViewController {
         SideMenuManager.default.menuPresentMode = .menuSlideIn
         SideMenuManager.default.menuBlurEffectStyle = .none
         SideMenuManager.default.menuAnimationFadeStrength = 0.4
-        SideMenuManager.default.menuWidth = view.frame.width * 0.6
+        SideMenuManager.default.menuWidth = view.frame.width * 0.7
         SideMenuManager.default.menuFadeStatusBar = false
     }
     
@@ -115,14 +114,6 @@ class ARViewController: UIViewController {
         
         performSegue(withIdentifier: "LeftMenuControllerSegue", sender: nil)
     }
-    
-    @IBAction func settingsButtonTapped(sender: UIButton) {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.settingsButton.alpha = 0.0
-        }, completion: nil)
-        performSegue(withIdentifier: "RightMenuControllerSegue", sender: nil)
-    }
-
 }
 
 extension ARViewController: CLLocationManagerDelegate {

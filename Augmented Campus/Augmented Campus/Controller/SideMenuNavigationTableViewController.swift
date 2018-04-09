@@ -22,7 +22,7 @@ class SideMenuNavigationTableViewController: UITableViewController {
         
         addCoords()
         tableView.contentInset = UIEdgeInsetsMake(48, 0, 0, 0)
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        //view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,8 +32,6 @@ class SideMenuNavigationTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath) as! UITableViewVibrantCell
-        
-        cell.blurEffectStyle = SideMenuManager.default.menuBlurEffectStyle
         
         return cell
     }

@@ -36,7 +36,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kaF-sw-q3N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.35686274509803922" green="0.40392156862745099" blue="0.4392156862745098" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="yei-Q7-tU9">
@@ -116,7 +116,7 @@
         <!--Root View Controller-->
         <scene sceneID="6K5-gK-pTD">
             <objects>
-                <tableViewController id="jyv-gB-Pw7" customClass="SideMenuSettingsTableViewController" customModule="Augmented_Campus" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="jyv-gB-Pw7" customClass="SettingsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ty7-oW-vLj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -242,38 +242,20 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="pDP-dT-Sj1">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="Dpi-nk-4yN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="935-SP-NM8" kind="unwind" unwindAction="unwindToARViewControllerWithSegue:" id="JC7-4W-hfB"/>
+                                <segue destination="935-SP-NM8" kind="unwind" identifier="unwind" unwindAction="unwindToARViewControllerWithSegue:" id="JC7-4W-hfB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="935-SP-NM8" kind="unwind" unwindAction="unwindToARViewControllerWithSegue:" id="BVM-3z-lyw"/>
+                        <segue destination="935-SP-NM8" kind="unwind" identifier="unwind" unwindAction="unwindToARViewControllerWithSegue:" id="BVM-3z-lyw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gwe-U4-daV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="935-SP-NM8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2801" y="360"/>
-        </scene>
-        <!--Side Menu Navigation Controller-->
-        <scene sceneID="49J-Ck-Cqx">
-            <objects>
-                <navigationController storyboardIdentifier="RightMenuNavigationalController" id="K5w-mi-0cF" customClass="UISideMenuNavigationController" customModule="Augmented_Campus" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QWP-wZ-xsq">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="NO"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <segue destination="jyv-gB-Pw7" kind="relationship" relationship="rootViewController" id="yIJ-DO-f4i"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6K0-KF-slh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1982" y="361"/>
+            <point key="canvasLocation" x="1982" y="349"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SAE-iN-h4M">
@@ -323,23 +305,17 @@
                         <viewLayoutGuide key="safeArea" id="5ci-Lc-LaB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Pfd-vX-6xd">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Tte-7t-BCC">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8iN-hq-7Pl">
-                                <rect key="frame" x="329" y="8" width="30" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="settings-icon"/>
-                                <connections>
-                                    <action selector="settingsButtonTappedWithSender:" destination="sBn-1M-NAo" eventType="touchUpInside" id="i9K-1d-YCD"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" image="settings-icon" id="Wkz-GD-vrG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="jyv-gB-Pw7" kind="show" identifier="settingsSegue" id="6Hf-j4-VcC"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="7m4-3a-tDl" id="QRg-u2-Nbb"/>
                         <outlet property="sceneView" destination="sKl-Gf-0Ao" id="71e-c1-h75"/>
-                        <outlet property="settingsButton" destination="8iN-hq-7Pl" id="QXZ-eu-sRD"/>
                         <segue destination="Roi-CB-xci" kind="presentation" identifier="LeftMenuControllerSegue" id="ygq-bZ-Ozq"/>
-                        <segue destination="K5w-mi-0cF" kind="presentation" identifier="RightMenuControllerSegue" id="XfQ-Nd-767"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eaf-cL-uw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
