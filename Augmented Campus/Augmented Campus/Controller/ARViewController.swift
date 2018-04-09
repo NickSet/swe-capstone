@@ -40,7 +40,7 @@ class ARViewController: UIViewController {
         
         let arrowScene = SCNScene(named: "art.scnassets/arrow.scn")!
         arrowNode = arrowScene.rootNode.childNode(withName: "arrow", recursively: true)!
-        arrowNode.position = SCNVector3Make(0.0, -1.0, -2.8)
+        arrowNode.position = SCNVector3Make(0.0, -1.0, -3.2)
         sceneView.pointOfView?.addChildNode(arrowNode)
         
         arrowNode.isHidden = true
