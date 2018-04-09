@@ -14,7 +14,7 @@ extension Array {
     /// but not including the index N, and is false for all elements
     /// starting with index N.
     /// Behavior is undefined if there is no such N.
-    func binarySearch(predicate: (Element) -> Bool) -> Int {
+    public func binarySearch(predicate: (Element) -> Bool) -> Int {
         var low = startIndex
         var high = endIndex
         while low != high {
@@ -28,7 +28,7 @@ extension Array {
         return low
     }
     
-    mutating func sortedInsert(element: Element, predicate: (Element, Element) -> Bool) {
+    public mutating func sortedInsert(element: Element, predicate: (Element, Element) -> Bool) {
         insert(element, at: binarySearch{predicate($0, element)} )
     }
     
@@ -39,7 +39,7 @@ extension Array where Element: Comparable {
     /// but not including the index N, and is false for all elements
     /// starting with index N.
     /// Behavior is undefined if there is no such N.
-    func binarySearch(element: Element) -> Int {
+    public func binarySearch(element: Element) -> Int {
         var low = startIndex
         var high = endIndex
         while low != high {
@@ -60,7 +60,7 @@ extension Array where Element: Comparable {
     /// - Complexity: To find the index for the new element
     ///   it uses a binary search algorithm
     
-    mutating func sortedInsert(newElement: Element) {
+    public mutating func sortedInsert(newElement: Element) {
         insert(newElement, at: binarySearch(element: newElement) )
     }
 }

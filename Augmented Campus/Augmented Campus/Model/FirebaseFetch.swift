@@ -20,10 +20,7 @@ func fetchData(){
 
 func convertToNavigationLocations(from dict: [String: [String: Any]]) {
     for properties in dict.values {
-        let idString = properties["_id"] as! String
-        let idIndex = idString.index(idString.startIndex, offsetBy: 4)
-        let id = Int(idString[idIndex...])!
-        
+        let id = properties["_id"] as! Int        
         let lat = properties["latitude"] as! Double
         let lng = properties["longitude"] as! Double
         let dsc = properties["description"] as! String
