@@ -48,6 +48,14 @@ class ARViewController: UIViewController {
         setupSideMenu()
         
         let dataManager = DataManager.shared
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            let node9 = dataManager.getNode(withID: 9)!
+            let node12 = dataManager.getNode(withID: 12)!
+            
+            let shortNL = dataManager.findClosest(current: (self.locationManager.location?.coordinate)!, destination: node12)
+            self.title = shortNL.description
+            //let shortNL = dataManager.findClosest(current: startingPoint, destination: node12)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {

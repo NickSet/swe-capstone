@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import CoreLocation
 
 class DataManager {
     typealias firebaseClosure = ([String: [String: Any]]?) -> Void
@@ -30,6 +31,28 @@ class DataManager {
                 self.convertToNavigationLocations(nodes: nodesDict, edges: edgesDict)
             })
         })
+    }
+    
+    func findClosest(current: CLLocationCoordinate2D, destination: NavigationLocation) -> NavigationLocation {
+        let temp = NavigationLocation(lat: current.latitude, lng: current.longitude, name: "", id: -1)
+        var distance = 99999.9
+        var closest = temp //declaring an "empty" value
+        var temp2: Double
+        for (_,x) in navLocations {
+            if x == destination {
+                //if destination's distance is short enough, don't do this
+                continue
+            } else if x.cost(to: destination) > temp.cost(to: destination) {
+                continue
+            } else {
+                temp2 = temp.cost(to:x) //+ (x.cost(to: destination))
+                if(temp2 < distance){
+                    distance = temp2
+                    closest = x
+                }
+            }
+        }
+        return closest
     }
     
     private func fetchEdges(completionHandler: @escaping firebaseClosure) {
@@ -61,7 +84,6 @@ class DataManager {
                 return
             }
             nodes = dictionary
-            //self.convertToNavigationLocations(from: dictionary)
             if nodes.isEmpty {
                 completionHandler(nil)
             } else {
@@ -88,10 +110,6 @@ class DataManager {
             let from = edge["from"] as! Int
             let to = edge["to"] as! Int
             navLocations[from]!.makeConnection(to: navLocations[to]!)
-        }
-        
-        for (key, value) in navLocations {
-            print(value)
         }
     }
 
