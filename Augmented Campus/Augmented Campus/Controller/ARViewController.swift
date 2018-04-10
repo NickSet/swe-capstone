@@ -24,7 +24,7 @@ class ARViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
+        //fetchData()
         
         sceneView.delegate = self
         
@@ -46,6 +46,8 @@ class ARViewController: UIViewController {
         arrowNode.isHidden = true
         
         setupSideMenu()
+        
+        let dataManager = DataManager.shared
     }
     
     override func viewWillAppear(_ animated: Bool) {
