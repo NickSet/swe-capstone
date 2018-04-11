@@ -18,19 +18,10 @@ class DataManager {
     */
     static let shared = DataManager()
     
-    
-    private var navLocations: [Int: NavigationLocation] = [:]
+    private var navLocations: [Int: NavigationLocation]
     
     private init() {
-        var nodesDict = [String: [String: Any]]()
-        var edgesDict = [String: [String: Any]]()
-        fetchNodes(completionHandler: { nodes in
-            nodesDict = nodes!
-            self.fetchEdges(completionHandler: { edges in
-                edgesDict = edges!
-                self.convertToNavigationLocations(nodes: nodesDict, edges: edgesDict)
-            })
-        })
+        navLocations = [:]
     }
     
     func findClosest(current: CLLocationCoordinate2D, destination: NavigationLocation) -> NavigationLocation {
@@ -45,7 +36,7 @@ class DataManager {
             } else if x.cost(to: destination) > temp.cost(to: destination) {
                 continue
             } else {
-                temp2 = temp.cost(to:x) //+ (x.cost(to: destination))
+                temp2 = temp.cost(to:x)
                 if(temp2 < distance){
                     distance = temp2
                     closest = x
@@ -55,7 +46,7 @@ class DataManager {
         return closest
     }
     
-    private func fetchEdges(completionHandler: @escaping firebaseClosure) {
+    public func fetchEdges(completionHandler: @escaping firebaseClosure) {
         let ref: DatabaseReference!
         ref = Database.database().reference()
         var edges: [String: [String: Any]] = [:]
@@ -75,7 +66,7 @@ class DataManager {
         }
     }
  
-    private func fetchNodes(completionHandler: @escaping firebaseClosure) {
+    public func fetchNodes(completionHandler: @escaping firebaseClosure) {
         let ref: DatabaseReference!
         ref = Database.database().reference()
         var nodes: [String: [String: Any]] = [:]
@@ -94,7 +85,7 @@ class DataManager {
         }
     }
     
-    private func convertToNavigationLocations(nodes: [String: [String: Any]],
+    func convertToNavigationLocations(nodes: [String: [String: Any]],
                                               edges: [String: [String: Any]]) {
         for node in nodes.values {
             let id = node["_id"] as! Int

@@ -15,6 +15,7 @@ class ARViewController: UIViewController {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var menuButton: UIButton!
+    @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     
     var locationManager = CLLocationManager()
     var arrowNode = SCNNode()
@@ -24,7 +25,8 @@ class ARViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //fetchData()
+        
+        loadingIndicator.startAnimating()
         
         sceneView.delegate = self
         
@@ -47,14 +49,18 @@ class ARViewController: UIViewController {
         
         setupSideMenu()
         
-        let dataManager = DataManager.shared
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-            let node9 = dataManager.getNode(withID: 9)!
-            let node12 = dataManager.getNode(withID: 12)!
-            
-            let shortNL = dataManager.findClosest(current: (self.locationManager.location?.coordinate)!, destination: node12)
-            self.title = shortNL.description
-            //let shortNL = dataManager.findClosest(current: startingPoint, destination: node12)
+        let graph = DataManager.shared
+        var nodesDict = [String: [String: Any]]()
+        var edgesDict = [String: [String: Any]]()
+        graph.fetchNodes(completionHandler: { nodes in
+            nodesDict = nodes!
+            graph.fetchEdges(completionHandler: { edges in
+                edgesDict = edges!
+                graph.convertToNavigationLocations(nodes: nodesDict, edges: edgesDict)
+                self.loadingIndicator.stopAnimating()
+                self.loadingIndicator.isHidden = true
+                print(graph.destinationLocations)
+            })
         })
     }
     
