@@ -39,7 +39,7 @@
                         <color key="backgroundColor" red="0.35686274509803922" green="0.40392156862745099" blue="0.4392156862745098" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                         <sections>
-                            <tableViewSection id="yei-Q7-tU9">
+                            <tableViewSection id="5pY-o4-DMJ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="vibrantCell" id="6ef-5M-fFW" customClass="UITableViewVibrantCell" customModule="Augmented_Campus" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -292,6 +292,11 @@
                                     <action selector="menuButtonTappedWithSender:" destination="sBn-1M-NAo" eventType="touchUpInside" id="8yg-EJ-PuK"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="34I-Ie-CtL">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.72941176470000002" green="0.047058823530000002" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -313,6 +318,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingIndicator" destination="34I-Ie-CtL" id="srC-Yf-s6o"/>
                         <outlet property="menuButton" destination="7m4-3a-tDl" id="QRg-u2-Nbb"/>
                         <outlet property="sceneView" destination="sKl-Gf-0Ao" id="71e-c1-h75"/>
                         <segue destination="Roi-CB-xci" kind="presentation" identifier="LeftMenuControllerSegue" id="ygq-bZ-Ozq"/>
