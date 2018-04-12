@@ -39,7 +39,7 @@ class DataManager {
                 temp2 = temp.cost(to:x)
                 if(temp2 < distance){
                     distance = temp2
-                    closest = x
+                    closest = xß
                 }
             }
         }

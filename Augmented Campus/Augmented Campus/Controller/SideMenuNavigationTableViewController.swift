@@ -12,10 +12,11 @@ import UIKit
 
 class SideMenuNavigationTableViewController: UITableViewController {
     
-    var coordinates = [CLLocationCoordinate2D]()
-    let descriptions = ["Fountain", "Lake", "Entrance"]
-    var selectedCoordinate = CLLocationCoordinate2D()
+    var coordinates = [NavigationLocation]()
+    let descriptions = ["Test"]
+    var selectedCoordinate = NavigationLocation(lat: 0, lng: 0, name: "", id: -1)
     var selectedDescription = String()
+    var graph = DataManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +42,15 @@ class SideMenuNavigationTableViewController: UITableViewController {
     }
     
     func addCoords() {
-        let fountain = CLLocationCoordinate2D(latitude: 36.971647, longitude:  -82.558557) 
-        let lake = CLLocationCoordinate2D(latitude: 36.971875, longitude: -82.561650)
-        let entrance = CLLocationCoordinate2D(latitude: 36.969963, longitude: -82.560619)
-        
-        coordinates.append(fountain)
-        coordinates.append(lake)
-        coordinates.append(entrance)
+        if let destinationTest = graph.getNode(withID: 16) {
+            coordinates.append(destinationTest)
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                let dT = self.graph.getNode(withID: 16)
+                self.coordinates.append(dT!)
+            })
+        }
     }
 }
+
+

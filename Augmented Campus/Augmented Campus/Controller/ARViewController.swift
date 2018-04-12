@@ -20,8 +20,11 @@ class ARViewController: UIViewController {
     var locationManager = CLLocationManager()
     var arrowNode = SCNNode()
     var lightNode = SCNNode()
+    let graph = DataManager.shared
+    var path = [NavigationLocation]()
+    var pathFinding = false
     
-    var currentCoord = CLLocationCoordinate2D()
+    var currentCoord = NavigationLocation(lat: 0.0, lng: 0.0, name: "", id: -1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,14 +52,13 @@ class ARViewController: UIViewController {
         
         setupSideMenu()
         
-        let graph = DataManager.shared
         var nodesDict = [String: [String: Any]]()
         var edgesDict = [String: [String: Any]]()
         graph.fetchNodes(completionHandler: { nodes in
             nodesDict = nodes!
-            graph.fetchEdges(completionHandler: { edges in
+            self.graph.fetchEdges(completionHandler: { edges in
                 edgesDict = edges!
-                graph.convertToNavigationLocations(nodes: nodesDict, edges: edgesDict)
+                self.graph.convertToNavigationLocations(nodes: nodesDict, edges: edgesDict)
                 self.loadingIndicator.stopAnimating()
                 self.loadingIndicator.isHidden = true
             })
@@ -89,15 +91,44 @@ class ARViewController: UIViewController {
         SideMenuManager.default.menuFadeStatusBar = false
     }
     
-    func updateNode(withHeading heading: Double) {
-        arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
-        
-        if currentCoord != CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0) {
-            arrowNode.isHidden = false
-        }
+    func followPath() {
         
         let loc = locationManager.location?.coordinate
-        let bearing = loc!.calculateBearing(to: currentCoord)
+        let locNL = NavigationLocation(lat: (loc?.latitude)!, lng: (loc?.longitude)!, name: "", id: -1)
+        if path.count == 1 {
+            //Do arrived at destination stuff
+            pathFinding = false
+            self.title = "Finished"
+        }
+        if locNL.cost(to: path[0]) < (17.6/36000) {
+            //If the user is close to the next node in line, change position to that node.
+            path.remove(at: 0)
+        }
+        else if locNL.cost(to: path[1]) < (17.6/36000) {
+            //If the user is close to the node after the next node in line, change position to that node.
+            path.remove(at: 0)
+            path.remove(at: 1)
+        }
+        if locNL.cost(to: path[0]) > (path[0].cost(to: path[1])*1.17){
+            //recalculate because user is farther from the end point than the distance from start -> next node * 1.17
+            let newNode = graph.findClosest(current: loc!, destination: path[path.count-1])
+            path = newNode.findPath(to: path[path.count-1])
+        }
+        /*
+        if path[0].cost(to: path[path.count-1])*1.05 > locNL.cost(to: path[path.count-1]){
+            //recalculate
+        }
+         */
+        updateNode(withHeading: (locationManager.heading?.magneticHeading.toRadians())!)
+}
+    
+    func updateNode(withHeading heading: Double) {
+        arrowNode.isHidden = false
+        arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
+    
+        let loc = locationManager.location?.coordinate
+        let temp = CLLocationCoordinate2D(latitude: path[0].latitude, longitude: path[0].longitude)
+        let bearing = loc!.calculateBearing(to: temp)
         var direction = 0.0
         
         if heading < Double.pi {
@@ -113,8 +144,11 @@ class ARViewController: UIViewController {
         if let sideMenuController = segue.source as? SideMenuNavigationTableViewController {
             currentCoord = sideMenuController.selectedCoordinate
             self.title = sideMenuController.selectedDescription
+            let start = graph.findClosest(current: (locationManager.location?.coordinate)!, destination: currentCoord)
+            path = start.findPath(to: currentCoord)
+            pathFinding = true
             updateNode(withHeading: locationManager.heading!.magneticHeading.toRadians())
-            
+            followPath()
         }
     }
     
@@ -133,7 +167,9 @@ class ARViewController: UIViewController {
 
 extension ARViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        updateNode(withHeading: newHeading.magneticHeading.toRadians())
+        if pathFinding {
+            followPath()
+        }
     }
 }
 
