@@ -39,7 +39,7 @@ class DataManager {
                 temp2 = temp.cost(to:x)
                 if(temp2 < distance){
                     distance = temp2
-                    closest = xß
+                    closest = x
                 }
             }
         }
@@ -55,7 +55,7 @@ class DataManager {
                 return
             }
             edges = dictionary
-            //self.convertToNavigationLocations(from: dictionary)
+            
             if edges.isEmpty {
                 completionHandler(nil)
             } else {

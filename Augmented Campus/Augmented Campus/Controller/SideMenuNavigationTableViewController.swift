@@ -12,10 +12,9 @@ import UIKit
 
 class SideMenuNavigationTableViewController: UITableViewController {
     
-    var coordinates = [NavigationLocation]()
-    let descriptions = ["Test"]
-    var selectedCoordinate = NavigationLocation(lat: 0, lng: 0, name: "", id: -1)
-    var selectedDescription = String()
+    var navigationLocations = [NavigationLocation]()
+    let descriptions = ["Node 16"]
+    var selectedNavLoc = NavigationLocation(lat: 0, lng: 0, name: "", id: -1)
     var graph = DataManager.shared
     
     override func viewDidLoad() {
@@ -36,18 +35,17 @@ class SideMenuNavigationTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCoordinate = coordinates[indexPath.row]
-        selectedDescription = descriptions[indexPath.row]
+        selectedNavLoc = navigationLocations[indexPath.row]
         performSegue(withIdentifier: "unwindToARViewController", sender: self)
     }
     
     func addCoords() {
         if let destinationTest = graph.getNode(withID: 16) {
-            coordinates.append(destinationTest)
+            navigationLocations.append(destinationTest)
         } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                 let dT = self.graph.getNode(withID: 16)
-                self.coordinates.append(dT!)
+                self.navigationLocations.append(dT!)
             })
         }
     }

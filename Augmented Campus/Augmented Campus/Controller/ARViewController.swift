@@ -24,7 +24,7 @@ class ARViewController: UIViewController {
     var path = [NavigationLocation]()
     var pathFinding = false
     
-    var currentCoord = NavigationLocation(lat: 0.0, lng: 0.0, name: "", id: -1)
+    var destination = NavigationLocation(lat: 0.0, lng: 0.0, name: "", id: -1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,44 +91,48 @@ class ARViewController: UIViewController {
         SideMenuManager.default.menuFadeStatusBar = false
     }
     
-    func followPath() {
+    func followPath(fromLocation loc: CLLocation) {
+        let userLocation = NavigationLocation(lat: (loc.coordinate.latitude), lng: (loc.coordinate.longitude), name: "", id: -1)
         
-        let loc = locationManager.location?.coordinate
-        let locNL = NavigationLocation(lat: (loc?.latitude)!, lng: (loc?.longitude)!, name: "", id: -1)
         if path.count == 1 {
             //Do arrived at destination stuff
             pathFinding = false
             self.title = "Finished"
         }
-        if locNL.cost(to: path[0]) < (17.6/36000) {
+        if userLocation.cost(to: path[0]) < (17.6/36000) {
             //If the user is close to the next node in line, change position to that node.
             path.remove(at: 0)
         }
-        else if locNL.cost(to: path[1]) < (17.6/36000) {
+        else if userLocation.cost(to: path[1]) < (17.6/36000) {
             //If the user is close to the node after the next node in line, change position to that node.
             path.remove(at: 0)
             path.remove(at: 1)
         }
-        if locNL.cost(to: path[0]) > (path[0].cost(to: path[1])*1.17){
+        if userLocation.cost(to: path[0]) > (path[0].cost(to: path[1])*1.17){
             //recalculate because user is farther from the end point than the distance from start -> next node * 1.17
-            let newNode = graph.findClosest(current: loc!, destination: path[path.count-1])
+            
+            let newNode = graph.findClosest(current: loc.coordinate, destination: path[path.count-1])
             path = newNode.findPath(to: path[path.count-1])
         }
-        /*
-        if path[0].cost(to: path[path.count-1])*1.05 > locNL.cost(to: path[path.count-1]){
-            //recalculate
-        }
-         */
-        updateNode(withHeading: (locationManager.heading?.magneticHeading.toRadians())!)
+        addDebugInfo(fromLocation: loc)
 }
     
-    func updateNode(withHeading heading: Double) {
-        arrowNode.isHidden = false
+    func updateArrow(withHeading heading: Double) {
+        if pathFinding {
+            arrowNode.isHidden = false
+        } else {
+            arrowNode.isHidden = true
+        }
         arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
     
-        let loc = locationManager.location?.coordinate
+        guard let loc = locationManager.location?.coordinate else {
+            return
+        }
+        if path.isEmpty {
+            return
+        }
         let temp = CLLocationCoordinate2D(latitude: path[0].latitude, longitude: path[0].longitude)
-        let bearing = loc!.calculateBearing(to: temp)
+        let bearing = loc.calculateBearing(to: temp)
         var direction = 0.0
         
         if heading < Double.pi {
@@ -142,13 +146,12 @@ class ARViewController: UIViewController {
     
     @IBAction func unwindToARViewController(segue: UIStoryboardSegue) {
         if let sideMenuController = segue.source as? SideMenuNavigationTableViewController {
-            currentCoord = sideMenuController.selectedCoordinate
-            self.title = sideMenuController.selectedDescription
-            let start = graph.findClosest(current: (locationManager.location?.coordinate)!, destination: currentCoord)
-            path = start.findPath(to: currentCoord)
+            
+            destination = sideMenuController.selectedNavLoc
+            self.title = destination.name
+            let start = graph.findClosest(current: (locationManager.location?.coordinate)!, destination: destination)
+            path = start.findPath(to: destination)
             pathFinding = true
-            updateNode(withHeading: locationManager.heading!.magneticHeading.toRadians())
-            followPath()
         }
     }
     
@@ -160,15 +163,48 @@ class ARViewController: UIViewController {
                 self.menuButton.transform = CGAffineTransform.identity
             })
         })
-        
         performSegue(withIdentifier: "LeftMenuControllerSegue", sender: nil)
+    }
+    
+    /// Setup and Display Debug Info
+    @IBOutlet var nextLabel: UILabel!
+    @IBOutlet var nextDistanceLabel: UILabel!
+    @IBOutlet var destinationLabel: UILabel!
+    @IBOutlet var destinationDistanceLabel: UILabel!
+    
+    func addDebugInfo(fromLocation: CLLocation) {
+        nextLabel.isHidden = false
+        nextDistanceLabel.isHidden = false
+        destinationLabel.isHidden = false
+        destinationDistanceLabel.isHidden = false
+        
+        nextLabel.text = "Next: "
+        nextDistanceLabel.text = "Distance to Next: "
+        destinationLabel.text = "Destination: "
+        destinationDistanceLabel.text = "Distance to Dstn: "
+        
+        nextLabel.text! += path[0].name
+        let nextDistance = Double(round(10 * fromLocation.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
+        nextDistanceLabel.text! += "\(nextDistance) meters"
+        destinationLabel.text! += path.last!.name
+        let destinationDistance = Double(round(10 * fromLocation.distance(from: CLLocation(latitude: path.last!.latitude, longitude: path.last!.longitude)))/10)
+        destinationDistanceLabel.text! += "\(destinationDistance) meters"
     }
 }
 
 extension ARViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        updateArrow(withHeading: newHeading.magneticHeading.toRadians())
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // If user is currently navigation to a location
         if pathFinding {
-            followPath()
+            //get the most recent reported user location
+            guard let userLoc = locations.last else {
+                return
+            }
+            followPath(fromLocation: userLoc)
         }
     }
 }
