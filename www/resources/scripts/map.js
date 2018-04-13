@@ -16,6 +16,18 @@ var infoWindows = [];
 var nodesForEdge = [];
 var edgeAddingWindow;
 
+baseRef.on("value", function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+        var childKey = childSnapshot.key;
+        if (childKey == "Nodes") {
+            nodes = childSnapshot.val();
+        } else if (childKey == "Edges") {
+            edges = childSnapshot.val();
+        }
+      });
+      console.log(edges);
+      initMap(nodes, edges);
+});
 
 indexRef.on("value", function(snapshot) {
     nodeCount = snapshot.val();
@@ -25,7 +37,7 @@ nodeRef.on("value", function(snapshot) {
 	//Initial node query for all nodes
     nodes = snapshot.val();
 	//Counts the number of objects stored in nodes
-    initMap(nodes);
+    //initMap(nodes);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -97,7 +109,7 @@ function initPaths(edge) {
 }
 
 
-function initMap(nodes) {
+function initMap(nodes, edges) {
     var loc = {lat: 36.971643, lng: -82.558822}
 	//Override the google marker with custom marker google and set its size
     var nodeImage = new google.maps.MarkerImage('/resources/images/node_z19.png',
@@ -115,7 +127,13 @@ function initMap(nodes) {
     var i = 0;
 	//Looping through the nodes and attaching a marker at the lat and lng of each node
     for (const [key, value] of Object.entries(nodes)) {
-        var contentString = generateDetailWindow(value, i);
+        var edgesFromNode = [];
+        for (const [key, edgeValue] of Object.entries(edges)) {
+            if (edgeValue.from == value._id) {
+                edgesFromNode.push(edgeValue.to);
+            }
+        }
+        var contentString = generateDetailWindow(value, i, edgesFromNode);
 
 		var detailInfoWindow = new google.maps.InfoWindow({
 			content: contentString
@@ -394,11 +412,38 @@ function deleteNode(nodeId){
 			});
 		}	
     }
+
+    
 	nodeRef.child("node"+padToThree(nodeId)).set(emptyNode, function(err) {
         if (err) {
             console.warn(err);
         }
     });
+}
+
+function deleteEdge(edgeFrom, edgeTo) {
+    var emptyEdge = {
+        _id: null,
+        from: null,
+        to: null,
+        stairs: null,
+        weight: null
+    }
+    for (const [key, value] of Object.entries(edges)) {
+        if (value.from == edgeFrom && value.to == edgeTo) {
+            edgeRef.child(value._id).set(emptyEdge, function(err) {
+                if (err) {
+                    console.warn(err);
+                }
+            });
+        } else if (value.from == edgeTo && value.to == edgeFrom) {
+            edgeRef.child(value._id).set(emptyEdge, function(err) {
+                if (err) {
+                    console.warn(err);
+                }
+            });
+        }
+    } 
 }
 
 function generateNodeCreationWindow(coords) {
@@ -419,13 +464,13 @@ function generateNodeCreationWindow(coords) {
     return markup;
 }
 
-function generateDetailWindow(node, index) {
+function generateDetailWindow(node, index, edgesFromNode) {
 	//Markup for the standard click-on-marker infoWindow
     const markup = `
     <div>
         <ul class="no-bullet">
             <li>
-                <h3 id="node-name">${node.description}</h3>
+                <h3 id="node-name">${node._id}: ${node.description}</h3>
             </li>
             <li>
                 ${Number(node.latitude).toFixed(6)},  ${Number(node.longitude).toFixed(6)}
@@ -433,6 +478,9 @@ function generateDetailWindow(node, index) {
         </ul>
         <br>
         <h4>Edges</h4>
+        <ul class="no-bullet">
+            ${edgesFromNode.map(edge => `<li>-> ${edge} <button type="Button" style="color:red" onclick="deleteEdge(${edge}, ${node._id})">Remove</button></li>`).join('')}
+        </ul>
         <br><br><br>
         <button type="button" onclick="addFirstEdge('${node._id}', ${index})">Add Edge</button>
 		<button type="button" onclick="deleteNodeBox('${node._id}', ${index})">Delete Node</button>
