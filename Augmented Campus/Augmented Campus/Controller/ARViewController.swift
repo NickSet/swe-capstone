@@ -23,7 +23,6 @@ class ARViewController: UIViewController {
     let graph = DataManager.shared
     var path = [NavigationLocation]()
     var pathFinding = false
-    var arrowCount = 0
     
     var destination = NavigationLocation(lat: 0.0, lng: 0.0, name: "", id: -1)
     
@@ -139,44 +138,47 @@ class ARViewController: UIViewController {
         }
 }
     
-    func updateArrow() {
-        arrowCount += 1
-        if arrowCount == 20 {
-            arrowCount = 0
-    
-            if pathFinding {
-                arrowNode.isHidden = false
-            } else {
-                arrowNode.isHidden = true
-                return
-            }
+func updateArrow() {
+    if pathFinding {
+        arrowNode.isHidden = false
+    } else {
+        arrowNode.isHidden = true
+        return
+    }
 
-            guard let loc = locationManager.location?.coordinate else {
-                return
-            }
-            guard let heading = locationManager.heading?.magneticHeading.toRadians() else {
-                return
-            }
-            
-            if path.isEmpty {
-                arrowNode.isHidden = true
-                return
-            }
-            
-            self.arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
-            let temp = CLLocationCoordinate2D(latitude: self.path[0].latitude, longitude: self.path[0].longitude)
-            let bearing = loc.calculateBearing(to: temp)
-            var direction = 0.0
-            
-            if heading < Double.pi {
-                direction = heading + Double.pi + abs(bearing)
-            } else {
-                direction = heading - Double.pi + abs(bearing)
-            }
-            self.headingLabel.text = "\(self.path[0].name)"
-            self.arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
+    guard let loc = locationManager.location?.coordinate else {
+        return
+    }
+    guard let heading = locationManager.heading?.magneticHeading.toRadians() else {
+        return
+    }
+    
+    if path.isEmpty {
+        arrowNode.isHidden = true
+        return
+    }
+    
+    arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
+    let temp = CLLocationCoordinate2D(latitude: self.path[0].latitude, longitude: self.path[0].longitude)
+    let bearing = loc.calculateBearing(to: temp)
+    var direction = 0.0
+    
+    if bearing > 0 {
+        if heading < Double.pi {
+            direction = heading + Double.pi - bearing
+        } else {
+            direction = heading - Double.pi - bearing
+        }
+    } else {
+        if heading < Double.pi {
+            direction = heading + Double.pi + abs(bearing)
+        } else {
+            direction = heading - Double.pi + abs(bearing)
         }
     }
+    
+    arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
+}
     
     @IBAction func unwindToARViewController(segue: UIStoryboardSegue) {
         if let sideMenuController = segue.source as? SideMenuNavigationTableViewController {
@@ -205,7 +207,6 @@ class ARViewController: UIViewController {
     @IBOutlet var nextDistanceLabel: UILabel!
     @IBOutlet var destinationLabel: UILabel!
     @IBOutlet var destinationDistanceLabel: UILabel!
-    @IBOutlet var headingLabel: UILabel!
     @IBOutlet var pathInfo: UITextView!
     
     func addDebugInfo(fromLocation: CLLocation) {
@@ -214,7 +215,6 @@ class ARViewController: UIViewController {
         destinationLabel.isHidden = false
         destinationDistanceLabel.isHidden = false
         pathInfo.isHidden = false
-        headingLabel.isHidden = false
         
         nextLabel.text = "Next: "
         nextDistanceLabel.text = "Distance to Next: "

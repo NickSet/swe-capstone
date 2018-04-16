@@ -294,12 +294,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gi7-Tm-923">
-                                <rect key="frame" x="8" y="296" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -317,11 +311,9 @@
                             <constraint firstItem="0zd-0l-Kgp" firstAttribute="top" secondItem="5ci-Lc-LaB" secondAttribute="top" constant="8" id="Y6N-uJ-dDm"/>
                             <constraint firstItem="JMm-fT-DnK" firstAttribute="top" secondItem="0zd-0l-Kgp" secondAttribute="bottom" constant="8" id="aEf-yI-DQc"/>
                             <constraint firstItem="ccM-Vn-mjf" firstAttribute="leading" secondItem="5ci-Lc-LaB" secondAttribute="leading" constant="8" id="fQ8-eM-1vc"/>
-                            <constraint firstItem="Gi7-Tm-923" firstAttribute="leading" secondItem="5ci-Lc-LaB" secondAttribute="leading" constant="8" id="k7p-lq-eML"/>
                             <constraint firstItem="sKl-Gf-0Ao" firstAttribute="leading" secondItem="5ci-Lc-LaB" secondAttribute="leading" id="l2t-WT-UOL"/>
                             <constraint firstItem="0zd-0l-Kgp" firstAttribute="leading" secondItem="5ci-Lc-LaB" secondAttribute="leading" constant="8" id="lAI-Mx-sjd"/>
                             <constraint firstItem="5ci-Lc-LaB" firstAttribute="bottom" secondItem="7m4-3a-tDl" secondAttribute="bottom" constant="16" id="pn0-Jb-Sa6"/>
-                            <constraint firstItem="Gi7-Tm-923" firstAttribute="top" secondItem="I9E-Sg-xK3" secondAttribute="bottom" constant="14" id="sFd-if-YHI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5ci-Lc-LaB"/>
                     </view>
@@ -336,7 +328,6 @@
                     <connections>
                         <outlet property="destinationDistanceLabel" destination="kap-h4-AzX" id="ayN-VO-ipn"/>
                         <outlet property="destinationLabel" destination="ccM-Vn-mjf" id="epw-QQ-e89"/>
-                        <outlet property="headingLabel" destination="Gi7-Tm-923" id="Jtk-OJ-uFK"/>
                         <outlet property="loadingIndicator" destination="34I-Ie-CtL" id="srC-Yf-s6o"/>
                         <outlet property="menuButton" destination="7m4-3a-tDl" id="QRg-u2-Nbb"/>
                         <outlet property="nextDistanceLabel" destination="JMm-fT-DnK" id="3JU-7Z-YCr"/>
