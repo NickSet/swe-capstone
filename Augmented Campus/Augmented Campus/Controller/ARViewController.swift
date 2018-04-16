@@ -23,6 +23,7 @@ class ARViewController: UIViewController {
     let graph = DataManager.shared
     var path = [NavigationLocation]()
     var pathFinding = false
+    var arrowCount = 0
     
     var destination = NavigationLocation(lat: 0.0, lng: 0.0, name: "", id: -1)
     
@@ -93,65 +94,98 @@ class ARViewController: UIViewController {
     
     func followPath(fromLocation loc: CLLocation) {
         let userLocation = NavigationLocation(lat: (loc.coordinate.latitude), lng: (loc.coordinate.longitude), name: "", id: -1)
+        let distance = Double(round(10 * loc.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
         
-        if path.count == 1 {
-            //Do arrived at destination stuff
-            pathFinding = false
-            self.title = "Finished"
-        }
-        if userLocation.cost(to: path[0]) < (17.6/36000) {
+         if distance < 10.0 {
             //If the user is close to the next node in line, change position to that node.
             path.remove(at: 0)
+            if path.count == 0 {
+                //Do arrived at destination stuff
+                pathFinding = false
+                self.title = "Finished"
+            }
+            
         }
+        
+
+            /*
         else if userLocation.cost(to: path[1]) < (17.6/36000) {
             //If the user is close to the node after the next node in line, change position to that node.
             path.remove(at: 0)
             path.remove(at: 1)
         }
-        if userLocation.cost(to: path[0]) > (path[0].cost(to: path[1])*1.17){
+        
+        if locNL.cost(to: path[0]) > (path[0].cost(to: path[1])*1.17){
             //recalculate because user is farther from the end point than the distance from start -> next node * 1.17
             
             let newNode = graph.findClosest(current: loc.coordinate, destination: path[path.count-1])
             path = newNode.findPath(to: path[path.count-1])
         }
-        addDebugInfo(fromLocation: loc)
+        
+        if userLocation.cost(to: path[path.count-1]) > path[0].cost(to: path[path.count-1]){
+            let newNode = graph.findClosest(current: loc.coordinate, destination: path[path.count-1])
+            path = newNode.findPath(to: path[path.count-1])
+        }
+        */
+        /*
+        if path[0].cost(to: path[path.count-1])*1.05 > locNL.cost(to: path[path.count-1]){
+            //recalculate
+        }
+         */
+        if pathFinding {
+            updateArrow()
+            addDebugInfo(fromLocation: loc)
+
+        }
 }
     
-    func updateArrow(withHeading heading: Double) {
-        if pathFinding {
-            arrowNode.isHidden = false
-        } else {
-            arrowNode.isHidden = true
-        }
-        arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
+    func updateArrow() {
+        arrowCount += 1
+        if arrowCount == 20 {
+            arrowCount = 0
     
-        guard let loc = locationManager.location?.coordinate else {
-            return
+            if pathFinding {
+                arrowNode.isHidden = false
+            } else {
+                arrowNode.isHidden = true
+                return
+            }
+
+            guard let loc = locationManager.location?.coordinate else {
+                return
+            }
+            guard let heading = locationManager.heading?.magneticHeading.toRadians() else {
+                return
+            }
+            
+            if path.isEmpty {
+                arrowNode.isHidden = true
+                return
+            }
+            
+            self.arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
+            let temp = CLLocationCoordinate2D(latitude: self.path[0].latitude, longitude: self.path[0].longitude)
+            let bearing = loc.calculateBearing(to: temp)
+            var direction = 0.0
+            
+            if heading < Double.pi {
+                direction = heading + Double.pi + abs(bearing)
+            } else {
+                direction = heading - Double.pi + abs(bearing)
+            }
+            self.headingLabel.text = "\(self.path[0].name)"
+            self.arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
         }
-        if path.isEmpty {
-            return
-        }
-        let temp = CLLocationCoordinate2D(latitude: path[0].latitude, longitude: path[0].longitude)
-        let bearing = loc.calculateBearing(to: temp)
-        var direction = 0.0
-        
-        if heading < Double.pi {
-            direction = heading + Double.pi + abs(bearing)
-        } else {
-            direction = heading - Double.pi + abs(bearing)
-        }
-        
-        arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
     }
     
     @IBAction func unwindToARViewController(segue: UIStoryboardSegue) {
         if let sideMenuController = segue.source as? SideMenuNavigationTableViewController {
-            
             destination = sideMenuController.selectedNavLoc
             self.title = destination.name
             let start = graph.findClosest(current: (locationManager.location?.coordinate)!, destination: destination)
             path = start.findPath(to: destination)
             pathFinding = true
+            updateArrow()
         }
     }
     
@@ -171,30 +205,41 @@ class ARViewController: UIViewController {
     @IBOutlet var nextDistanceLabel: UILabel!
     @IBOutlet var destinationLabel: UILabel!
     @IBOutlet var destinationDistanceLabel: UILabel!
+    @IBOutlet var headingLabel: UILabel!
+    @IBOutlet var pathInfo: UITextView!
     
     func addDebugInfo(fromLocation: CLLocation) {
         nextLabel.isHidden = false
         nextDistanceLabel.isHidden = false
         destinationLabel.isHidden = false
         destinationDistanceLabel.isHidden = false
+        pathInfo.isHidden = false
+        headingLabel.isHidden = false
         
         nextLabel.text = "Next: "
         nextDistanceLabel.text = "Distance to Next: "
         destinationLabel.text = "Destination: "
         destinationDistanceLabel.text = "Distance to Dstn: "
-        
+        pathInfo.text = "Path: "
+        var tempPath = ""
         nextLabel.text! += path[0].name
         let nextDistance = Double(round(10 * fromLocation.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
         nextDistanceLabel.text! += "\(nextDistance) meters"
         destinationLabel.text! += path.last!.name
         let destinationDistance = Double(round(10 * fromLocation.distance(from: CLLocation(latitude: path.last!.latitude, longitude: path.last!.longitude)))/10)
         destinationDistanceLabel.text! += "\(destinationDistance) meters"
+        
+        for each in path {
+            tempPath += "\(each.name) -> "
+        }
+        pathInfo.text = pathInfo.text + tempPath
+        
     }
 }
 
 extension ARViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        updateArrow(withHeading: newHeading.magneticHeading.toRadians())
+        updateArrow()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
