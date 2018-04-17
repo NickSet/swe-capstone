@@ -12,15 +12,15 @@ import UIKit
 
 class SideMenuNavigationTableViewController: UITableViewController {
     
-    var navigationLocations = [NavigationLocation]()
     let descriptions = ["Node 16"]
     var selectedNavLoc = NavigationLocation(lat: 0, lng: 0, name: "", id: -1)
     var graph = DataManager.shared
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addCoords()
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.contentInset = UIEdgeInsetsMake(48, 0, 0, 0)
     }
     
@@ -28,26 +28,26 @@ class SideMenuNavigationTableViewController: UITableViewController {
         super.viewWillAppear(animated)
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return graph.buildings.count
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath) as! UITableViewVibrantCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "vibrantCell") as! UITableViewVibrantCell
+        cell.textLabel?.text = graph.buildings[indexPath.row].name
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedNavLoc = navigationLocations[indexPath.row]
+        //Select the shortest route to location
+        if let loc = locationManager.location?.coordinate {
+            selectedNavLoc = graph.findClosestEntrance(current: loc, buildingEntrances: graph.buildings[indexPath.row].nodes)
+        } 
         performSegue(withIdentifier: "unwindToARViewController", sender: self)
-    }
-    
-    func addCoords() {
-        if let destinationTest = graph.getNode(withID: 16) {
-            navigationLocations.append(destinationTest)
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                let dT = self.graph.getNode(withID: 16)
-                self.navigationLocations.append(dT!)
-            })
-        }
     }
 }
 

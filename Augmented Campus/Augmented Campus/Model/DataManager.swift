@@ -19,51 +19,52 @@ class DataManager {
     static let shared = DataManager()
     //Static name of all the buildings on campus
     let buildingNames = [ "Cavalier House",
-                                "David J. Prior",
-                                "Humphreys-Thomas",
-                                "Carl Smith",
-                                "Ramseyer Press",
-                                "Baptist Collegiate",
-                                "Culbertson",
-                                "Napolean Hill",
-                                "Commonwealth",
-                                "Lila Vicars Smith",
-                                "McCraray",
-                                "Gilliam Center",
-                                "Hunter J. Smith",
-                                "Thompson",
-                                "Papa John's",
-                                "Martha Randolph",
-                                "Henson Hall",
-                                "Library",
-                                "Cantrell",
-                                "Chapel of All Faiths",
-                                "Finacial Aid",
-                                "Student Center",
-                                "Smiddy",
-                                "Mondo's",
-                                "Bowers-Sturgill",
-                                "Stallard Field",
-                                "Fred B. Greer Gym",
-                                "Disability Support",
-                                "Darden",
-                                "Zehmer",
-                                "Henson",
-                                "Sandridge",
-                                "Physical Plant",
-                                "Intramural sports",
-                                "Observatory",
-                                "Alumni Hall",
-                                "Wesley Foundation",
-                                "Teaching Excellence",
-                                "Resource Center",
-                                "Women's Softball Field",
-                                "Lila Vicars Smith House",
-                                "Humphreys Tennis Complex",
-                                "Asbury",
-                                "Wyllie Hall",
-                                "Townhouses",
-                                "Sculpture Garden" ]
+                          "David J. Prior",
+                          "Humphreys-Thomas",
+                          "Carl Smith",
+                          "Ramseyer Press",
+                          "Baptist Collegiate",
+                          "Culbertson",
+                          "Napolean Hill",
+                          "Commonwealth",
+                          "Lila Vicars Smith",
+                          "McCraray",
+                          "Gilliam Center",
+                          "Hunter J. Smith",
+                          "Thompson",
+                          "Papa John's",
+                          "Martha Randolph",
+                          "Henson Hall",
+                          "Library",
+                          "Cantrell",
+                          "Chapel of All Faiths",
+                          "Finacial Aid",
+                          "Student Center",
+                          "Smiddy",
+                          "Mondo's",
+                          "Bowers-Sturgill",
+                          "Stallard Field",
+                          "Fred B. Greer Gym",
+                          "Disability Support",
+                          "Darden",
+                          "Zehmer",
+                          "Henson",
+                          "Sandridge",
+                          "Physical Plant",
+                          "Intramural sports",
+                          "Observatory",
+                          "Alumni Hall",
+                          "Wesley Foundation",
+                          "Teaching Excellence",
+                          "Resource Center",
+                          "Women's Softball Field",
+                          "Lila Vicars Smith House",
+                          "Humphreys Tennis Complex",
+                          "Asbury",
+                          "Wyllie Hall",
+                          "Townhouses",
+                          "Sculpture Garden" ]
+    
     var buildings: [Building]
     private var navLocations: [Int: NavigationLocation]
     
@@ -73,10 +74,8 @@ class DataManager {
     }
     
     func initBuildingsArray() {
-        //Initialize all Buildings loop
+        //Looping through ALL nodes
         for (_, node) in navLocations {
-            //Looping through ALL nodes
-            
             //Shortcut, if a node has the word node, it is a connection node. Not a building
             if (node.name.containsIgnoringCase(find: "node")) {
                 continue
@@ -85,21 +84,37 @@ class DataManager {
                     //Comparing each node's description to the string const array of building names
                     if (node.name.containsIgnoringCase(find: buildName)) {
                         //The string matches a buildingName, and must be an entrance
-                        for structure in buildings {
-                            //Check if the buildings array already has an entry for that building
-                            if (structure.name == buildName) {
-                                //It does, add the building and continue
-                                structure.addNavLoc(node)
-                                continue
+                        if buildings.contains(where: { $0.name == buildName}) {
+                            for structure in buildings {
+                                if (structure.name == buildName) {
+                                    structure.addNavLoc(node)
+                                    break;
+                                }
                             }
+                        } else {
+                            let building = Building(node: node, name: buildName)
+                            buildings.append(building)
+                            break;
                         }
-                        //It does not, init a new building
-                        let building = Building(node: node, name: buildName)
-                        buildings.append(building)
                     }
                 }
             }
         }
+    }
+    
+    func findClosestEntrance(current: CLLocationCoordinate2D, buildingEntrances: [NavigationLocation]) -> NavigationLocation {
+        let locNL = NavigationLocation(lat: current.latitude, lng: current.longitude, name: "", id: -1)
+        var distance = Double.infinity
+        var closest = NavigationLocation(lat: 0, lng: 0, name: "", id: -1)
+        for entrance in buildingEntrances {
+            if locNL.cost(to: entrance) > distance {
+                continue
+            } else {
+                closest = entrance
+                distance = locNL.cost(to: entrance)
+            }
+        }
+        return closest
     }
     
     func findClosest(current: CLLocationCoordinate2D, destination: NavigationLocation) -> NavigationLocation {

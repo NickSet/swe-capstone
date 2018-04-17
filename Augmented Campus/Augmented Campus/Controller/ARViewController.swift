@@ -62,7 +62,9 @@ class ARViewController: UIViewController {
                 self.loadingIndicator.stopAnimating()
                 self.loadingIndicator.isHidden = true
                 self.graph.initBuildingsArray()
-                print(self.graph.buildings)
+                for each in self.graph.buildings {
+                    print(each.nodes)
+                }
             })
         })
     }
@@ -79,7 +81,7 @@ class ARViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        sceneView.session.pause()
         if self.presentedViewController == nil {
             sceneView.session.pause()
         }
