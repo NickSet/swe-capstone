@@ -23,6 +23,7 @@ class ARViewController: UIViewController {
     let graph = DataManager.shared
     var path = [NavigationLocation]()
     var pathFinding = false
+    var staticDistance = 0.0
     
     var destination = NavigationLocation(lat: 0.0, lng: 0.0, name: "", id: -1)
     
@@ -62,9 +63,6 @@ class ARViewController: UIViewController {
                 self.loadingIndicator.stopAnimating()
                 self.loadingIndicator.isHidden = true
                 self.graph.initBuildingsArray()
-                for each in self.graph.buildings {
-                    print(each.nodes)
-                }
             })
         })
     }
@@ -96,49 +94,26 @@ class ARViewController: UIViewController {
     }
     
     func followPath(fromLocation loc: CLLocation) {
-        let userLocation = NavigationLocation(lat: (loc.coordinate.latitude), lng: (loc.coordinate.longitude), name: "", id: -1)
         let distance = Double(round(10 * loc.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
         
-         if distance < 10.0 {
+        if staticDistance * 1.075 > distance {
+            let start = graph.findClosest(current: (locationManager.location?.coordinate)!, destination: destination)
+            path = start.findPath(to: destination)
+            staticDistance = Double(round(10 * loc.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
+        } else if distance < 8.0 {
             //If the user is close to the next node in line, change position to that node.
             path.remove(at: 0)
+            staticDistance = Double(round(10 * loc.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
             if path.count == 0 {
                 //Do arrived at destination stuff
                 pathFinding = false
                 self.title = "Finished"
             }
-            
         }
-        
-
-            /*
-        else if userLocation.cost(to: path[1]) < (17.6/36000) {
-            //If the user is close to the node after the next node in line, change position to that node.
-            path.remove(at: 0)
-            path.remove(at: 1)
-        }
-        
-        if locNL.cost(to: path[0]) > (path[0].cost(to: path[1])*1.17){
-            //recalculate because user is farther from the end point than the distance from start -> next node * 1.17
-            
-            let newNode = graph.findClosest(current: loc.coordinate, destination: path[path.count-1])
-            path = newNode.findPath(to: path[path.count-1])
-        }
-        
-        if userLocation.cost(to: path[path.count-1]) > path[0].cost(to: path[path.count-1]){
-            let newNode = graph.findClosest(current: loc.coordinate, destination: path[path.count-1])
-            path = newNode.findPath(to: path[path.count-1])
-        }
-        */
-        /*
-        if path[0].cost(to: path[path.count-1])*1.05 > locNL.cost(to: path[path.count-1]){
-            //recalculate
-        }
-         */
+    
         if pathFinding {
             updateArrow()
             addDebugInfo(fromLocation: loc)
-
         }
 }
     
@@ -153,7 +128,7 @@ func updateArrow() {
     guard let loc = locationManager.location?.coordinate else {
         return
     }
-    guard let heading = locationManager.heading?.magneticHeading.toRadians() else {
+    guard let heading = locationManager.heading?.trueHeading.toRadians() else {
         return
     }
     
@@ -190,6 +165,7 @@ func updateArrow() {
             self.title = destination.name
             let start = graph.findClosest(current: (locationManager.location?.coordinate)!, destination: destination)
             path = start.findPath(to: destination)
+            staticDistance = Double(round(10 * (locationManager.location?.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))!)/10)
             pathFinding = true
             updateArrow()
         }

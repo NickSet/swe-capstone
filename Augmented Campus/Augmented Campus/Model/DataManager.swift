@@ -100,6 +100,7 @@ class DataManager {
                 }
             }
         }
+        buildings = buildings.sorted(by: { $0.name < $1.name } )
     }
     
     func findClosestEntrance(current: CLLocationCoordinate2D, buildingEntrances: [NavigationLocation]) -> NavigationLocation {
