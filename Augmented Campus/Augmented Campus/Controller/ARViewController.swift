@@ -16,6 +16,8 @@ class ARViewController: UIViewController {
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var menuButton: UIButton!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var destinationDistanceLabel: UILabel!
+    @IBOutlet var destinationView: UIView!
     
     var locationManager = CLLocationManager()
     var arrowNode = SCNNode()
@@ -95,25 +97,19 @@ class ARViewController: UIViewController {
     
     func followPath(fromLocation loc: CLLocation) {
         let distance = Double(round(10 * loc.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
-        
-        if staticDistance * 1.075 > distance {
-            let start = graph.findClosest(current: (locationManager.location?.coordinate)!, destination: destination)
-            path = start.findPath(to: destination)
-            staticDistance = Double(round(10 * loc.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
-        } else if distance < 8.0 {
+        if distance < 8.0 {
             //If the user is close to the next node in line, change position to that node.
             path.remove(at: 0)
-            staticDistance = Double(round(10 * loc.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
             if path.count == 0 {
-                //Do arrived at destination stuff
                 pathFinding = false
-                self.title = "Finished"
+                self.title = ""
+                destinationDistanceLabel.text = "Arrived"
             }
         }
     
         if pathFinding {
             updateArrow()
-            addDebugInfo(fromLocation: loc)
+            updateDistanceLabel(fromLocation: loc)
         }
 }
     
@@ -182,38 +178,11 @@ func updateArrow() {
         performSegue(withIdentifier: "LeftMenuControllerSegue", sender: nil)
     }
     
-    /// Setup and Display Debug Info
-    @IBOutlet var nextLabel: UILabel!
-    @IBOutlet var nextDistanceLabel: UILabel!
-    @IBOutlet var destinationLabel: UILabel!
-    @IBOutlet var destinationDistanceLabel: UILabel!
-    @IBOutlet var pathInfo: UITextView!
-    
-    func addDebugInfo(fromLocation: CLLocation) {
-        nextLabel.isHidden = false
-        nextDistanceLabel.isHidden = false
-        destinationLabel.isHidden = false
-        destinationDistanceLabel.isHidden = false
-        pathInfo.isHidden = false
-        
-        nextLabel.text = "Next: "
-        nextDistanceLabel.text = "Distance to Next: "
-        destinationLabel.text = "Destination: "
-        destinationDistanceLabel.text = "Distance to Dstn: "
-        pathInfo.text = "Path: "
-        var tempPath = ""
-        nextLabel.text! += path[0].name
-        let nextDistance = Double(round(10 * fromLocation.distance(from: CLLocation(latitude: path[0].latitude, longitude: path[0].longitude)))/10)
-        nextDistanceLabel.text! += "\(nextDistance) meters"
-        destinationLabel.text! += path.last!.name
-        let destinationDistance = Double(round(10 * fromLocation.distance(from: CLLocation(latitude: path.last!.latitude, longitude: path.last!.longitude)))/10)
-        destinationDistanceLabel.text! += "\(destinationDistance) meters"
-        
-        for each in path {
-            tempPath += "\(each.name) -> "
-        }
-        pathInfo.text = pathInfo.text + tempPath
-        
+    func updateDistanceLabel(fromLocation: CLLocation) {
+        destinationView.isHidden = false
+        destinationDistanceLabel.text = "Destination: "
+        let destinationDistance = Int(round(10 * fromLocation.distance(from: CLLocation(latitude: path.last!.latitude, longitude: path.last!.longitude)))/10 * 3.28084)
+        destinationDistanceLabel.text! += "\(destinationDistance) feet"
     }
 }
 
@@ -237,17 +206,14 @@ extension ARViewController: CLLocationManagerDelegate {
 extension ARViewController: ARSCNViewDelegate {
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
-        
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
     }
 }
 

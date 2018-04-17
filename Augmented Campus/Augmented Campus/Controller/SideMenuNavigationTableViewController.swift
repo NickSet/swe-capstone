@@ -12,7 +12,6 @@ import UIKit
 
 class SideMenuNavigationTableViewController: UITableViewController {
     
-    let descriptions = ["Node 16"]
     var selectedNavLoc = NavigationLocation(lat: 0, lng: 0, name: "", id: -1)
     var graph = DataManager.shared
     var locationManager = CLLocationManager()
