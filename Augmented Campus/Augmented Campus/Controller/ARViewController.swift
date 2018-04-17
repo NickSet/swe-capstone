@@ -61,6 +61,8 @@ class ARViewController: UIViewController {
                 self.graph.convertToNavigationLocations(nodes: nodesDict, edges: edgesDict)
                 self.loadingIndicator.stopAnimating()
                 self.loadingIndicator.isHidden = true
+                self.graph.initBuildingsArray()
+                print(self.graph.buildings)
             })
         })
     }

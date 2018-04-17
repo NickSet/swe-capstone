@@ -40,11 +40,11 @@ class SideMenuNavigationTableViewController: UITableViewController {
     }
     
     func addCoords() {
-        if let destinationTest = graph.getNode(withID: 248) {
+        if let destinationTest = graph.getNode(withID: 16) {
             navigationLocations.append(destinationTest)
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                let dT = self.graph.getNode(withID: 248)
+                let dT = self.graph.getNode(withID: 16)
                 self.navigationLocations.append(dT!)
             })
         }

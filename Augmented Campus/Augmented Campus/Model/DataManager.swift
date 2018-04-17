@@ -17,11 +17,89 @@ class DataManager {
     Shared object access to the private `DataManager` instance
     */
     static let shared = DataManager()
-    
+    //Static name of all the buildings on campus
+    let buildingNames = [ "Cavalier House",
+                                "David J. Prior",
+                                "Humphreys-Thomas",
+                                "Carl Smith",
+                                "Ramseyer Press",
+                                "Baptist Collegiate",
+                                "Culbertson",
+                                "Napolean Hill",
+                                "Commonwealth",
+                                "Lila Vicars Smith",
+                                "McCraray",
+                                "Gilliam Center",
+                                "Hunter J. Smith",
+                                "Thompson",
+                                "Papa John's",
+                                "Martha Randolph",
+                                "Henson Hall",
+                                "Library",
+                                "Cantrell",
+                                "Chapel of All Faiths",
+                                "Finacial Aid",
+                                "Student Center",
+                                "Smiddy",
+                                "Mondo's",
+                                "Bowers-Sturgill",
+                                "Stallard Field",
+                                "Fred B. Greer Gym",
+                                "Disability Support",
+                                "Darden",
+                                "Zehmer",
+                                "Henson",
+                                "Sandridge",
+                                "Physical Plant",
+                                "Intramural sports",
+                                "Observatory",
+                                "Alumni Hall",
+                                "Wesley Foundation",
+                                "Teaching Excellence",
+                                "Resource Center",
+                                "Women's Softball Field",
+                                "Lila Vicars Smith House",
+                                "Humphreys Tennis Complex",
+                                "Asbury",
+                                "Wyllie Hall",
+                                "Townhouses",
+                                "Sculpture Garden" ]
+    var buildings: [Building]
     private var navLocations: [Int: NavigationLocation]
     
     private init() {
         navLocations = [:]
+        buildings = [Building]()
+    }
+    
+    func initBuildingsArray() {
+        //Initialize all Buildings loop
+        for (_, node) in navLocations {
+            //Looping through ALL nodes
+            
+            //Shortcut, if a node has the word node, it is a connection node. Not a building
+            if (node.name.containsIgnoringCase(find: "node")) {
+                continue
+            } else {
+                for buildName in buildingNames {
+                    //Comparing each node's description to the string const array of building names
+                    if (node.name.containsIgnoringCase(find: buildName)) {
+                        //The string matches a buildingName, and must be an entrance
+                        for structure in buildings {
+                            //Check if the buildings array already has an entry for that building
+                            if (structure.name == buildName) {
+                                //It does, add the building and continue
+                                structure.addNavLoc(node)
+                                continue
+                            }
+                        }
+                        //It does not, init a new building
+                        let building = Building(node: node, name: buildName)
+                        buildings.append(building)
+                    }
+                }
+            }
+        }
     }
     
     func findClosest(current: CLLocationCoordinate2D, destination: NavigationLocation) -> NavigationLocation {

@@ -15,6 +15,10 @@
 		7C326055206AB3C2008773A8 /* NavigationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C326054206AB3C2008773A8 /* NavigationLocation.swift */; };
 		7C326056206AB3C2008773A8 /* NavigationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C326054206AB3C2008773A8 /* NavigationLocation.swift */; };
 		900CD12F202E16C3004CC0A5 /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900CD12E202E16C3004CC0A5 /* GraphTests.swift */; };
+		906C01BF20856C3700BCB092 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906C01BE20856C3700BCB092 /* String+Extension.swift */; };
+		906C01C020856C3700BCB092 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906C01BE20856C3700BCB092 /* String+Extension.swift */; };
+		906C01C220856C5900BCB092 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906C01C120856C5900BCB092 /* Building.swift */; };
+		906C01C320856C5900BCB092 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906C01C120856C5900BCB092 /* Building.swift */; };
 		90A2427120781A2500F4E3C7 /* GraphNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A2427020781A2500F4E3C7 /* GraphNode.swift */; };
 		90A2427220781A2500F4E3C7 /* GraphNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A2427020781A2500F4E3C7 /* GraphNode.swift */; };
 		90A2427420781A9E00F4E3C7 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A2427320781A9E00F4E3C7 /* Array+Extension.swift */; };
@@ -54,6 +58,8 @@
 		5E226D1C72BAD7CE0A3E680A /* Pods_Augmented_Campus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Augmented_Campus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C326054206AB3C2008773A8 /* NavigationLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationLocation.swift; sourceTree = "<group>"; };
 		900CD12E202E16C3004CC0A5 /* GraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
+		906C01BE20856C3700BCB092 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		906C01C120856C5900BCB092 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		90851899202E05550008F3C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		908518A5202E0B0B0008F3C1 /* Augmented CampusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Augmented CampusTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A2427020781A2500F4E3C7 /* GraphNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphNode.swift; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 				7C326054206AB3C2008773A8 /* NavigationLocation.swift */,
 				90A2427020781A2500F4E3C7 /* GraphNode.swift */,
 				019A9B04207CF81200D223B9 /* DataManager.swift */,
+				906C01C120856C5900BCB092 /* Building.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -151,6 +158,7 @@
 				90A2427320781A9E00F4E3C7 /* Array+Extension.swift */,
 				90E784011FD8466900D2163A /* Double+Extension.swift */,
 				90A2427620781C2800F4E3C7 /* CLLocationCoordinate2D+Extension.swift */,
+				906C01BE20856C3700BCB092 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -448,8 +456,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C326056206AB3C2008773A8 /* NavigationLocation.swift in Sources */,
+				906C01C320856C5900BCB092 /* Building.swift in Sources */,
 				019A9B06207CF81200D223B9 /* DataManager.swift in Sources */,
 				90A2427220781A2500F4E3C7 /* GraphNode.swift in Sources */,
+				906C01C020856C3700BCB092 /* String+Extension.swift in Sources */,
 				900CD12F202E16C3004CC0A5 /* GraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,12 +475,14 @@
 				90BF1FBB2033969B0082DB0B /* UISideMenuNavigationController.swift in Sources */,
 				90BF1FBD2033969B0082DB0B /* SideMenuTransition.swift in Sources */,
 				90A2427420781A9E00F4E3C7 /* Array+Extension.swift in Sources */,
+				906C01C220856C5900BCB092 /* Building.swift in Sources */,
 				90BF1FBE2033969B0082DB0B /* UITableViewVibrantCell.swift in Sources */,
 				90A2427120781A2500F4E3C7 /* GraphNode.swift in Sources */,
 				90A2427720781C2800F4E3C7 /* CLLocationCoordinate2D+Extension.swift in Sources */,
 				2C454696204F3E4600717A06 /* SettingsTableViewController.swift in Sources */,
 				7C326055206AB3C2008773A8 /* NavigationLocation.swift in Sources */,
 				90BF1FBC2033969B0082DB0B /* SideMenuManager.swift in Sources */,
+				906C01BF20856C3700BCB092 /* String+Extension.swift in Sources */,
 				90BD6BFA200FF2590055B763 /* ARViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
