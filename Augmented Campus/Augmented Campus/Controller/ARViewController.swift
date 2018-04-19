@@ -102,8 +102,8 @@ class ARViewController: UIViewController {
             path.remove(at: 0)
             if path.count == 0 {
                 pathFinding = false
-                self.title = ""
-                destinationDistanceLabel.text = "Arrived"
+                self.title = "Arrived"
+                destinationView.isHidden = true
             }
         }
     
@@ -124,7 +124,7 @@ func updateArrow() {
     guard let loc = locationManager.location?.coordinate else {
         return
     }
-    guard let heading = locationManager.heading?.trueHeading.toRadians() else {
+    guard let heading = locationManager.heading?.magneticHeading.toRadians() else {
         return
     }
     
