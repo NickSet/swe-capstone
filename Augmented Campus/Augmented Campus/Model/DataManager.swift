@@ -10,14 +10,14 @@ import Foundation
 import Firebase
 import CoreLocation
 
+/// Singleton object to interact with Firebase data
 class DataManager {
     typealias firebaseClosure = ([String: [String: Any]]?) -> Void
     
-    /**
-    Shared object access to the private `DataManager` instance
-    */
+    /// Shared object access to the private `DataManager` instance
     static let shared = DataManager()
-    //Static name of all the buildings on campus
+    
+    /// Names of all the buildings on campus
     let buildingNames = [ "Cavalier House",
                           "David J. Prior",
                           "Humphreys-Thomas",
@@ -65,6 +65,7 @@ class DataManager {
                           "Townhouses",
                           "Sculpture Garden" ]
     
+    /// Array of Building objects used in SideMenu
     var buildings: [Building]
     private var navLocations: [Int: NavigationLocation]
     
@@ -73,6 +74,7 @@ class DataManager {
         buildings = [Building]()
     }
     
+    /// Method to parse NavigationLocations into Building objects
     func initBuildingsArray() {
         //Looping through ALL nodes
         for (_, node) in navLocations {
@@ -100,9 +102,15 @@ class DataManager {
                 }
             }
         }
+        // Sort buildings alphabetically
         buildings = buildings.sorted(by: { $0.name < $1.name } )
     }
     
+    /// Returns the closest entrance from the destination's entrances to the user
+    ///
+    /// - Parameter current: the user's current location
+    /// - Parameter buildingEntrances: array of building entrances for selected destination
+    /// - Returns: the closest entrance to the user's location
     func findClosestEntrance(current: CLLocationCoordinate2D, buildingEntrances: [NavigationLocation]) -> NavigationLocation {
         let locNL = NavigationLocation(lat: current.latitude, lng: current.longitude, name: "", id: -1)
         var distance = Double.infinity
@@ -118,6 +126,11 @@ class DataManager {
         return closest
     }
     
+    /// Returns the closest node to the user's location that is in the graph
+    ///
+    /// - Parameter current: the user's current location
+    /// - Parameter destination: the user's destination
+    /// - Returns: the closest node to the user
     func findClosest(current: CLLocationCoordinate2D, destination: NavigationLocation) -> NavigationLocation {
         let temp = NavigationLocation(lat: current.latitude, lng: current.longitude, name: "", id: -1)
         var distance = 99999.9

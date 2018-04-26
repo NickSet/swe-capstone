@@ -32,8 +32,8 @@ class GraphTests: XCTestCase {
         let a = graph.createNode("a")
         let b = graph.createNode("a")
             
-        XCTAssertEqual(a, b, "Should have returned the same vertex when creating a new one with identical data")
-        XCTAssertEqual(graph.nodes.count, 1, "Graph should only contain one vertex after trying to create two vertices with identical data")
+        XCTAssertEqual(a, b, "Should have returned the same node when creating a new one with identical data")
+        XCTAssertEqual(graph.nodes.count, 1, "Graph should only contain one node after trying to create two nodes with identical data")
     }
     
     func testEdgesFromReturnsCorrectEdgeInSingleEdgeDirecedGraph() {

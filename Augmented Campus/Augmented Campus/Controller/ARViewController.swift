@@ -134,23 +134,20 @@ func updateArrow() {
     }
     
     arrowNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
-    let temp = CLLocationCoordinate2D(latitude: self.path[0].latitude, longitude: self.path[0].longitude)
-    let bearing = loc.calculateBearing(to: temp)
+    
+    let nextNode = CLLocationCoordinate2D(latitude: path[0].latitude, longitude: path[0].longitude)
+    let bearing = loc.calculateBearing(to: nextNode)
     var direction = 0.0
     
-    if bearing > 0 {
-        if heading < Double.pi {
-            direction = heading + Double.pi - bearing
-        } else {
-            direction = heading - Double.pi - bearing
-        }
+    if heading < Double.pi {
+        direction = heading + Double.pi - bearing
     } else {
-        if heading < Double.pi {
-            direction = heading + Double.pi + abs(bearing)
-        } else {
-            direction = heading - Double.pi + abs(bearing)
-        }
+        direction = heading - Double.pi - bearing
     }
+    
+    print("Bearing: \(bearing.toDegrees())")
+    print("Heading: \(heading.toDegrees())")
+    print("Direction: \(direction.toDegrees())")
     
     arrowNode.eulerAngles = SCNVector3Make(0.0, Float(direction), 0.0)
 }

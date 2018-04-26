@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Object to represent a Node in the graph
 final class NavigationLocation {
     var connectedNodes = Set<NavigationLocation>()
     
@@ -23,6 +24,8 @@ final class NavigationLocation {
         self.id = id
     }
     
+    /// Adds an edge between this instance and node
+    /// - Parameter node: The node to make an edge to
     func makeConnection(to node: NavigationLocation) {
         connectedNodes.insert(node)
     }

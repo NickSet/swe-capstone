@@ -130,7 +130,6 @@ extension GraphNode {
                 }
             }
         }
-        
         return path
     }
     
