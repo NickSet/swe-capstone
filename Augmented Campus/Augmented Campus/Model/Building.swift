@@ -8,10 +8,13 @@
 
 import Foundation
 
+/// Object used for storing our destination locations and their entrances
 class Building {
-    //Store all the entrances as node arrays
+    
+    /// An array containing this Building's entrances
     var nodes = [NavigationLocation]()
-    //Stores the name of the building
+    
+    /// The name of this building. Used to populate the navigation menu.
     var name: String
     
     //intilization of Building takes NavLoc and stores it in addition to the static name of the building
@@ -20,7 +23,9 @@ class Building {
         self.name = name
     }
     
-    //Adding the NavLoc if a building instance exists
+    /// Add's a NavigationLocation to the nodes array
+    ///
+    /// - Parameter node: the NavigationLocation to add
     func addNavLoc(_ node: NavigationLocation) {
         nodes.append(node)
     }

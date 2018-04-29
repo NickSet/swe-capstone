@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ARViewController Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/ARViewController" class="dashAnchor"></a>
+    <a title="ARViewController Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (58% documented)</p>
+        <p class="header-right"><a href="https://github.com/nickset/swe-capstone"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ARViewController Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ARViewController.html">ARViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Building.html">Building</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataManager.html">DataManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NavigationLocation.html">NavigationLocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsTableViewController.html">SettingsTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuManager.html">SideMenuManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuManager/MenuPushStyle.html">– MenuPushStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuManager/MenuPresentMode.html">– MenuPresentMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuNavigationTableViewController.html">SideMenuNavigationTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuTransition.html">SideMenuTransition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Step.html">Step</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UISideMenuNavigationController.html">UISideMenuNavigationController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UITableViewVibrantCell.html">UITableViewVibrantCell</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CLLocationCoordinate2D.html">CLLocationCoordinate2D</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/GraphNode.html">GraphNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UISideMenuNavigationControllerDelegate.html">UISideMenuNavigationControllerDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ARViewController</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">ARViewController</span> <span class="p">:</span> <span class="kt">UIViewController</span></code></pre>
+
+                </div>
+              </div>
+            <p>The main view controller for the application. This controller is responsible for presenting the AR view, managing the user&rsquo;s location, and rendering our 3D arrow.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(py)sceneView"></a>
+                    <a name="//apple_ref/swift/Property/sceneView" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)sceneView">sceneView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The AR view that allows us to draw the arrow and display output from the user&rsquo;s camera</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">var</span> <span class="nv">sceneView</span><span class="p">:</span> <span class="kt">ARSCNView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(py)menuButton"></a>
+                    <a name="//apple_ref/swift/Property/menuButton" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)menuButton">menuButton</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A button to display the navigational menu.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">var</span> <span class="nv">menuButton</span><span class="p">:</span> <span class="kt">UIButton</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(py)loadingIndicator"></a>
+                    <a name="//apple_ref/swift/Property/loadingIndicator" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)loadingIndicator">loadingIndicator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An indicator that remains on screen until FireBase data has been loaded</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">var</span> <span class="nv">loadingIndicator</span><span class="p">:</span> <span class="kt">UIActivityIndicatorView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(py)destinationDistanceLabel"></a>
+                    <a name="//apple_ref/swift/Property/destinationDistanceLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)destinationDistanceLabel">destinationDistanceLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A text label that displays the distance from the user&rsquo;s location to their chosen destination.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">var</span> <span class="nv">destinationDistanceLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(py)destinationView"></a>
+                    <a name="//apple_ref/swift/Property/destinationView" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)destinationView">destinationView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A view that houses the <code><a href="../Classes/ARViewController.html#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)destinationDistanceLabel">destinationDistanceLabel</a></code> and it&rsquo;s red UIView background</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">var</span> <span class="nv">destinationView</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC15locationManagerSo010CLLocationF0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/locationManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC15locationManagerSo010CLLocationF0Cvp">locationManager</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A property to access the <code>CLLocationManager</code> properties and methods</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">locationManager</span><span class="p">:</span> <span class="kt">CLLocationManager</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC9arrowNodeSo7SCNNodeCvp"></a>
+                    <a name="//apple_ref/swift/Property/arrowNode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC9arrowNodeSo7SCNNodeCvp">arrowNode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The 3D arrow that we draw and manipulate within the view.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">arrowNode</span><span class="p">:</span> <span class="kt">SCNNode</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC9lightNodeSo7SCNNodeCvp"></a>
+                    <a name="//apple_ref/swift/Property/lightNode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC9lightNodeSo7SCNNodeCvp">lightNode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A lighting node to show proper shadows on our <code><a href="../Classes/ARViewController.html#/s:16Augmented_Campus16ARViewControllerC9arrowNodeSo7SCNNodeCvp">arrowNode</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">lightNode</span><span class="p">:</span> <span class="kt">SCNNode</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC5graphAA11DataManagerCvp"></a>
+                    <a name="//apple_ref/swift/Property/graph" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC5graphAA11DataManagerCvp">graph</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Singleton instance of the <code><a href="../Classes/DataManager.html">DataManager</a></code> class</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">graph</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataManager.html">DataManager</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC4pathSayAA18NavigationLocationCGvp"></a>
+                    <a name="//apple_ref/swift/Property/path" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC4pathSayAA18NavigationLocationCGvp">path</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Array we will use to store the optimal path returned by the A* algorithm</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">path</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/NavigationLocation.html">NavigationLocation</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC11pathFindingSbvp"></a>
+                    <a name="//apple_ref/swift/Property/pathFinding" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC11pathFindingSbvp">pathFinding</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Boolean to determine if we&rsquo;re currently in the process of following a path to a destination</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">pathFinding</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC14staticDistanceSdvp"></a>
+                    <a name="//apple_ref/swift/Property/staticDistance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC14staticDistanceSdvp">staticDistance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A property used when trying to recalculate path based on user deviation from optimal path. Currently not used.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">staticDistance</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC11destinationAA18NavigationLocationCvp"></a>
+                    <a name="//apple_ref/swift/Property/destination" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC11destinationAA18NavigationLocationCvp">destination</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A property to hold the user&rsquo;s chosen destination property.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt"><a href="../Classes/NavigationLocation.html">NavigationLocation</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(im)viewDidLoad"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(im)viewDidLoad">viewDidLoad()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called after the controller&#39;s view is loaded into memory.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(im)viewWillAppear:"></a>
+                    <a name="//apple_ref/swift/Method/viewWillAppear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(im)viewWillAppear:">viewWillAppear(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Notifies the view controller that its view is about to be added to a view hierarchy.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(im)viewDidAppear:"></a>
+                    <a name="//apple_ref/swift/Method/viewDidAppear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(im)viewDidAppear:">viewDidAppear(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Notifies the view controller that its view was added to a view hierarchy.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(im)viewWillDisappear:"></a>
+                    <a name="//apple_ref/swift/Method/viewWillDisappear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(im)viewWillDisappear:">viewWillDisappear(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Notifies the view controller that its view is about to be removed from a view hierarchy.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillDisappear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC13setupSideMenuyyF"></a>
+                    <a name="//apple_ref/swift/Method/setupSideMenu()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC13setupSideMenuyyF">setupSideMenu()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Setup the default values for the <code><a href="../Classes/SideMenuManager.html">SideMenuManager</a></code> class</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setupSideMenu</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC10followPathySo10CLLocationC12fromLocation_tF"></a>
+                    <a name="//apple_ref/swift/Method/followPath(fromLocation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC10followPathySo10CLLocationC12fromLocation_tF">followPath(fromLocation:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tracks and updates the <code><a href="../Classes/ARViewController.html#/s:16Augmented_Campus16ARViewControllerC4pathSayAA18NavigationLocationCGvp">path</a></code> array as the user naviates to their destination. Responsible for calling <code>updateArrow</code> method.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">followPath</span><span class="p">(</span><span class="n">fromLocation</span> <span class="nv">loc</span><span class="p">:</span> <span class="kt">CLLocation</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC11updateArrowyyF"></a>
+                    <a name="//apple_ref/swift/Method/updateArrow()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC11updateArrowyyF">updateArrow()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Orientates the arrow to point towards the next node in the <code><a href="../Classes/ARViewController.html#/s:16Augmented_Campus16ARViewControllerC4pathSayAA18NavigationLocationCGvp">path</a></code> array</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateArrow</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(im)unwindToARViewControllerWithSegue:"></a>
+                    <a name="//apple_ref/swift/Method/unwindToARViewController(segue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(im)unwindToARViewControllerWithSegue:">unwindToARViewController(segue:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unwind segue called when <code>SideMenuNavigationalController</code> is dismissed. Allows passing the selection destination back to this controller for path finding and navigation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBAction</span>
+<span class="kd">func</span> <span class="nf">unwindToARViewController</span><span class="p">(</span><span class="nv">segue</span><span class="p">:</span> <span class="kt">UIStoryboardSegue</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Augmented_Campus@objc(cs)ARViewController(im)menuButtonTappedWithSender:"></a>
+                    <a name="//apple_ref/swift/Method/menuButtonTapped(sender:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Augmented_Campus@objc(cs)ARViewController(im)menuButtonTappedWithSender:">menuButtonTapped(sender:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the user taps on <code><a href="../Classes/ARViewController.html#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)menuButton">menuButton</a></code>. Animates the dissapearance of the <code><a href="../Classes/ARViewController.html#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)menuButton">menuButton</a></code> and performs the segue.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBAction</span>
+<span class="kd">func</span> <span class="nf">menuButtonTapped</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">UIButton</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus16ARViewControllerC19updateDistanceLabelySo10CLLocationC12fromLocation_tF"></a>
+                    <a name="//apple_ref/swift/Method/updateDistanceLabel(fromLocation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus16ARViewControllerC19updateDistanceLabelySo10CLLocationC12fromLocation_tF">updateDistanceLabel(fromLocation:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Updates <code><a href="../Classes/ARViewController.html#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)destinationDistanceLabel">destinationDistanceLabel</a></code> with current distance from user to destination in feet.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateDistanceLabel</span><span class="p">(</span><span class="nv">fromLocation</span><span class="p">:</span> <span class="kt">CLLocation</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)locationManager:didUpdateHeading:"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didUpdateHeading:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)locationManager:didUpdateHeading:">locationManager(_:didUpdateHeading:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate method from <code>CoreLocation</code> library called whenever the user&rsquo;s heading is updated. Used to call the <code>updateArrow</code> method with the new heading.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didUpdateHeading</span> <span class="nv">newHeading</span><span class="p">:</span> <span class="kt">CLHeading</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)locationManager:didUpdateLocations:"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didUpdateLocations:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)locationManager:didUpdateLocations:">locationManager(_:didUpdateLocations:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate method from <code>CoreLocation</code> library called whenever the user&rsquo;s location is updated. Used to call the <code>followPath</code> method with the new location.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didUpdateLocations</span> <span class="nv">locations</span><span class="p">:</span> <span class="p">[</span><span class="kt">CLLocation</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)session:didFailWithError:"></a>
+                    <a name="//apple_ref/swift/Method/session(_:didFailWithError:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)session:didFailWithError:">session(_:didFailWithError:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If the session fails, present an arrow message to the user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">session</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">ARSession</span><span class="p">,</span> <span class="n">didFailWithError</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)sessionWasInterrupted:"></a>
+                    <a name="//apple_ref/swift/Method/sessionWasInterrupted(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)sessionWasInterrupted:">sessionWasInterrupted(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Inform the user that the session has been interrupted</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sessionWasInterrupted</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">ARSession</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)sessionInterruptionEnded:"></a>
+                    <a name="//apple_ref/swift/Method/sessionInterruptionEnded(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)sessionInterruptionEnded:">sessionInterruptionEnded(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reset tracking and/or remove existing anchors if consistent tracking is required</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sessionInterruptionEnded</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">ARSession</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)sideMenuWillAppearWithMenu:animated:"></a>
+                    <a name="//apple_ref/swift/Method/sideMenuWillAppear(menu:animated:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)sideMenuWillAppearWithMenu:animated:">sideMenuWillAppear(menu:animated:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate method called when the sideMenu is about to appear. Used to hide the <code><a href="../Classes/ARViewController.html#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)menuButton">menuButton</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuWillAppear</span><span class="p">(</span><span class="nv">menu</span><span class="p">:</span> <span class="kt"><a href="../Classes/UISideMenuNavigationController.html">UISideMenuNavigationController</a></span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)sideMenuDidDisappearWithMenu:animated:"></a>
+                    <a name="//apple_ref/swift/Method/sideMenuDidDisappear(menu:animated:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@Augmented_Campus@objc(cs)ARViewController(im)sideMenuDidDisappearWithMenu:animated:">sideMenuDidDisappear(menu:animated:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate method called when the sideMenu has disappeared. Used to reshow the <code><a href="../Classes/ARViewController.html#/c:@M@Augmented_Campus@objc(cs)ARViewController(py)menuButton">menuButton</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuDidDisappear</span><span class="p">(</span><span class="nv">menu</span><span class="p">:</span> <span class="kt"><a href="../Classes/UISideMenuNavigationController.html">UISideMenuNavigationController</a></span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Nick Setliff</a>. All rights reserved. (Last updated: 2018-04-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

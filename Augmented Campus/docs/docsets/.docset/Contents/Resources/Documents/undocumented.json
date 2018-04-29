@@ -1,0 +1,775 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/Building.swift",
+      "line": 21,
+      "symbol": "Building.init(node:name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/GraphNode.swift",
+      "line": null,
+      "symbol": "Step",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/GraphNode.swift",
+      "line": 31,
+      "symbol": "Step",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/GraphNode.swift",
+      "line": 32,
+      "symbol": "Step.node",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/GraphNode.swift",
+      "line": 33,
+      "symbol": "Step.previous",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/GraphNode.swift",
+      "line": 35,
+      "symbol": "Step.stepCost",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/GraphNode.swift",
+      "line": 36,
+      "symbol": "Step.goalCost",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/GraphNode.swift",
+      "line": 38,
+      "symbol": "Step.init(from:to:goal:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/GraphNode.swift",
+      "line": 44,
+      "symbol": "Step.init(destination:previous:goal:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Model/GraphNode.swift",
+      "line": 50,
+      "symbol": "Step.cost()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Support/AppDelegate.swift",
+      "line": 54,
+      "symbol": "AppDelegate.applicationDidBecomeActive(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/Support/AppDelegate.swift",
+      "line": 59,
+      "symbol": "AppDelegate.applicationWillTerminate(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": null,
+      "symbol": "SideMenuManager",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 23,
+      "symbol": "SideMenuManager",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 25,
+      "symbol": "SideMenuManager.MenuPushStyle",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 26,
+      "symbol": "SideMenuManager.MenuPushStyle.defaultBehavior",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 27,
+      "symbol": "SideMenuManager.MenuPushStyle.popWhenPossible",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 28,
+      "symbol": "SideMenuManager.MenuPushStyle.replace",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 29,
+      "symbol": "SideMenuManager.MenuPushStyle.preserve",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 30,
+      "symbol": "SideMenuManager.MenuPushStyle.preserveAndHideBackButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 31,
+      "symbol": "SideMenuManager.MenuPushStyle.subMenu",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 34,
+      "symbol": "SideMenuManager.MenuPresentMode",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 35,
+      "symbol": "SideMenuManager.MenuPresentMode.menuSlideIn",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 36,
+      "symbol": "SideMenuManager.MenuPresentMode.viewSlideOut",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 37,
+      "symbol": "SideMenuManager.MenuPresentMode.viewSlideInOut",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 38,
+      "symbol": "SideMenuManager.MenuPresentMode.menuDissolveIn",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 42,
+      "symbol": "SideMenuManager.appScreenRect",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 147,
+      "symbol": "SideMenuManager.transition",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 149,
+      "symbol": "SideMenuManager.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 409,
+      "symbol": "SideMenuManager.menuPushStyle",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 418,
+      "symbol": "SideMenuManager.menuPresentMode",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 427,
+      "symbol": "SideMenuManager.menuAllowPushOfSameClassTwice",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 436,
+      "symbol": "SideMenuManager.menuWidth",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 445,
+      "symbol": "SideMenuManager.menuAnimationPresentDuration",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 454,
+      "symbol": "SideMenuManager.menuAnimationDismissDuration",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 463,
+      "symbol": "SideMenuManager.menuAnimationCompleteGestureDuration",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 472,
+      "symbol": "SideMenuManager.menuAnimationFadeStrength",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 481,
+      "symbol": "SideMenuManager.menuAnimationTransformScaleFactor",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 490,
+      "symbol": "SideMenuManager.menuAnimationBackgroundColor",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 499,
+      "symbol": "SideMenuManager.menuShadowOpacity",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 508,
+      "symbol": "SideMenuManager.menuShadowColor",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 517,
+      "symbol": "SideMenuManager.menuShadowRadius",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 526,
+      "symbol": "SideMenuManager.menuPresentingViewControllerUserInteractionEnabled",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 535,
+      "symbol": "SideMenuManager.menuParallaxStrength",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 544,
+      "symbol": "SideMenuManager.menuFadeStatusBar",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 553,
+      "symbol": "SideMenuManager.menuAnimationOptions",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 562,
+      "symbol": "SideMenuManager.menuAnimationUsingSpringWithDamping",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 571,
+      "symbol": "SideMenuManager.menuAnimationInitialSpringVelocity",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 580,
+      "symbol": "SideMenuManager.menuDismissOnPush",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 625,
+      "symbol": "SideMenuManager.menuBlurEffectStyle",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 634,
+      "symbol": "SideMenuManager.menuLeftNavigationController",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 643,
+      "symbol": "SideMenuManager.menuRightNavigationController",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 652,
+      "symbol": "SideMenuManager.menuLeftSwipeToDismissGesture",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 661,
+      "symbol": "SideMenuManager.menuRightSwipeToDismissGesture",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 670,
+      "symbol": "SideMenuManager.menuEnableSwipeGestures",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 679,
+      "symbol": "SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView:forMenu:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuManager.swift",
+      "line": 683,
+      "symbol": "SideMenuManager.menuAddPanGestureToPresent(toView:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": null,
+      "symbol": "SideMenuTransition",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": null,
+      "symbol": "SideMenuTransition",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 11,
+      "symbol": "SideMenuTransition",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 33,
+      "symbol": "SideMenuTransition.sideMenuManager",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 34,
+      "symbol": "SideMenuTransition.mainViewController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 35,
+      "symbol": "SideMenuTransition.menuViewController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 40,
+      "symbol": "SideMenuTransition.presentDirection",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 41,
+      "symbol": "SideMenuTransition.tapView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 56,
+      "symbol": "SideMenuTransition.statusBarView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 67,
+      "symbol": "SideMenuTransition.init(sideMenuManager:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 75,
+      "symbol": "SideMenuTransition.deinit",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 102,
+      "symbol": "SideMenuTransition.handlePresentMenuLeftScreenEdge(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 107,
+      "symbol": "SideMenuTransition.handlePresentMenuRightScreenEdge(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 112,
+      "symbol": "SideMenuTransition.handlePresentMenuPan(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 184,
+      "symbol": "SideMenuTransition.handleHideMenuPan(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 221,
+      "symbol": "SideMenuTransition.handleHideMenuTap(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 225,
+      "symbol": "SideMenuTransition.hideMenuStart()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 269,
+      "symbol": "SideMenuTransition.hideMenuComplete()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 293,
+      "symbol": "SideMenuTransition.presentMenuStart()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 349,
+      "symbol": "SideMenuTransition.presentMenuComplete()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 374,
+      "symbol": "SideMenuTransition.handleNotification(notification:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 408,
+      "symbol": "SideMenuTransition.animateTransition(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 540,
+      "symbol": "SideMenuTransition.transitionDuration(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 547,
+      "symbol": "SideMenuTransition.update(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 561,
+      "symbol": "SideMenuTransition.animationController(forPresented:presenting:source:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 568,
+      "symbol": "SideMenuTransition.animationController(forDismissed:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 573,
+      "symbol": "SideMenuTransition.interactionControllerForPresentation(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/SideMenuTransition.swift",
+      "line": 579,
+      "symbol": "SideMenuTransition.interactionControllerForDismissal(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 10,
+      "symbol": "UISideMenuNavigationControllerDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 11,
+      "symbol": "UISideMenuNavigationControllerDelegate.sideMenuWillAppear(menu:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 12,
+      "symbol": "UISideMenuNavigationControllerDelegate.sideMenuDidAppear(menu:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 13,
+      "symbol": "UISideMenuNavigationControllerDelegate.sideMenuWillDisappear(menu:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 14,
+      "symbol": "UISideMenuNavigationControllerDelegate.sideMenuDidDisappear(menu:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 18,
+      "symbol": "UISideMenuNavigationController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 45,
+      "symbol": "UISideMenuNavigationController.locked",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 46,
+      "symbol": "UISideMenuNavigationController.originalMenuBackgroundColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 47,
+      "symbol": "UISideMenuNavigationController.transition",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 102,
+      "symbol": "UISideMenuNavigationController.init(rootViewController:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 106,
+      "symbol": "UISideMenuNavigationController.init(nibName:bundle:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 110,
+      "symbol": "UISideMenuNavigationController.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 115,
+      "symbol": "UISideMenuNavigationController.awakeFromNib()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 121,
+      "symbol": "UISideMenuNavigationController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 133,
+      "symbol": "UISideMenuNavigationController.viewWillAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 143,
+      "symbol": "UISideMenuNavigationController.viewDidAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 165,
+      "symbol": "UISideMenuNavigationController.viewWillDisappear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 208,
+      "symbol": "UISideMenuNavigationController.viewDidDisappear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 234,
+      "symbol": "UISideMenuNavigationController.viewWillTransition(to:with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UISideMenuNavigationController.swift",
+      "line": 250,
+      "symbol": "UISideMenuNavigationController.pushViewController(_:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UITableViewVibrantCell.swift",
+      "line": 11,
+      "symbol": "UITableViewVibrantCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UITableViewVibrantCell.swift",
+      "line": 16,
+      "symbol": "UITableViewVibrantCell.blurEffectStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UITableViewVibrantCell.swift",
+      "line": 23,
+      "symbol": "UITableViewVibrantCell.init(style:reuseIdentifier:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UITableViewVibrantCell.swift",
+      "line": 27,
+      "symbol": "UITableViewVibrantCell.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nick/Developer/swe-capstone/Augmented Campus/Augmented Campus/ThirdParty/SideMenu/UITableViewVibrantCell.swift",
+      "line": 44,
+      "symbol": "UITableViewVibrantCell.updateBlur()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/nick/Developer/swe-capstone/Augmented Campus"
+}
