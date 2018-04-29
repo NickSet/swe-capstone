@@ -10,8 +10,9 @@ import Foundation
 import Firebase
 import CoreLocation
 
-/// Singleton object to interact with Firebase data
+/// Singleton class to manage the fetching, updating, and access to FireBase data.
 class DataManager {
+    /// Closure type used in the `fetchNodes` and `fetchEdges` method
     typealias firebaseClosure = ([String: [String: Any]]?) -> Void
     
     /// Shared object access to the private `DataManager` instance
@@ -69,6 +70,7 @@ class DataManager {
     var buildings: [Building]
     private var navLocations: [Int: NavigationLocation]
     
+    /// Private initializer. Only accessible through the static `shared` property.
     private init() {
         navLocations = [:]
         buildings = [Building]()
@@ -153,6 +155,8 @@ class DataManager {
         return closest
     }
     
+    /// Fetches the edges that are available in FireBase
+    /// - Parameter completionHandler: A completion handler that takes in a dictionary and returns void, used for not acting on the data until it has been populated.
     public func fetchEdges(completionHandler: @escaping firebaseClosure) {
         let ref: DatabaseReference!
         ref = Database.database().reference()
@@ -173,6 +177,8 @@ class DataManager {
         }
     }
  
+    /// Fetches the nodes that are available in FireBase
+    /// - Parameter completionHandler: A completion handler that takes in a dictionary and returns void, used for not acting on the data until it has been populated.
     public func fetchNodes(completionHandler: @escaping firebaseClosure) {
         let ref: DatabaseReference!
         ref = Database.database().reference()
@@ -192,6 +198,9 @@ class DataManager {
         }
     }
     
+    /// Converts our JSON Dictionaries into our `NavigationLocation` data structures.
+    /// - Parameter nodes: A dictionary of nodes
+    /// - Parameter edges: A dictionary of edges
     func convertToNavigationLocations(nodes: [String: [String: Any]],
                                               edges: [String: [String: Any]]) {
         for node in nodes.values {
@@ -211,6 +220,9 @@ class DataManager {
         }
     }
 
+    /// Accessor method to get a node with a specific id
+    /// - Parameter id: The id of the node you wish to get
+    /// - Returns: the node if it exists, otherwise nil.
     public func getNode(withID id: Int) -> NavigationLocation? {
         guard let node = navLocations[id] else {
             return nil

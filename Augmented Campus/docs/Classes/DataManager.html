@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DataManager Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/DataManager" class="dashAnchor"></a>
+    <a title="DataManager Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (58% documented)</p>
+        <p class="header-right"><a href="https://github.com/nickset/swe-capstone"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        DataManager Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ARViewController.html">ARViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Building.html">Building</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataManager.html">DataManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NavigationLocation.html">NavigationLocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsTableViewController.html">SettingsTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuManager.html">SideMenuManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuManager/MenuPushStyle.html">– MenuPushStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuManager/MenuPresentMode.html">– MenuPresentMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuNavigationTableViewController.html">SideMenuNavigationTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SideMenuTransition.html">SideMenuTransition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Step.html">Step</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UISideMenuNavigationController.html">UISideMenuNavigationController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UITableViewVibrantCell.html">UITableViewVibrantCell</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CLLocationCoordinate2D.html">CLLocationCoordinate2D</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/GraphNode.html">GraphNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UISideMenuNavigationControllerDelegate.html">UISideMenuNavigationControllerDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>DataManager</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">DataManager</span></code></pre>
+
+                </div>
+              </div>
+            <p>Singleton class to manage the fetching, updating, and access to FireBase data.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC15firebaseClosurea"></a>
+                    <a name="//apple_ref/swift/Alias/firebaseClosure" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC15firebaseClosurea">firebaseClosure</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Closure type used in the <code>fetchNodes</code> and <code>fetchEdges</code> method</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">typealias</span> <span class="n">firebaseClosure</span> <span class="o">=</span> <span class="p">([</span><span class="kt">String</span> <span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]]?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC6sharedACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC6sharedACvpZ">shared</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Shared object access to the private <code>DataManager</code> instance</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span><span class="p">:</span> <span class="kt">DataManager</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC13buildingNamesSaySSGvp"></a>
+                    <a name="//apple_ref/swift/Property/buildingNames" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC13buildingNamesSaySSGvp">buildingNames</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Names of all the buildings on campus</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">buildingNames</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC9buildingsSayAA8BuildingCGvp"></a>
+                    <a name="//apple_ref/swift/Property/buildings" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC9buildingsSayAA8BuildingCGvp">buildings</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Array of Building objects used in SideMenu</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">buildings</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Building.html">Building</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC18initBuildingsArrayyyF"></a>
+                    <a name="//apple_ref/swift/Method/initBuildingsArray()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC18initBuildingsArrayyyF">initBuildingsArray()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Method to parse NavigationLocations into Building objects</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">initBuildingsArray</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC19findClosestEntranceAA18NavigationLocationCSC22CLLocationCoordinate2DV7current_SayAFG17buildingEntrancestF"></a>
+                    <a name="//apple_ref/swift/Method/findClosestEntrance(current:buildingEntrances:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC19findClosestEntranceAA18NavigationLocationCSC22CLLocationCoordinate2DV7current_SayAFG17buildingEntrancestF">findClosestEntrance(current:buildingEntrances:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the closest entrance from the destination&rsquo;s entrances to the user</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">findClosestEntrance</span><span class="p">(</span><span class="nv">current</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">,</span> <span class="nv">buildingEntrances</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/NavigationLocation.html">NavigationLocation</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/NavigationLocation.html">NavigationLocation</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>current</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the user&rsquo;s current location</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>buildingEntrances</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>array of building entrances for selected destination</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the closest entrance to the user&rsquo;s location</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC11findClosestAA18NavigationLocationCSC22CLLocationCoordinate2DV7current_AF11destinationtF"></a>
+                    <a name="//apple_ref/swift/Method/findClosest(current:destination:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC11findClosestAA18NavigationLocationCSC22CLLocationCoordinate2DV7current_AF11destinationtF">findClosest(current:destination:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the closest node to the user&rsquo;s location that is in the graph</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">findClosest</span><span class="p">(</span><span class="nv">current</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">,</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt"><a href="../Classes/NavigationLocation.html">NavigationLocation</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/NavigationLocation.html">NavigationLocation</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>current</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the user&rsquo;s current location</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>destination</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the user&rsquo;s destination</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the closest node to the user</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC10fetchEdgesyys10DictionaryVySSAFySSypGGSgc17completionHandler_tF"></a>
+                    <a name="//apple_ref/swift/Method/fetchEdges(completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC10fetchEdgesyys10DictionaryVySSAFySSypGGSgc17completionHandler_tF">fetchEdges(completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fetches the edges that are available in FireBase</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fetchEdges</span><span class="p">(</span><span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="n"><a href="../Classes/DataManager.html#/s:16Augmented_Campus11DataManagerC15firebaseClosurea">firebaseClosure</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A completion handler that takes in a dictionary and returns void, used for not acting on the data until it has been populated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC10fetchNodesyys10DictionaryVySSAFySSypGGSgc17completionHandler_tF"></a>
+                    <a name="//apple_ref/swift/Method/fetchNodes(completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC10fetchNodesyys10DictionaryVySSAFySSypGGSgc17completionHandler_tF">fetchNodes(completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fetches the nodes that are available in FireBase</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fetchNodes</span><span class="p">(</span><span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="n"><a href="../Classes/DataManager.html#/s:16Augmented_Campus11DataManagerC15firebaseClosurea">firebaseClosure</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A completion handler that takes in a dictionary and returns void, used for not acting on the data until it has been populated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC28convertToNavigationLocationsys10DictionaryVySSAFySSypGG5nodes_AH5edgestF"></a>
+                    <a name="//apple_ref/swift/Method/convertToNavigationLocations(nodes:edges:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC28convertToNavigationLocationsys10DictionaryVySSAFySSypGG5nodes_AH5edgestF">convertToNavigationLocations(nodes:edges:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Converts our JSON Dictionaries into our <code><a href="../Classes/NavigationLocation.html">NavigationLocation</a></code> data structures.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">convertToNavigationLocations</span><span class="p">(</span><span class="nv">nodes</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]],</span>
+                                          <span class="nv">edges</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>nodes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A dictionary of nodes</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>edges</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A dictionary of edges</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16Augmented_Campus11DataManagerC7getNodeAA18NavigationLocationCSgSi6withID_tF"></a>
+                    <a name="//apple_ref/swift/Method/getNode(withID:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16Augmented_Campus11DataManagerC7getNodeAA18NavigationLocationCSgSi6withID_tF">getNode(withID:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method to get a node with a specific id</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getNode</span><span class="p">(</span><span class="n">withID</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/NavigationLocation.html">NavigationLocation</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The id of the node you wish to get</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the node if it exists, otherwise nil.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Nick Setliff</a>. All rights reserved. (Last updated: 2018-04-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

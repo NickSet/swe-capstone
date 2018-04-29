@@ -7,10 +7,12 @@
 //
 
 extension Double {
+    /// Converts a degree representation of a `Double` to radians
     func toRadians() -> Double {
         return self * .pi / 180.0
     }
     
+    /// Converts a radian representation of a `Double` to degrees
     func toDegrees() -> Double {
         return self * 180.0 / .pi
     }

@@ -28,6 +28,10 @@ extension Array {
         return low
     }
     
+    /// Inserts a new element in a sorted array.
+    ///
+    /// - Parameter element: The element to insert into the array.
+    /// - Parameter predicate: A closure that evaluates to a `Bool`
     public mutating func sortedInsert(element: Element, predicate: (Element, Element) -> Bool) {
         insert(element, at: binarySearch{predicate($0, element)} )
     }
@@ -59,7 +63,6 @@ extension Array where Element: Comparable {
     ///
     /// - Complexity: To find the index for the new element
     ///   it uses a binary search algorithm
-    
     public mutating func sortedInsert(newElement: Element) {
         insert(newElement, at: binarySearch(element: newElement) )
     }
